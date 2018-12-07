@@ -21,3 +21,16 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+# Data source file
+.settings
+target
+src/main/resources/datasources.properties
+
+.idea
+
+# eclipse config
+*.classpath
+*.settings
+.project
+src/main/resources/mail.properties

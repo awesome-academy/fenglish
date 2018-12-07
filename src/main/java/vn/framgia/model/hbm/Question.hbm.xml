@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Dec 7, 2018 9:59:06 AM by Hibernate Tools 5.3.6.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="vn.framgia.model.Question" table="questions">
+        <id name="id" type="java.lang.Integer">
+            <column name="id"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="vn.framgia.model.Level" fetch="select" name="level">
+            <column name="level_id"/>
+        </many-to-one>
+        <many-to-one class="vn.framgia.model.Subject" fetch="select" name="subject">
+            <column name="subject_id"/>
+        </many-to-one>
+        <property name="question" type="string">
+            <column name="question"/>
+        </property>
+        <property name="typeQuestion" type="java.lang.Integer">
+            <column name="type_question"/>
+        </property>
+        <property name="mp3Question" type="string">
+            <column name="mp3_question"/>
+        </property>
+        <property name="imgQuestion" type="string">
+            <column name="img_question"/>
+        </property>
+        <property name="option1" type="string">
+            <column name="option1"/>
+        </property>
+        <property name="option2" type="string">
+            <column name="option2"/>
+        </property>
+        <property name="option3" type="string">
+            <column name="option3"/>
+        </property>
+        <property name="option4" type="string">
+            <column name="option4"/>
+        </property>
+        <property name="correctAnswer" type="java.lang.Integer">
+            <column name="correct_answer"/>
+        </property>
+        <property name="deleted" type="java.lang.Boolean">
+            <column name="deleted"/>
+        </property>
+        <list fetch="select" inverse="true" lazy="true" name="exerciseDetails" table="exercise_detail">
+            <key>
+                <column name="questions_id"/>
+            </key>
+            <list-index column="id" base="1" />
+            <one-to-many class="vn.framgia.model.ExerciseDetail"/>
+        </list>
+    </class>
+</hibernate-mapping>

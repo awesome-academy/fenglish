@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Dec 7, 2018 9:59:06 AM by Hibernate Tools 5.3.6.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="vn.framgia.model.Level" table="levels">
+        <id name="id" type="java.lang.Integer">
+            <column name="id"/>
+            <generator class="identity"/>
+        </id>
+        <property name="name" type="string">
+            <column name="name"/>
+        </property>
+        <property name="deleted" type="java.lang.Boolean">
+            <column name="deleted"/>
+        </property>
+        <list fetch="select" inverse="true" lazy="true" name="questions" table="questions">
+            <key>
+                <column name="level_id"/>
+            </key>
+            <list-index column="id" base="1" />
+            <one-to-many class="vn.framgia.model.Question"/>
+        </list>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Dec 7, 2018 9:59:06 AM by Hibernate Tools 5.3.6.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="vn.framgia.model.Subject" table="subjects">
+        <id name="id" type="java.lang.Integer">
+            <column name="id"/>
+            <generator class="identity"/>
+        </id>
+        <property name="subjectName" type="string">
+            <column name="subject_name"/>
+        </property>
+        <property name="deleted" type="java.lang.Boolean">
+            <column name="deleted"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="questions" table="questions">
+            <key>
+                <column name="subject_id"/>
+            </key>
+            <one-to-many class="vn.framgia.model.Question"/>
+        </set>
+        <list fetch="select" inverse="true" lazy="true" name="exercises" table="exercises">
+            <key>
+                <column name="subject_id"/>
+            </key>
+            <list-index column="id" base="1" />
+            <one-to-many class="vn.framgia.model.Exercise"/>
+        </list>
+    </class>
+</hibernate-mapping>

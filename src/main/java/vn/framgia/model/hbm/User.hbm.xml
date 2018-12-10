@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Dec 7, 2018 9:59:06 AM by Hibernate Tools 5.3.6.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="vn.framgia.model.User" table="users">
+        <id name="id" type="java.lang.Integer">
+            <column name="id"/>
+            <generator class="identity"/>
+        </id>
+        <property name="passwordHash" type="string">
+            <column name="password_hash"/>
+        </property>
+        <property name="passwordResetToken" type="string">
+            <column name="password_reset_token"/>
+        </property>
+        <property name="email" type="string">
+            <column name="email" not-null="true"/>
+        </property>
+        <property name="avatar" type="string">
+            <column name="avatar"/>
+        </property>
+        <property name="phone" type="string">
+            <column length="12" name="phone"/>
+        </property>
+        <property name="gender" type="java.lang.Boolean">
+            <column name="gender"/>
+        </property>
+        <property name="birthday" type="date">
+            <column length="10" name="birthday"/>
+        </property>
+        <property name="role" type="string">
+            <column name="role"/>
+        </property>
+        <property name="fullname" type="string">
+            <column name="fullname"/>
+        </property>
+        <property name="deleted" type="boolean">
+            <column name="deleted" not-null="true"/>
+        </property>
+        <one-to-one class="vn.framgia.model.GoogleAccount" name="googleAccount"/>
+        <list fetch="select" inverse="true" lazy="true" name="exercises" table="exercises">
+            <key>
+                <column name="user_id"/>
+            </key>
+            <list-index column="id" base="1" />
+            <one-to-many class="vn.framgia.model.Exercise"/>
+        </list>
+    </class>
+</hibernate-mapping>

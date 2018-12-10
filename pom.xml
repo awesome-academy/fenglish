@@ -214,7 +214,7 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>springmvc</finalName>
+		<finalName>fenglish</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

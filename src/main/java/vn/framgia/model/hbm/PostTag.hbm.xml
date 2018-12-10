@@ -6,10 +6,10 @@
             <column name="id"/>
             <generator class="identity"/>
         </id>
-        <many-to-one class="vn.framgia.model.Post" fetch="select" name="post">
+        <many-to-one class="vn.framgia.model.Post" name="post">
             <column name="post_id"/>
         </many-to-one>
-        <many-to-one class="vn.framgia.model.Tag" fetch="select" name="tag">
+        <many-to-one class="vn.framgia.model.Tag" name="tag">
             <column name="tag_id"/>
         </many-to-one>
     </class>

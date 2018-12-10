@@ -12,7 +12,7 @@
         <property name="status" type="java.lang.Boolean">
             <column name="status"/>
         </property>
-        <list fetch="select" inverse="true" lazy="true" name="posts" table="posts">
+        <list fetch="select" inverse="true" name="posts" table="posts">
             <key>
                 <column name="category_id"/>
             </key>

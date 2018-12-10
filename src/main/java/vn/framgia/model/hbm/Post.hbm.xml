@@ -24,7 +24,7 @@
         <property name="deleted" type="java.lang.Boolean">
             <column name="deleted"/>
         </property>
-        <list fetch="select" inverse="true" lazy="true" name="postTags" table="post_tag">
+        <list fetch="select" inverse="true" name="postTags" table="post_tag">
             <key>
                 <column name="post_id"/>
             </key>

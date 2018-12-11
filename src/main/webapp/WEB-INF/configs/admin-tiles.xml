@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<!-- Base Definition -->
+	<definition name="adminBaseLayout"
+		template="/admin/views/layout/baseLayout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header"
+			value="/admin/views/layout/header.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer"
+			value="/admin/views/layout/footer.jsp" />
+		<put-list-attribute name="css">
+			<add-attribute value="/admin/assets/css/bootstrap.min.css" />
+		</put-list-attribute>
+		<put-list-attribute name="js">
+			<add-attribute
+				value="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" />
+			<add-attribute
+				value="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" />
+		</put-list-attribute>
+	</definition>
+
+	<!-- List Books -->
+	<definition name="listUser" extends="adminBaseLayout">
+		<put-attribute name="title" value="HOME" />
+		<put-attribute name="body"
+			value="/admin/views/user/listUser.jsp" />
+	</definition>
+
+</tiles-definitions>

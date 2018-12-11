@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<!-- Base Definition -->
+	<definition name="/client/baseHomeLayout" template="/views/client/layout/baseHomeLayout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header" value="/views/client/layout/header.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="" />
+	</definition>
+
+	<definition name="/client/baseLayout" template="/views/client/layout/baseLayout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header"
+			value="/views/client/layout/header.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="" />
+	</definition>
+	
+	<!-- Home Definition -->
+	<definition name="/client/index" extends="/client/baseHomeLayout">
+		<put-attribute name="title" value="Trang chủ" />
+		<put-attribute name="body" value="/views/client/index.jsp" />
+		<put-attribute name="footer" value="/views/client/layout/footer.jsp" />
+	</definition>
+
+	<!-- Login Definition -->
+	<definition name="/client/login" extends="/client/baseLayout">
+		<put-attribute name="title" value="Đăng nhập" />
+		<put-attribute name="body" value="/views/client/login.jsp" />
+		<put-attribute name="footer" value="/views/client/layout/elementFooter.jsp" />
+	</definition>
+</tiles-definitions>

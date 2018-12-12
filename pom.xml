@@ -212,6 +212,11 @@
 			<artifactId>spring-aop</artifactId>
 			<version>4.3.13.RELEASE</version>
 		</dependency>
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>1.9.3</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>fenglish</finalName>

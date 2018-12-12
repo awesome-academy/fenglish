@@ -1,5 +1,7 @@
 package vn.framgia.bean;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -11,30 +13,28 @@ public class UserInfo {
 	private Integer id;
 	private String passwordHash;
 	private String passwordResetToken;	
+	private String password;
+	@Pattern(regexp = "^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$")
+	private String email;
+	@NotBlank
 	private String avatar;
 	private String gender;
 	private String birthday;
 	private String role;
 	private GoogleAccount googleAccount;
-	
-	@Pattern(regexp="^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$")
-	private String email;
-	
 	@NotBlank
 	private String fullname;
-	
 	@PhoneConstraint
 	private String phone;
-
 	public UserInfo() {
 
 	}
 
-	public UserInfo(Integer id, String passwordHash, String passwordResetToken, String email, String avatar,
-			String phone, String gender, String birthday, String role, String fullname, GoogleAccount googleAccount) {
+	public UserInfo(Integer id, String password, String passwordResetToken, String email, String avatar, String phone,
+			String gender, String birthday, String role, String fullname, GoogleAccount googleAccount) {
 		super();
 		this.id = id;
-		this.passwordHash = passwordHash;
+		this.password = password;
 		this.passwordResetToken = passwordResetToken;
 		this.email = email;
 		this.avatar = avatar;
@@ -46,6 +46,14 @@ public class UserInfo {
 		this.googleAccount = googleAccount;
 	}
 
+	public String getPasswordHash() {
+		return passwordHash;
+	}
+
+	public void setPasswordHash(String passwordHash) {
+		this.passwordHash = passwordHash;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -54,12 +62,12 @@ public class UserInfo {
 		this.id = id;
 	}
 
-	public String getPasswordHash() {
-		return passwordHash;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setPasswordHash(String passwordHash) {
-		this.passwordHash = passwordHash;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getPasswordResetToken() {

@@ -4,10 +4,15 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="UserDAO" class="vn.framgia.dao.impl.UserDAOImpl">
+	<bean id="userDAO" class="vn.framgia.dao.impl.UserDAOImpl">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	
+	<bean id="questionDAO" class="vn.framgia.dao.impl.QuestionDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
 </beans>

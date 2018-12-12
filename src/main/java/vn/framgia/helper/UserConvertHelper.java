@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.log4j.Logger;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import vn.framgia.bean.UserInfo;
 import vn.framgia.model.User;
@@ -39,11 +40,10 @@ public class UserConvertHelper {
 	}
 
 	public static void convertSingleUserInfoToUser(User user, UserInfo userInfo) {
-
+		
 		try {
 			user.setBirthday(DatetimeConvertHelper.convertStringToDate(userInfo.getBirthday()));
 			user.setId(userInfo.getId());
-			user.setPasswordHash(userInfo.getPasswordHash());
 			user.setPasswordResetToken(userInfo.getPasswordResetToken());
 			user.setEmail(userInfo.getEmail());
 			user.setAvatar(userInfo.getAvatar());
@@ -55,6 +55,17 @@ public class UserConvertHelper {
 		} catch (Exception e) {
 			logger.error("Error in convertUserInfoToUser: " + e.getMessage());
 		}
+	}
+	
+	public static User convertUserInfoForRegister(UserInfo userInfo) {
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		User user = new User();
+		user.setEmail(userInfo.getEmail());
+		user.setPasswordHash(encoder.encode(userInfo.getPassword()));
+		user.setFullname(userInfo.getFullname());
+		user.setRole("ROLE_UNCONFIRM");
+		user.setPhone(userInfo.getPhone());
+		return user;
 	}
 
 	public static List<User> convertUserInfoToUser(List<UserInfo> listUserInfo) {

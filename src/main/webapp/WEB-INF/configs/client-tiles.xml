@@ -77,4 +77,46 @@
 		<put-list-attribute name="home-css" />
 		<put-list-attribute name="home-js" />
 	</definition>
+	<definition name="/client/register" extends="/client/baseLayout">
+		<put-attribute name="title" value="Đăng ký" />
+		<put-attribute name="body" value="/client/views/register.jsp" />
+		<put-attribute name="footer" value="/client/views/layout/elementFooter.jsp" />
+		
+		<!-- Login Css -->
+		<put-list-attribute name="login-css" >
+			<add-attribute value="client/assets/styles/elements_styles.css" />
+			<add-attribute value="client/assets/styles/elements_responsive.css" />
+		</put-list-attribute>
+		
+		<!-- Login Js -->
+		<put-list-attribute name="login-js">
+			<add-attribute value="client/assets/plugins/progressbar/progressbar.min.js" />
+			<add-attribute value="client/assets/js/elements_custom.js" />
+		</put-list-attribute>
+		<put-list-attribute name="home-css" />
+		<put-list-attribute name="home-js" />
+	</definition>
+	<definition name="/client/register-confirm" extends="/client/baseLayout">
+		<put-attribute name="title" value="Trang chủ" />
+		<put-attribute name="body" value="/client/views/registerconfirm.jsp" />
+		<put-attribute name="footer" value="/client/views/layout/footer.jsp" />
+		
+		<!-- Home Css -->
+		<put-list-attribute name="home-css">
+			<add-attribute value="client/assets/plugins/OwlCarousel2-2.2.1/owl.carousel.css" />
+			<add-attribute value="client/assets/plugins/OwlCarousel2-2.2.1/owl.theme.default.css" />
+			<add-attribute value="client/assets/plugins/OwlCarousel2-2.2.1/animate.css" />
+			<add-attribute value="client/assets/styles/main_styles.css" />
+			<add-attribute value="client/assets/styles/responsive.css" />
+		</put-list-attribute>
+		
+		<!-- Home Js -->
+		<put-list-attribute name="home-js">
+			<add-attribute value="client/assets/plugins/OwlCarousel2-2.2.1/owl.carousel.js" />
+			<add-attribute value="client/assets/js/custom.js" />
+		</put-list-attribute>
+		
+		<put-list-attribute name="login-css" />
+		<put-list-attribute name="login-js" />
+	</definition>
 </tiles-definitions>

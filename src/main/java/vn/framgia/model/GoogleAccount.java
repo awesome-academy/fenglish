@@ -13,6 +13,11 @@ public class GoogleAccount implements java.io.Serializable {
 
 	public GoogleAccount() {
 	}
+	
+	public GoogleAccount(int usersId, String googleId) {
+		this.usersId= usersId;
+		this.googleId= googleId;
+	}
 
 	public GoogleAccount(User user, String googleId) {
 		this.user = user;

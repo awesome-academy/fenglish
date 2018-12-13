@@ -7,8 +7,14 @@ import vn.framgia.model.User;
 
 public interface UserService extends BaseService<Integer, User> {
 	
+	boolean deleteUserById(Integer id);
+	
 	List<UserInfo> loadUsers(Integer offset, Integer maxResult);
 	
 	Long count();
 	
+	UserInfo findUserById(Integer key);
+	
+	User saveUserOrUpdate(UserInfo userInfo);
+
 }

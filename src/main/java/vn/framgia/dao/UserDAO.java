@@ -9,4 +9,6 @@ public interface UserDAO extends BaseDAO<Integer, User> {
 	List<User> loadUsers(Integer offset, Integer maxResult);
 
 	Long count();
+	
+	boolean deleteUser(User user);
 }

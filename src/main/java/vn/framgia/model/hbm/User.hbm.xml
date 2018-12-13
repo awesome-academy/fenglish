@@ -24,7 +24,7 @@
         <property name="gender" type="java.lang.Boolean">
             <column name="gender"/>
         </property>
-        <property name="birthday" type="date">
+        <property name="birthday" type="timestamp">
             <column length="10" name="birthday"/>
         </property>
         <property name="role" type="string">
@@ -37,7 +37,7 @@
             <column name="deleted" not-null="true"/>
         </property>
         <one-to-one class="vn.framgia.model.GoogleAccount" name="googleAccount"/>
-        <list fetch="select" inverse="true" lazy="true" name="exercises" table="exercises">
+        <list fetch="select" inverse="true" lazy="false" name="exercises" table="exercises">
             <key>
                 <column name="user_id"/>
             </key>

@@ -11,7 +11,7 @@
 
 	<mvc:resources location="/client/assets/" mapping="/client/assets/**" />
 	<mvc:resources location="/admin/assets/" mapping="/admin/assets/**" />
-	
+
 	<!-- Load all annotation from java class -->
 	<context:annotation-config />
 
@@ -25,6 +25,21 @@
 				class="org.springframework.http.converter.StringHttpMessageConverter" />
 		</mvc:message-converters>
 	</mvc:annotation-driven>
+
+	<!-- Config locale for Multiple Language -->
+	<bean id="localeChangeInterceptor"
+		class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+		<property name="paramName" value="lang" />
+	</bean>
+
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+		<property name="defaultLocale" value="vi" />
+	</bean>
+
+	<mvc:interceptors>
+		<bean parent="localeChangeInterceptor" />
+	</mvc:interceptors>
 
 	<!-- Load message.properties. As I18n -->
 	<bean id="messageSource"

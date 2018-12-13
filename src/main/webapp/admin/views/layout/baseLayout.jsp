@@ -6,7 +6,7 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles-extras"
 	prefix="tilesx"%>
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="${pageContext.response.locale}">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,6 +15,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <tilesx:useAttribute name="css" id="listCss" classname="java.util.List" />
+<tilesx:useAttribute name="title" id="title" classname="java.lang.String"/>
 <c:forEach items="${listCss}" var="item">
 	<link rel="stylesheet" href="<c:url value='${item}'/>" type="text/css"
 		media="screen" />
@@ -31,7 +32,7 @@
 }
 </style>
 
-<title><tiles:insertAttribute name="title" ignore="true" /></title>
+<title><spring:message code="${title}"/></title>
 </head>
 <body>
 	<nav class="navbar navbar-default">

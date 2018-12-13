@@ -6,28 +6,44 @@
 	<!-- Base Definition -->
 	<definition name="/admin/baseLayout"
 		template="/admin/views/layout/baseLayout.jsp">
-		<put-attribute name="title" value="" />
 		<put-attribute name="header"
 			value="/admin/views/layout/header.jsp" />
 		<put-attribute name="body" value="" />
 		<put-attribute name="footer"
 			value="/admin/views/layout/footer.jsp" />
 		<put-list-attribute name="css">
-			<add-attribute value="/admin/assets/css/bootstrap.min.css" />
+			<add-attribute
+				value="/admin/assets/css/bootstrap.min.css" />
 		</put-list-attribute>
 		<put-list-attribute name="js">
 			<add-attribute
 				value="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" />
 			<add-attribute
 				value="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" />
+			<add-attribute
+				value="http://code.jquery.com/ui/1.10.2/jquery-ui.js" />
 		</put-list-attribute>
 	</definition>
 
-	<!-- List Books -->
+	<!-- List User -->
 	<definition name="/users/index" extends="/admin/baseLayout">
-		<put-attribute name="title" value="HOME" />
+		<put-attribute name="title" value="title.admin.home" />
 		<put-attribute name="body"
 			value="/admin/views/user/listUser.jsp" />
+	</definition>
+
+	<!-- User Detail -->
+	<definition name="/users/detail" extends="/admin/baseLayout">
+		<put-attribute name="title" value="title.admin.userDetail" />
+		<put-attribute name="body"
+			value="/admin/views/user/userDetail.jsp" />
+	</definition>
+
+	<!-- User Form Edit -->
+	<definition name="/users/edit" extends="/admin/baseLayout">
+		<put-attribute name="title" value="title.admin.userEdit" />
+		<put-attribute name="body"
+			value="/admin/views/user/userForm.jsp" />
 	</definition>
 
 </tiles-definitions>

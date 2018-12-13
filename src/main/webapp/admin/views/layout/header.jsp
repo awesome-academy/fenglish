@@ -4,6 +4,9 @@
 
 <spring:url value="/admin/" var="urlHome" />
 <spring:url value="/admin/logout" var="logoutActionUrl" />
+<spring:message code="title.admin.language" var="language"/>
+
+${language}: <a href="?lang=vn">Việt Nam</a> | <a href="?lang=en">English</a>
 
 <nav class="navbar navbar-inverse">
 	<div class="container-fluid">

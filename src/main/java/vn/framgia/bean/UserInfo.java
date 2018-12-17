@@ -1,20 +1,30 @@
 package vn.framgia.bean;
 
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+
 import vn.framgia.model.GoogleAccount;
+import vn.framgia.validator.PhoneConstraint;
 
 public class UserInfo {
 	private Integer id;
 	private String passwordHash;
-	private String passwordResetToken;
-	private String email;
+	private String passwordResetToken;	
 	private String avatar;
-	private String phone;
 	private String gender;
 	private String birthday;
 	private String role;
-	private String fullname;
 	private GoogleAccount googleAccount;
+	
+	@Pattern(regexp="^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$")
+	private String email;
+	
+	@NotBlank
+	private String fullname;
+	
+	@PhoneConstraint
+	private String phone;
 
 	public UserInfo() {
 

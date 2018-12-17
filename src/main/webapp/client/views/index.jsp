@@ -57,10 +57,10 @@
 		</div>
 
 		<div class="hero_slider_left hero_slider_nav trans_200">
-			<span class="trans_200">&lt</span>
+			<span class="trans_200">&lt;</span>
 		</div>
 		<div class="hero_slider_right hero_slider_nav trans_200">
-			<span class="trans_200">&gt</span>
+			<span class="trans_200">&gt;</span>
 		</div>
 	</div>
 

@@ -1,8 +1,5 @@
 package vn.framgia.helper;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,51 +38,51 @@ public class UserConvertHelper {
 		return listUserInfo;
 	}
 
-	public static User convertSingleUserInfoToUser(UserInfo userInfo) {
-
-		User user = new User();
-		DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+	public static void convertSingleUserInfoToUser(User user, UserInfo userInfo) {
 
 		try {
-			user.setBirthday(df.parse(userInfo.getBirthday()));
+			user.setBirthday(DatetimeConvertHelper.convertStringToDate(userInfo.getBirthday()));
 			user.setId(userInfo.getId());
 			user.setPasswordHash(userInfo.getPasswordHash());
 			user.setPasswordResetToken(userInfo.getPasswordResetToken());
 			user.setEmail(userInfo.getEmail());
 			user.setAvatar(userInfo.getAvatar());
 			user.setPhone(userInfo.getPhone());
+			user.setFullname(userInfo.getFullname());
 			user.setRole(userInfo.getRole());
 			user.setGoogleAccount(userInfo.getGoogleAccount());
 			user.setGender(getGenderToBoolean(userInfo.getGender()));
-		} catch (ParseException e) {
+		} catch (Exception e) {
 			logger.error("Error in convertUserInfoToUser: " + e.getMessage());
 		}
-
-		return user;
 	}
 
 	public static List<User> convertUserInfoToUser(List<UserInfo> listUserInfo) {
 		List<User> listUser = new ArrayList<User>();
 
 		for (UserInfo userInfo : listUserInfo) {
-			listUser.add(convertSingleUserInfoToUser(userInfo));
+			User user = new User();
+			convertSingleUserInfoToUser(user, userInfo);
+			listUser.add(user);
 		}
 
 		return listUser;
 	}
-	
+
 	private static String getGenderToString(Boolean gender) {
-		
-		if (gender == true) return "Nam";
-		
+
+		if (gender == true)
+			return "Nam";
+
 		return "Nu";
 	}
-	
+
 	private static Boolean getGenderToBoolean(String gender) {
-		
-		if ("Nam".equals(gender)) return true;
-		
+
+		if ("Nam".equals(gender))
+			return true;
+
 		return false;
 	}
-	
+
 }

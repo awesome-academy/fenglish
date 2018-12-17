@@ -18,7 +18,7 @@ public class UserDAOImpl extends GenericDAO<Integer, User> implements UserDAO {
 		if (maxResult == null) {
 			maxResult = 10;
 		}
-		
+
 		if (offset == null || offset < 1) {
 			query.setFirstResult(0);
 		} else {
@@ -32,8 +32,15 @@ public class UserDAOImpl extends GenericDAO<Integer, User> implements UserDAO {
 
 	@Override
 	public Long count() {
-		String sql = "SELECT COUNT(*) FROM User";
+		String sql = "SELECT COUNT(*) FROM User u WHERE u.deleted = 0";
 		return (long) getSession().createQuery(sql).getSingleResult();
 	}
 
+	@Override
+	public boolean deleteUser(User user) {
+		String hql = "UPDATE User u SET u.deleted = 1 WHERE u.id = :id";
+		getSession().createQuery(hql).setParameter("id", user.getId()).executeUpdate();
+		
+		return true;
+	}
 }

@@ -3,22 +3,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="tag" uri="/WEB-INF/taglibs/customTaglib.tld"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <div class="container" style="margin-top: 30px">
+	<c:if test="${not empty msg}">
+		<div class="alert alert-${css} alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert"
+				aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			<strong><spring:message code="${msg}"/></strong>
+		</div>
+	</c:if>
+
 	<div class="row md-col-8">
 		<h2>Quản lí User</h2>
-		<form action="searchActionUrl" method="GET" class="form-horizontal">
-			<table>
-				<tr>
-					<th>Tên&nbsp;&nbsp;</th>
-					<td><input name="fullname" class="form-control" /></td>
-					<th style="padding-left: 28px;">Email&nbsp;&nbsp;</th>
-					<td><input name="price" class="form-control" /></td>
-					<td style="padding-left: 28px;"><button type="submit"
-							class="btn">Tìm kiếm</button></td>
-				</tr>
-			</table>
-		</form>
 	</div>
 	<div class="row" style="margin-top: 20px">
 		<div class="md-col-8">
@@ -46,11 +44,16 @@
 								<td>${user.gender}</td>
 								<td>${user.birthday}</td>
 								<td>Yes</td>
-								<td><spring:url value="/admin/users/${user.id}/detail"
+								<td><spring:url value="/admin/users/detail/${user.id}"
 										var="detailActionUrl" />
 									<button class="btn btn-info"
 										onclick="location.href='${detailActionUrl}'">Chi tiết</button>
-									<spring:url value="/admin/users/${user.id}/delete" var="deleteActionUrl" />
+									<spring:url value="/admin/users/edit/${user.id}"
+										var="editActionUrl" />
+									<button class="btn btn-warning"
+										onclick="location.href='${editActionUrl}'">Sửa</button>
+									<spring:url value="/admin/users/delete/${user.id}"
+										var="deleteActionUrl" />
 									<button class="btn btn-danger"
 										onclick="location.href='${deleteActionUrl}'">Xóa</button></td>
 							</tr>
@@ -58,8 +61,8 @@
 					</tbody>
 				</table>
 				<tag:paginate offset="${offset}" count="${count}"
-					uri="${pageContext.request.contextPath}/admin/users"
-					next="&raquo;" previous="&laquo;" />
+					uri="${pageContext.request.contextPath}/admin/users" next="&raquo;"
+					previous="&laquo;" />
 			</fieldset>
 		</div>
 	</div>

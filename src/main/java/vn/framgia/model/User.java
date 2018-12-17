@@ -1,8 +1,8 @@
 package vn.framgia.model;
 // Generated Dec 7, 2018 9:59:06 AM by Hibernate Tools 5.3.6.Final
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,7 +17,7 @@ public class User implements java.io.Serializable {
 	private String avatar;
 	private String phone;
 	private Boolean gender;
-	private Date birthday;
+	private Timestamp birthday;
 	private String role;
 	private String fullname;
 	private boolean deleted;
@@ -33,7 +33,7 @@ public class User implements java.io.Serializable {
 	}
 
 	public User(String passwordHash, String passwordResetToken, String email, String avatar, String phone,
-			Boolean gender, Date birthday, String role, String fullname, boolean deleted, GoogleAccount googleAccount,
+			Boolean gender, Timestamp birthday, String role, String fullname, boolean deleted, GoogleAccount googleAccount,
 			List<Exercise> exercises) {
 		this.passwordHash = passwordHash;
 		this.passwordResetToken = passwordResetToken;
@@ -105,11 +105,11 @@ public class User implements java.io.Serializable {
 		this.gender = gender;
 	}
 
-	public Date getBirthday() {
+	public Timestamp getBirthday() {
 		return this.birthday;
 	}
 
-	public void setBirthday(Date birthday) {
+	public void setBirthday(Timestamp birthday) {
 		this.birthday = birthday;
 	}
 

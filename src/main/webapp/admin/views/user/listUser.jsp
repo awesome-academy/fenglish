@@ -35,27 +35,25 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${users}" var="user">
+						<c:forEach items="${users}" var="user" varStatus="count">
 							<tr>
-								<th scope="row">${user.id}</th>
+								<th scope="row">${count.index + 1}</th>
 								<td>${user.fullname}</td>
 								<td>${user.email}</td>
 								<td>${user.phone}</td>
 								<td>${user.gender}</td>
 								<td>${user.birthday}</td>
 								<td>Yes</td>
-								<td><spring:url value="/admin/users/detail/${user.id}"
+								<td><spring:url value="/admin/users/${user.id}"
 										var="detailActionUrl" />
 									<button class="btn btn-info"
 										onclick="location.href='${detailActionUrl}'">Chi tiết</button>
-									<spring:url value="/admin/users/edit/${user.id}"
+									<spring:url value="/admin/users/${user.id}/edit"
 										var="editActionUrl" />
 									<button class="btn btn-warning"
 										onclick="location.href='${editActionUrl}'">Sửa</button>
-									<spring:url value="/admin/users/delete/${user.id}"
-										var="deleteActionUrl" />
-									<button class="btn btn-danger"
-										onclick="location.href='${deleteActionUrl}'">Xóa</button></td>
+									<button class="btn btn-danger btnDeleteUser" >Xóa</button></td>
+								<td class="idUser" hidden="true">${user.id}</td>
 							</tr>
 						</c:forEach>
 					</tbody>

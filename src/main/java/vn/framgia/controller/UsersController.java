@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import vn.framgia.bean.UserInfo;
@@ -26,7 +27,7 @@ public class UsersController {
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping(value = "/users/{offset}", method = RequestMethod.GET)
+	@RequestMapping(value = "/users/page={offset}", method = RequestMethod.GET)
 	public String index(@PathVariable("offset") Integer offset, Model model) {
 		
 		List<UserInfo> users = userService.loadUsers(offset, maxResult);
@@ -37,7 +38,7 @@ public class UsersController {
 		return "/users/index";
 	}
 	
-	@RequestMapping(value = "/users/detail/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
 	public String detail(@PathVariable("id") Integer id, Model model) {
 		
 		UserInfo user = userService.findUserById(id);
@@ -51,7 +52,8 @@ public class UsersController {
 		return "/users/detail";
 	}
 	
-	@RequestMapping(value = "/users/delete/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/users/{id}", method = RequestMethod.DELETE)
+	@ResponseBody
 	public String delete(@PathVariable("id") Integer id, Model model, RedirectAttributes redirectAttributes) {
 		
 		if (userService.deleteUserById(id)) {
@@ -65,7 +67,7 @@ public class UsersController {
 		return "redirect:/admin/";
 	}
 	
-	@RequestMapping(value = "/users/edit/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/users/{id}/edit", method = RequestMethod.GET)
 	public String edit(@PathVariable("id") Integer id, Model model) {
 		
 		UserInfo userForm = userService.findUserById(id);

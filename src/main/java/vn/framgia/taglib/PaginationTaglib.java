@@ -67,7 +67,7 @@ public class PaginationTaglib extends SimpleTagSupport {
 		if (disabled)
 			link.append(">").append("<a href=\"#\">" + text + "</a></li>");
 		else
-			link.append(">").append("<a href=\"" + uri + "/" + page + "/\">" + text + "</a></li>");
+			link.append(">").append("<a href=\"" + uri + "/page=" + page + "/\">" + text + "</a></li>");
 		return link.toString();
 	}
 

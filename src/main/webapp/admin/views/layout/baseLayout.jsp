@@ -15,15 +15,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <tilesx:useAttribute name="css" id="listCss" classname="java.util.List" />
-<tilesx:useAttribute name="title" id="title" classname="java.lang.String"/>
+<tilesx:useAttribute name="js" id="listJs" classname="java.util.List" />
+<tilesx:useAttribute name="title" id="title" classname="java.lang.String" />
 <c:forEach items="${listCss}" var="item">
 	<link rel="stylesheet" href="<c:url value='${item}'/>" type="text/css"
 		media="screen" />
-</c:forEach>
-
-<tilesx:useAttribute name="js" id="listJs" classname="java.util.List" />
-<c:forEach var="item" items="${listJs}">
-	<script src="<c:url value='${item}'/>" type="text/javascript"></script>
 </c:forEach>
 
 <style type="text/css">
@@ -32,7 +28,7 @@
 }
 </style>
 
-<title><spring:message code="${title}"/></title>
+<title><spring:message code="${title}" /></title>
 </head>
 <body>
 	<nav class="navbar navbar-default">
@@ -45,5 +41,8 @@
 		<tiles:insertAttribute name="footer" />
 	</footer>
 
+	<c:forEach var="item" items="${listJs}">
+		<script src="<c:url value='${item}'/>" type="text/javascript"></script>
+	</c:forEach>
 </body>
 </html>

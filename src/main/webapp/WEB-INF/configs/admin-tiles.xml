@@ -11,17 +11,26 @@
 		<put-attribute name="body" value="" />
 		<put-attribute name="footer"
 			value="/admin/views/layout/footer.jsp" />
+
+		<!-- Default Css -->
 		<put-list-attribute name="css">
 			<add-attribute
 				value="/admin/assets/css/bootstrap.min.css" />
+			<add-attribute
+				value="/admin/assets/css/jquery-confirm.min.css" />
 		</put-list-attribute>
+
+		<!-- Default Js -->
 		<put-list-attribute name="js">
 			<add-attribute
-				value="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" />
+				value="/admin/assets/js/jquery-3.2.1.min.js" />
+			<add-attribute value="/admin/assets/js/popper.js" />
 			<add-attribute
-				value="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" />
+				value="/admin/assets/js/bootstrap.min.js" />
+			<add-attribute value="/admin/assets/js/jquery-ui.js" />
 			<add-attribute
-				value="http://code.jquery.com/ui/1.10.2/jquery-ui.js" />
+				value="/admin/assets/js/jquery-confirm.min.js" />
+			<add-attribute value="/admin/assets/js/admin.js" />
 		</put-list-attribute>
 	</definition>
 
@@ -34,7 +43,8 @@
 
 	<!-- User Detail -->
 	<definition name="/users/detail" extends="/admin/baseLayout">
-		<put-attribute name="title" value="title.admin.userDetail" />
+		<put-attribute name="title"
+			value="title.admin.userDetail" />
 		<put-attribute name="body"
 			value="/admin/views/user/userDetail.jsp" />
 	</definition>

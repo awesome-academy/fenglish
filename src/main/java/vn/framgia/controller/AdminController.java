@@ -11,6 +11,6 @@ public class AdminController {
 
 	@RequestMapping(value = {"/", "/home"}, method = RequestMethod.GET)
 	public String index() {
-		return "forward:/admin/users/1/";
+		return "forward:/admin/users/page=1/";
 	}
 }

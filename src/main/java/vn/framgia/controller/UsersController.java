@@ -21,41 +21,41 @@ import vn.framgia.service.UserService;
 @Controller
 @RequestMapping("/admin")
 public class UsersController {
-	
+
 	private static final int maxResult = 10;
-	
+
 	@Autowired
 	private UserService userService;
 	
 	@RequestMapping(value = "/users/page={offset}", method = RequestMethod.GET)
 	public String index(@PathVariable("offset") Integer offset, Model model) {
-		
+
 		List<UserInfo> users = userService.loadUsers(offset, maxResult);
 		model.addAttribute("count", userService.count());
 		model.addAttribute("offset", offset);
 		model.addAttribute("users", users);
-		
+
 		return "/users/index";
 	}
 	
 	@RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
 	public String detail(@PathVariable("id") Integer id, Model model) {
-		
+
 		UserInfo user = userService.findUserById(id);
-		
+
 		if (user == null) {
 			model.addAttribute("css", "danger");
 			model.addAttribute("msg", "msg.user.notfound");
 		}
 		model.addAttribute("user", user);
-		
+
 		return "/users/detail";
 	}
-	
+
 	@RequestMapping(value = "/users/{id}", method = RequestMethod.DELETE)
 	@ResponseBody
 	public String delete(@PathVariable("id") Integer id, Model model, RedirectAttributes redirectAttributes) {
-		
+
 		if (userService.deleteUserById(id)) {
 			redirectAttributes.addFlashAttribute("css", "success");
 			redirectAttributes.addFlashAttribute("msg", "msg.user.deletesuccess");
@@ -63,30 +63,30 @@ public class UsersController {
 			redirectAttributes.addFlashAttribute("css", "error");
 			redirectAttributes.addFlashAttribute("css", "msg.user.deletefail");
 		}
-		
+
 		return "redirect:/admin/";
 	}
-	
+
 	@RequestMapping(value = "/users/{id}/edit", method = RequestMethod.GET)
 	public String edit(@PathVariable("id") Integer id, Model model) {
-		
+
 		UserInfo userForm = userService.findUserById(id);
 		model.addAttribute("userForm", userForm);
-		
+
 		return "/users/edit";
 	}
-	
+
 	@RequestMapping(value = "/users/update", method = RequestMethod.POST)
 	public String update(@Valid @ModelAttribute("userForm") UserInfo userForm, BindingResult bindingResult,
 			RedirectAttributes redirectAttributes) {
-	
+
 		if (bindingResult.hasErrors()) {
 			return "/users/edit";
 		}
 		userService.saveUserOrUpdate(userForm);
 		redirectAttributes.addFlashAttribute("css", "success");
 		redirectAttributes.addFlashAttribute("msg", "msg.user.updatesuccess");
-		
+
 		return "redirect:/admin/";
 	}
 }

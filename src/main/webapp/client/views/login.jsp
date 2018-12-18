@@ -6,7 +6,7 @@
 <div class="home">
 	<div class="home_background_container prlx_parent">
 		<div class="home_background prlx"
-			style="background-image: url(views/client/assets/images/contact_background.jpg)"></div>
+			style="background-image: url(client/assets/images/contact_background.jpg)"></div>
 	</div>
 </div>
 
@@ -22,7 +22,7 @@
 				<div
 					class="search_section d-flex flex-column align-items-center justify-content-center">
 					<div class="search_background"
-						style="background-image: url(views/client/assets/images/search_background.jpg);"></div>
+						style="background-image: url(client/assets/images/search_background.jpg);"></div>
 					<div class="search_content text-center">
 						<h1 class="search_title">Đăng nhập</h1>
 						<form id="search_form" class="search_form" action="checkLogin"

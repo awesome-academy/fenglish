@@ -4,6 +4,18 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="tag" uri="/WEB-INF/taglibs/customTaglib.tld"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<spring:message code="title.user.name" var="colName" />
+<spring:message code="title.user.phone" var="colPhone" />
+<spring:message code="title.user.gender" var="colGender" />
+<spring:message code="title.user.birthday" var="colBirthday" />
+<spring:message code="title.button.detail" var="btnDetail" />
+<spring:message code="title.button.edit" var="btnEdit" />
+<spring:message code="title.button.remove" var="btnRemove" />
+<spring:message code="title.admin.logout" var="logout" />
+<spring:message code="title.admin.logout" var="logout" />
+<spring:message code="title.admin.menuUser" var="userHeader" />
+
 <div class="container" style="margin-top: 30px">
 	<c:if test="${not empty msg}">
 		<div class="alert alert-${css} alert-dismissible" role="alert">
@@ -11,12 +23,12 @@
 				aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 			</button>
-			<strong><spring:message code="${msg}"/></strong>
+			<strong><spring:message code="${msg}" /></strong>
 		</div>
 	</c:if>
 
 	<div class="row md-col-8">
-		<h2>Quản lí User</h2>
+		<h2>${userHeader}</h2>
 	</div>
 	<div class="row" style="margin-top: 20px">
 		<div class="md-col-8">
@@ -26,11 +38,11 @@
 					<thead class="bg-primary">
 						<tr>
 							<th scope="col">#</th>
-							<th scope="col">Tên</th>
+							<th scope="col">${colName}</th>
 							<th scope="col">Email</th>
-							<th scope="col">Điện thoại</th>
-							<th scope="col">Giới tính</th>
-							<th scope="col">Ngày sinh</th>
+							<th scope="col">${colPhone}</th>
+							<th scope="col">${colGender}</th>
+							<th scope="col">${colBirthday}</th>
 							<th scope="col">Online?</th>
 						</tr>
 					</thead>
@@ -47,12 +59,12 @@
 								<td><spring:url value="/admin/users/${user.id}"
 										var="detailActionUrl" />
 									<button class="btn btn-info"
-										onclick="location.href='${detailActionUrl}'">Chi tiết</button>
+										onclick="location.href='${detailActionUrl}'">${btnDetail}</button>
 									<spring:url value="/admin/users/${user.id}/edit"
 										var="editActionUrl" />
 									<button class="btn btn-warning"
-										onclick="location.href='${editActionUrl}'">Sửa</button>
-									<button class="btn btn-danger btnDeleteUser" >Xóa</button></td>
+										onclick="location.href='${editActionUrl}'">${btnEdit}</button>
+									<button class="btn btn-danger btnDeleteUser">${btnRemove}</button></td>
 								<td class="idUser" hidden="true">${user.id}</td>
 							</tr>
 						</c:forEach>

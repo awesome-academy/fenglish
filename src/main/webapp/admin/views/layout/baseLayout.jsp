@@ -28,7 +28,7 @@
 }
 </style>
 
-<title><spring:message code="${title}" /></title>
+<title><spring:message code="${title}"/></title>
 </head>
 <body>
 	<nav class="navbar navbar-default">

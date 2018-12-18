@@ -2,6 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<spring:message code="title.user.userDetail" var="userDetail" />
+<spring:message code="title.user.name" var="colName" />
+<spring:message code="title.user.phone" var="colPhone" />
+
 <div class="container">
 	<div class="row">
 		<div
@@ -18,7 +23,7 @@
 			<c:if test="${empty msg}">
 				<div class="panel panel-info">
 					<div class="panel-heading">
-						<h3 class="panel-title">Thông tin người dùng</h3>
+						<h3 class="panel-title">${userDetail}</h3>
 					</div>
 					<div class="panel-body">
 						<div class="row">
@@ -31,7 +36,7 @@
 								<table class="table table-user-information">
 									<tbody>
 										<tr>
-											<td>Tên</td>
+											<td>${colName}</td>
 											<td>${user.fullname}</td>
 										</tr>
 										<tr>
@@ -39,7 +44,7 @@
 											<td>${user.email}</td>
 										</tr>
 										<tr>
-											<td>Điện thoại</td>
+											<td>${colPhone}</td>
 											<td>${user.phone}</td>
 										</tr>
 										<tr>

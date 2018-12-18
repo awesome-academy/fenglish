@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -10,6 +10,7 @@
 <spring:message code="title.user.gender" var="colGender" />
 <spring:message code="title.user.male" var="male" />
 <spring:message code="title.user.female" var="female" />
+<spring:message code="title.button.update" var="btnUpdate" />
 
 <div class="container" style="margin: 0 auto;">
 	<h1>${userUpdate}</h1>
@@ -19,11 +20,11 @@
 		<form:form class="form-horizontal" method="post"
 			modelAttribute="userForm" action="${userActionUrl}">
 			<form:hidden path="id" />
-			<form:hidden path="passwordHash"/>
-			<form:hidden path="passwordResetToken"/>
-			<form:hidden path="avatar"/>
-			<form:hidden path="birthday"/>
-			<form:hidden path="role"/>
+			<form:hidden path="passwordHash" />
+			<form:hidden path="passwordResetToken" />
+			<form:hidden path="avatar" />
+			<form:hidden path="birthday" />
+			<form:hidden path="role" />
 			<div class="form-group">
 				<label class="col-sm-3 control-label">${colName}</label>
 				<div class="col-sm-9">
@@ -60,8 +61,7 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" class="btn-lg btn-primary pull-right">Cập
-						nhật</button>
+					<button type="submit" class="btn-lg btn-primary pull-right">${btnUpdate}</button>
 				</div>
 			</div>
 		</form:form>

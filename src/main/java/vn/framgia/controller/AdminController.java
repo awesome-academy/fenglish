@@ -13,4 +13,9 @@ public class AdminController {
 	public String index() {
 		return "forward:/admin/users/page=1/";
 	}
+	
+	@RequestMapping(value = "/subjects", method = RequestMethod.GET)
+	public String listSubject() {
+		return "forward:/admin/subjects/page=1/";
+	}
 }

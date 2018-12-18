@@ -9,7 +9,14 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
+
 	<bean id="questionDAO" class="vn.framgia.dao.impl.QuestionDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="SubjectDAO" class="vn.framgia.dao.impl.SubjectDAOImpl">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>

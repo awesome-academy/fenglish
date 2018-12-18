@@ -3,17 +3,21 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <spring:url value="/admin/" var="urlHome" />
+<spring:url value="/admin/subjects" var="urlSubject" />
 <spring:url value="/admin/logout" var="logoutActionUrl" />
 <spring:url value="/admin/assets/images/flag-vi.png" var="flagVi" />
 <spring:url value="/admin/assets/images/flag-en.png" var="flagEn" />
 <spring:message code="title.admin.language" var="language" />
 <spring:message code="title.admin.menuUser" var="menuUser" />
 <spring:message code="title.admin.menuQuestion" var="menuQuestion" />
-<spring:message code="title.admin.menuListQuestion" var="menuListQuestion" />
-<spring:message code="title.admin.menuCreateQuestion" var="menuCreateQuestion" />
+<spring:message code="title.admin.menuListQuestion"
+	var="menuListQuestion" />
+<spring:message code="title.admin.menuCreateQuestion"
+	var="menuCreateQuestion" />
 <spring:message code="title.admin.menuPost" var="menuPost" />
-<spring:message code="title.admin.menuPost" var="menuPost" />
+<spring:message code="title.admin.menuSubject" var="menuSubject" />
 <spring:message code="title.admin.logout" var="logout" />
+
 <nav>
 	<div class="container-fluid">
 		<div class="nav navbar-nav navbar-right" style="margin-right: -5em;">
@@ -30,7 +34,7 @@
 			<a class="navbar-brand" href="${urlHome}">FEnglish</a>
 		</div>
 		<ul class="nav navbar-nav">
-			<li class="active"><a href="#">${menuUser}</a></li>
+			<li><a href="${urlHome}">${menuUser}</a></li>
 			<li class="dropdown"><a class="dropdown-toggle"
 				data-toggle="dropdown" href="#">${menuQuestion}<span
 					class="caret"></span></a>
@@ -38,6 +42,7 @@
 					<li><a href="#">${menuListQuestion}</a></li>
 					<li><a href="#">${menuCreateQuestion}</a></li>
 				</ul></li>
+			<li><a href="${urlSubject}">${menuSubject}</a></li>
 			<li><a href="#">${menuPost}</a></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">

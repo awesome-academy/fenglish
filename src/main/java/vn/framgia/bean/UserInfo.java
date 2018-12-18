@@ -3,9 +3,6 @@ package vn.framgia.bean;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-
 import vn.framgia.model.GoogleAccount;
 import vn.framgia.validator.PhoneConstraint;
 
@@ -16,7 +13,6 @@ public class UserInfo {
 	private String password;
 	@Pattern(regexp = "^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$")
 	private String email;
-	@NotBlank
 	private String avatar;
 	private String gender;
 	private String birthday;

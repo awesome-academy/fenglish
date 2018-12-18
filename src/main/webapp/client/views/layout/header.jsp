@@ -30,16 +30,18 @@
 	<div
 		class="header_side d-flex flex-row justify-content-center align-items-center">
 		<c:choose>
-			<c:when test="${user != null}">
+			<c:when test="${sessionScope.userName != null}">
 				<ul>
-					<li><a href="logout" class="login">Đăng xuất</a></li>
-					<!-- <li><a href="#" class="registration">Đăng ký?</a></li> -->
+					<li><a href="logout" class="login">Wellcome ${userName} </a></li>
+					<li><a href="<c:url value="/security_logout" />">Logout</a></li>
 				</ul>
 			</c:when>
 			<c:otherwise>
 				<ul>
 					<li><a href="login" class="login">Đăng nhập</a></li>
-					<li><a href="#" class="registration">Đăng ký?</a></li>
+					<li><a href="register" class="registration">Đăng ký?</a></li>
+					<li><a href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8080/fenglish/login-google&response_type=code
+    &client_id=625291988126-2t7q2gvarc6v04ohsnl4dbslv9mpihk4.apps.googleusercontent.com&approval_prompt=force">Login With Gmail</a></li>
 				</ul>
 			</c:otherwise>
 		</c:choose>

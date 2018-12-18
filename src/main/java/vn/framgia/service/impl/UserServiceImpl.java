@@ -6,17 +6,43 @@ import java.util.List;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.hibernate.LockMode;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import vn.framgia.bean.UserInfo;
+import vn.framgia.dao.UserDAO;
 import vn.framgia.helper.UserConvertHelper;
 import vn.framgia.model.User;
 import vn.framgia.service.UserService;
 
 public class UserServiceImpl extends BaseServiceImpl implements UserService {
+	@Autowired
+	UserDAO userDAO;
+
+	@Override
+	public User findByEmail(String email) {
+		return userDAO.findUserByEmail(email);
+	}
+
+	@Override
+
+	public List<User> findAll(int page, int userPerPage) {
+		// TODO Auto-generated method stub
+		try {
+			return userDAO.listAll(page, userPerPage);
+		} catch (Exception e) {
+			// TODO: handle exception
+			return null;
+		}
+	}
 
 	@Override
 	public User findById(Serializable key) {
-		return userDAO.findById(key);
+		try {
+			return userDAO.findById(key);
+		} catch (Exception e) {
+			// TODO: handle exception
+			return null;
+		}
 	}
 
 	@Override
@@ -62,7 +88,7 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 	@Override
 	public User saveUserOrUpdate(UserInfo userInfo) {
 		User user = userDAO.findByIdUsingLock(userInfo.getId(), LockMode.PESSIMISTIC_WRITE);
-		
+
 		try {
 			UserConvertHelper.convertSingleUserInfoToUser(user, userInfo);
 			return userDAO.saveOrUpdate(user);
@@ -70,5 +96,38 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 			throw e;
 		}
 	}
-	
+
+	@Override
+	public boolean saveUserAfferRegister(User user, String token) {
+		try {
+			User userInDB = userDAO.findUserByEmail(user.getEmail());
+			if (userInDB == null) {
+				user.setPasswordResetToken(token);
+				user.setRole("ROLE_USER");
+				userDAO.saveOrUpdate(user);
+				return true;
+			}
+			return false;
+		} catch (Exception e) {
+			throw e;
+		}
+	}
+
+	@Override
+	public boolean confirmRegister(String email, String token) {
+		try {
+			User userInDB = userDAO.findUserByEmail(email);
+			if (userInDB == null)
+				return false;
+			if (userInDB.getRole().equals("ROLE_UNCONFIRM") && userInDB.getPasswordResetToken().equals(token)) {
+				userInDB.setRole("ROLE_USER");
+				userDAO.saveOrUpdate(userInDB);
+				return true;
+			}
+			return false;
+		} catch (Exception e) {
+			// TODO: handle exception
+			throw e;
+		}
+	}
 }

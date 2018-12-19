@@ -6,17 +6,13 @@ import java.util.List;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.hibernate.LockMode;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import vn.framgia.bean.UserInfo;
-import vn.framgia.dao.UserDAO;
 import vn.framgia.helper.UserConvertHelper;
 import vn.framgia.model.User;
 import vn.framgia.service.UserService;
 
 public class UserServiceImpl extends BaseServiceImpl implements UserService {
-	@Autowired
-	UserDAO userDAO;
 
 	@Override
 	public User findByEmail(String email) {

@@ -2,6 +2,7 @@ package vn.framgia.service;
 
 import java.util.List;
 
+import vn.framgia.bean.QuestionInfo;
 import vn.framgia.model.Question;
 
 public interface QuestionService extends BaseService<Integer, Question> {
@@ -18,4 +19,6 @@ public interface QuestionService extends BaseService<Integer, Question> {
 	public Long countListAll();
 	
 	Question findQuestionById(int id);
+	
+	List<QuestionInfo> getListQuestionByIdExercise(Integer idExercise);
 }

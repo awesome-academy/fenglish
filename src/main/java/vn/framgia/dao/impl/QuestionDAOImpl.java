@@ -33,13 +33,30 @@ public class QuestionDAOImpl extends GenericDAO<Integer, Question> implements Qu
 	@Override
 	public List<Question> listAll(int pageSize, int pageNumber) {
 		logger.info("Get list question");
-		return (List<Question>) getSession().createQuery("from Question q").setFirstResult((pageNumber-1)*pageSize)
+		return (List<Question>) getSession().createQuery("from Question q").setFirstResult((pageNumber - 1) * pageSize)
 				.setMaxResults(pageSize).getResultList();
 	}
 
 	@Override
 	public Question findQuestionById(int id) {
 		// TODO Auto-generated method stub
-		return (Question) getSession().createQuery("from Question q where q.id =:id").setParameter("id", id).getSingleResult();
+		return (Question) getSession().createQuery("from Question q where q.id =:id").setParameter("id", id)
+				.getSingleResult();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Question> getQuestionByIdSubject(Integer idSubject) {
+		String hql = "FROM Question a WHERE a.deleted = 0 AND a.subject.id = :idSubject";
+		return getSession().createQuery(hql).setParameter("idSubject", idSubject).getResultList();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Question> getQuestionByIdExercise(Integer idExercise) {
+		String hql = "SELECT a FROM Question a "
+				+ "INNER JOIN ExerciseDetail b ON a.id = b.question.id "
+				+ "WHERE a.deleted = 0 AND b.exercise.id = :idExercise";
+		return getSession().createQuery(hql).setParameter("idExercise", idExercise).getResultList();
 	}
 }

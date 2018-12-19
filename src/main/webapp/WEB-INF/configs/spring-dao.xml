@@ -22,4 +22,16 @@
 		</property>
 	</bean>
 
+	<bean id="exerciseDAO" class="vn.framgia.dao.impl.ExerciseDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="exerciseDetailDAO" class="vn.framgia.dao.impl.ExerciseDetailDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
 </beans>

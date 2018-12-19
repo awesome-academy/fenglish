@@ -57,25 +57,17 @@
 	</definition>
 	
 	<!-- List Question -->
-	<definition name="/question/index" extends="/admin/baseLayout">
+	<definition name="/questions/index" extends="/admin/baseLayout">
 		<put-attribute name="title" value="title.admin.home" />
 		<put-attribute name="body"
-			value="/admin/views/user/listQuestion.jsp" />
-	</definition>
-
-	<!-- Question Detail -->
-	<definition name="/question/detail" extends="/admin/baseLayout">
-		<put-attribute name="title"
-			value="title.admin.questionDetail" />
-		<put-attribute name="body"
-			value="/admin/views/user/questionDetail.jsp" />
+			value="/admin/views/questions/listQuestion.jsp" />
 	</definition>
 
 	<!-- Question Form Edit -->
-	<definition name="/question/edit" extends="/admin/baseLayout">
+	<definition name="/questions/edit" extends="/admin/baseLayout">
 		<put-attribute name="title" value="title.admin.questionEdit" />
 		<put-attribute name="body"
-			value="/admin/views/user/questionForm.jsp" />
+			value="/admin/views/questions/questionForm.jsp" />
 	</definition>
 
 	<!-- List Subject -->

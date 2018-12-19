@@ -13,7 +13,7 @@ import vn.framgia.model.Question;
 public class QuestionDAOImpl extends GenericDAO<Integer, Question> implements QuestionDAO {
 	@Autowired
 	QuestionDAO questionDAO;
-	private static final Logger logger = Logger.getLogger(UserDAOImpl.class);
+	private static final Logger logger = Logger.getLogger(QuestionDAOImpl.class);
 
 	public QuestionDAOImpl() {
 		super(Question.class);
@@ -33,7 +33,13 @@ public class QuestionDAOImpl extends GenericDAO<Integer, Question> implements Qu
 	@Override
 	public List<Question> listAll(int pageSize, int pageNumber) {
 		logger.info("Get list question");
-		return (List<Question>) getSession().createQuery("from Question q where q.deleted = 0").setFirstResult(pageNumber*pageSize)
+		return (List<Question>) getSession().createQuery("from Question q").setFirstResult((pageNumber-1)*pageSize)
 				.setMaxResults(pageSize).getResultList();
+	}
+
+	@Override
+	public Question findQuestionById(int id) {
+		// TODO Auto-generated method stub
+		return (Question) getSession().createQuery("from Question q where q.id =:id").setParameter("id", id).getSingleResult();
 	}
 }

@@ -1,4 +1,4 @@
-package vn.framgia.controller;
+package vn.framgia.controller.client;
 
 import java.io.IOException;
 

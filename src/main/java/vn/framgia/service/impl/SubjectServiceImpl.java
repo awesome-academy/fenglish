@@ -2,6 +2,7 @@ package vn.framgia.service.impl;
 
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collections;
 import java.util.List;
 
 import org.apache.commons.beanutils.BeanUtils;
@@ -100,6 +101,16 @@ public class SubjectServiceImpl extends BaseServiceImpl implements SubjectServic
 		} catch (Exception e) {
 			logger.error("Error in saveOrUpdateSubject: " + e.getMessage());
 			throw e;
+		}
+	}
+
+	@Override
+	public List<SubjectInfo> loadAllSubject() {
+		try {
+			return SubjectConvertHelper.convertSubjectToSubjectInfo(subjectDAO.loadAllSubject());
+		} catch (Exception e) {
+			logger.error("Error in loadAllSubject: " + e.getMessage());
+			return Collections.emptyList();
 		}
 	}
 

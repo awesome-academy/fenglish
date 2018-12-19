@@ -45,19 +45,6 @@
 		media="screen" />
 </c:forEach>
 
-<!-- Js -->
-<c:forEach items="${defaultJs}" var="item">
-	<script src="<c:url value='${item}'/>" type="text/javascript"></script>
-</c:forEach>
-
-<c:forEach items="${homeJs}" var="item">
-	<script src="<c:url value='${item}'/>" type="text/javascript"></script>
-</c:forEach>
-
-<c:forEach items="${loginJs}" var="item">
-	<script src="<c:url value='${item}'/>" type="text/javascript"></script>
-</c:forEach>
-
 </head>
 <body>
 	<div class="super-container">
@@ -67,5 +54,18 @@
 
 		<tiles:insertAttribute name="footer" />
 	</div>
+
+	<!-- Js -->
+	<c:forEach items="${defaultJs}" var="item">
+		<script src="<c:url value='${item}'/>" type="text/javascript"></script>
+	</c:forEach>
+
+	<c:forEach items="${homeJs}" var="item">
+		<script src="<c:url value='${item}'/>" type="text/javascript"></script>
+	</c:forEach>
+
+	<c:forEach items="${loginJs}" var="item">
+		<script src="<c:url value='${item}'/>" type="text/javascript"></script>
+	</c:forEach>
 </body>
 </html>

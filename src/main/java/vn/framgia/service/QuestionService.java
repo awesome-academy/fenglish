@@ -1,0 +1,21 @@
+package vn.framgia.service;
+
+import java.util.List;
+
+import vn.framgia.model.Question;
+
+public interface QuestionService extends BaseService<Integer, Question> {
+	boolean createQuestion(Question question);
+
+	boolean deleteQuestion(int id);
+
+	Question editQuestion(Question question);
+
+	List<Question> listAll(int pageSize, int pageNumber);
+
+	List<Question> searchBySubjectAndLevel(int subjectId, int levelId);
+
+	public Long countListAll();
+	
+	Question findQuestionById(int id);
+}

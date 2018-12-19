@@ -42,4 +42,11 @@ public class SubjectDAOImpl extends GenericDAO<Integer, Subject> implements Subj
 		getSession().createQuery(hql).setParameter("id", key).executeUpdate();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Subject> loadAllSubject() {
+		String hql = "FROM Subject a WHERE a.deleted = 0";
+		return getSession().createQuery(hql).getResultList();
+	}
+
 }

@@ -12,4 +12,6 @@ public interface SubjectDAO extends BaseDAO<Integer, Subject> {
 	
 	void deleteSubject(Integer key);
 	
+	List<Subject> loadAllSubject();
+	
 }

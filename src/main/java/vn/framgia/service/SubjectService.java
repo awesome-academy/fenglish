@@ -15,4 +15,6 @@ public interface SubjectService extends BaseService<Integer, Subject> {
 	
 	Subject saveOrUpdateSubject(SubjectInfo subjectInfo);
 	
+	List<SubjectInfo> loadAllSubject();
+	
 }

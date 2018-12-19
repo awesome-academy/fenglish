@@ -27,7 +27,7 @@ hs_err_pid*
 target
 src/main/resources/google-login.properties
 src/main/resources/mailconfig.properties
-src/main/resources/datasource.properties
+src/main/resources/datasources.properties
 .idea
 
 # eclipse config

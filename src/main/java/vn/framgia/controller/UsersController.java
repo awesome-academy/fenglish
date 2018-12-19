@@ -54,7 +54,7 @@ public class UsersController {
 
 	@RequestMapping(value = "/users/{id}", method = RequestMethod.DELETE)
 	@ResponseBody
-	public String delete(@PathVariable("id") Integer id, Model model, RedirectAttributes redirectAttributes) {
+	public String delete(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
 
 		if (userService.deleteUserById(id)) {
 			redirectAttributes.addFlashAttribute("css", "success");

@@ -23,7 +23,7 @@
 		<!-- Default Js -->
 		<put-list-attribute name="js">
 			<add-attribute
-				value="/admin/assets/js/jquery-3.2.1.min.js" />
+				value="/admin/assets/js/jquery-3.3.1.min.js" />
 			<add-attribute value="/admin/assets/js/popper.js" />
 			<add-attribute
 				value="/admin/assets/js/bootstrap.min.js" />
@@ -76,6 +76,23 @@
 		<put-attribute name="title" value="title.admin.questionEdit" />
 		<put-attribute name="body"
 			value="/admin/views/user/questionForm.jsp" />
+	</definition>
+
+	<!-- List Subject -->
+	<definition name="/subjects/index"
+		extends="/admin/baseLayout">
+		<put-attribute name="title"
+			value="title.admin.menuSubject" />
+		<put-attribute name="body"
+			value="/admin/views/subject/listSubject.jsp" />
+	</definition>
+
+	<!-- Create Subject Form -->
+	<definition name="/subjects/create"
+		extends="/admin/baseLayout">
+		<put-attribute name="title"
+			value="title.admin.createSubject" />
+		<put-attribute name="body" value="/admin/views/subject/subjectForm.jsp" />
 	</definition>
 
 </tiles-definitions>

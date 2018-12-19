@@ -16,7 +16,8 @@
 
 <tilesx:useAttribute name="css" id="listCss" classname="java.util.List" />
 <tilesx:useAttribute name="js" id="listJs" classname="java.util.List" />
-<tilesx:useAttribute name="title" id="title" classname="java.lang.String" />
+<tilesx:useAttribute name="title" id="title"
+	classname="java.lang.String" />
 <c:forEach items="${listCss}" var="item">
 	<link rel="stylesheet" href="<c:url value='${item}'/>" type="text/css"
 		media="screen" />
@@ -28,12 +29,10 @@
 }
 </style>
 
-<title><spring:message code="${title}"/></title>
+<title><spring:message code="${title}" /></title>
 </head>
 <body>
-	<nav class="navbar navbar-default">
-		<tiles:insertAttribute name="header" />
-	</nav>
+	<tiles:insertAttribute name="header" />
 
 	<tiles:insertAttribute name="body" />
 

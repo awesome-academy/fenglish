@@ -4,17 +4,26 @@ import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.hibernate.LockMode;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import vn.framgia.bean.QuestionInfo;
 import vn.framgia.dao.QuestionDAO;
+import vn.framgia.helper.QuestionConvertHelper;
 import vn.framgia.model.Question;
+import vn.framgia.service.LevelService;
 import vn.framgia.service.QuestionService;
+import vn.framgia.service.SubjectService;
 
 public class QuestionServiceImpl extends BaseServiceImpl implements QuestionService {
 	@Autowired
 	QuestionDAO questionDAO;
-
+	@Autowired
+	SubjectService subjectService;
+	@Autowired
+	LevelService levelService;
+	
 	@Override
 	public boolean createQuestion(Question question) {
 		questionDAO.saveOrUpdate(question);
@@ -55,8 +64,9 @@ public class QuestionServiceImpl extends BaseServiceImpl implements QuestionServ
 
 	@Override
 	public Question saveOrUpdate(Question entity) throws IllegalAccessException, InvocationTargetException {
-		// TODO Auto-generated method stub
-		return null;
+		Question lockEntity = questionDAO.findByIdUsingLock(entity.getId(), LockMode.PESSIMISTIC_WRITE);
+		BeanUtils.copyProperties(lockEntity, entity);
+		return questionDAO.saveOrUpdate(lockEntity);
 	}
 
 	@Override
@@ -81,6 +91,19 @@ public class QuestionServiceImpl extends BaseServiceImpl implements QuestionServ
 	public Question findQuestionById(int id) {
 		// TODO Auto-generated method stub
 		return questionDAO.findQuestionById(id);
+	}
+
+	@Override
+	public Question saveOrUpdate(QuestionInfo questionInfo) {
+		Question question = questionDAO.findByIdUsingLock(questionInfo.getId(), LockMode.PESSIMISTIC_WRITE);
+		try {
+			QuestionConvertHelper.copyValueQuestionInfoToQuestion(question, questionInfo);
+			question.setSubject(subjectService.findById(questionInfo.getSubjectId()));
+			question.setLevel(levelService.findById(questionInfo.getLevelId()));
+			return questionDAO.saveOrUpdate(question);
+		} catch (Exception e) {
+			throw e;
+		}
 	}
 
 }

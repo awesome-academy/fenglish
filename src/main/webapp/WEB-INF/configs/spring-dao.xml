@@ -21,5 +21,11 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
+	
+	<bean id="LevelDAO" class="vn.framgia.dao.impl.LevelDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
 
 </beans>

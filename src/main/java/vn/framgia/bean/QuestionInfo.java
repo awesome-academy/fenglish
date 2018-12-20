@@ -9,6 +9,8 @@ public class QuestionInfo {
 	private Subject subject;
 	private String levelName;
 	private String subjectName;
+	private int levelId;
+	private int subjectId;
 	private String question;
 	private Integer typeQuestion;
 	private String mp3Question;
@@ -23,14 +25,17 @@ public class QuestionInfo {
 	public QuestionInfo() {
 	}
 
-	public QuestionInfo(Integer id, Level level, Subject subject, String levelName, String subjectName, String question,
-			Integer typeQuestion, String mp3Question, String imgQuestion, String option1, String option2,
-			String option3, String option4, Integer correctAnswer, Boolean deleted) {
+	public QuestionInfo(Integer id, Level level, Subject subject, String levelName, String subjectName, int levelId,
+			int subjectId, String question, Integer typeQuestion, String mp3Question, String imgQuestion,
+			String option1, String option2, String option3, String option4, Integer correctAnswer, Boolean deleted) {
+		super();
 		this.id = id;
 		this.level = level;
 		this.subject = subject;
 		this.levelName = levelName;
 		this.subjectName = subjectName;
+		this.levelId = levelId;
+		this.subjectId = subjectId;
 		this.question = question;
 		this.typeQuestion = typeQuestion;
 		this.mp3Question = mp3Question;
@@ -41,6 +46,22 @@ public class QuestionInfo {
 		this.option4 = option4;
 		this.correctAnswer = correctAnswer;
 		this.deleted = deleted;
+	}
+
+	public int getLevelId() {
+		return levelId;
+	}
+
+	public void setLevelId(int levelId) {
+		this.levelId = levelId;
+	}
+
+	public int getSubjectId() {
+		return subjectId;
+	}
+
+	public void setSubjectId(int subjectId) {
+		this.subjectId = subjectId;
 	}
 
 	public String getLevelName() {

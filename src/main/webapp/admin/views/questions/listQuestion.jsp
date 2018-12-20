@@ -13,7 +13,7 @@
 <spring:message code="title.question.option2" var="colOption2" />
 <spring:message code="title.question.option3" var="colOption3" />
 <spring:message code="title.question.option4" var="colOption4" />
-<spring:message code="title.question.correctAnswes"
+<spring:message code="title.question.correctAnswer"
 	var="colCorrectAnswes" />
 <spring:message code="title.question.levelId" var="colLevelId" />
 <spring:message code="title.question.subject" var="colSubject" />
@@ -76,9 +76,9 @@
 								<td>${question.option3}</td>
 								<td>${question.option4}</td>
 								<td>${question.correctAnswer}</td>
-								<td>${question.subjectName}</td>
-								<td>${question.levelName}</td>
-								<td><spring:url value="/admin/users/${user.id}/edit"
+								<td>${question.subject.subjectName}</td>
+								<td>${question.level.name}</td>
+								<td><spring:url value="/admin/questions/${question.id}/edit"
 										var="editActionUrl" />
 									<button class="btn btn-warning"
 										onclick="location.href='${editActionUrl}'">${btnEdit}</button></td>
@@ -93,5 +93,12 @@
 					previous="&laquo;" />
 			</fieldset>
 		</div>
+	</div>
+	<div>
+		<textarea name="editor" class="ckeditor" id="editor"></textarea>
+		<!-- <script src="{!! asset('ckeditor/ckeditor.js') !!}"></script> -->
+		<script>
+    		CKEditor.replace('editor');
+		</script>
 	</div>
 </div>

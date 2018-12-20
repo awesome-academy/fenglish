@@ -16,16 +16,15 @@
 	var="colCorrectAnswer" />
 <spring:message code="title.question.levelId" var="colLevelId" />
 <spring:message code="title.question.subject" var="colSubject" />
-<spring:message code="title.admin.questionEdit" var="questionUpdate" />
+<spring:message code="title.admin.menuCreateQuestion" var="questionCreate" />
 
 <div class="container" style="margin: 0 auto;">
-	<h1>${questionUpdate}</h1>
+	<h1>${questionCreate}</h1>
 	<br />
 	<div class="col-md-6" style="margin: 0 auto;">
-		<spring:url value="/admin/questions/update" var="questionActionUrl" />
+		<spring:url value="/admin/questions/create" var="questionActionUrl" />
 		<form:form class="form-horizontal" method="post"
 			modelAttribute="questionForm" action="${questionActionUrl}">
-			<form:hidden path="id" />
 			<div class="form-group">
 				<label class="col-sm-3 control-label">${colQuestion}</label>
 				<div class="col-sm-9">
@@ -38,7 +37,7 @@
 				<label class="col-sm-3 control-label">${colTypeQuestion}</label>
 				<div class="col-sm-9">
 					<form:input path="typeQuestion" class="form-control"
-						id="typeQuestion" placeholder="Điện thoại" />
+						id="typeQuestion" placeholder="Loai cau hoi" />
 					<form:errors path="typeQuestion" class="error" />
 				</div>
 			</div>
@@ -77,8 +76,8 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label">${colCorrectAnswer}</label>
 				<div class="col-sm-9">
-					<form:select class="form-control" id="element_10" name="element_10"
-						path="correctAnswer">
+					<form:select class="form-control" id="element_10"
+						name="element_10" path="correctAnswer">
 						<option value="${questionForm.correctAnswer}" selected="selected">${questionForm.correctAnswer}</option>
 							varStatus="count">
 						<option value="1">${colOption1}</option>
@@ -91,8 +90,8 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label">${colSubject}</label>
 				<div class="col-sm-9">
-					<form:select class="form-control" id="element_10" name="element_10"
-						path="subjectId">
+					<form:select class="form-control" id="element_10"
+						name="element_10" path="subjectId">
 						<option value="questionForm.subject.id" selected="selected">${questionForm.subject.subjectName}</option>
 						<c:forEach items="${listSubjectInfo}" var="subjectInfo"
 							varStatus="count">
@@ -104,8 +103,8 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label">${colSubject}</label>
 				<div class="col-sm-9">
-					<form:select class="form-control" id="element_10" name="element_10"
-						path="levelId">
+					<form:select class="form-control" id="element_10"
+						name="element_10" path="levelId">
 						<option value="questionForm.level.id" selected="selected">${questionForm.level.name}</option>
 						<c:forEach items="${listLevelInfo}" var="levelInfo"
 							varStatus="count">
@@ -119,7 +118,7 @@
 
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" class="btn-lg btn-primary pull-right">${questionUpdate}</button>
+					<button type="submit" class="btn-lg btn-primary pull-right">${questionCreate}</button>
 				</div>
 			</div>
 		</form:form>

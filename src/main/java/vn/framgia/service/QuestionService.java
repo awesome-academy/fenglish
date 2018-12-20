@@ -21,4 +21,7 @@ public interface QuestionService extends BaseService<Integer, Question> {
 	Question findQuestionById(int id);
 	
 	List<QuestionInfo> getListQuestionByIdExercise(Integer idExercise);
+
+	QuestionInfo saveOrUpdate(QuestionInfo questionInfo);
+
 }

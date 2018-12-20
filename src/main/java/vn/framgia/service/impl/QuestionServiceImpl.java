@@ -4,15 +4,26 @@ import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
 import java.util.List;
-
+import org.apache.commons.beanutils.BeanUtils;
 import org.hibernate.LockMode;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import vn.framgia.bean.QuestionInfo;
+import vn.framgia.dao.QuestionDAO;
 import vn.framgia.helper.QuestionConvertHelper;
 import vn.framgia.model.Question;
+import vn.framgia.service.LevelService;
 import vn.framgia.service.QuestionService;
+import vn.framgia.service.SubjectService;
 
 public class QuestionServiceImpl extends BaseServiceImpl implements QuestionService {
+
+	@Autowired
+	QuestionDAO questionDAO;
+	@Autowired
+	SubjectService subjectService;
+	@Autowired
+	LevelService levelService;
 
 	@Override
 	public boolean createQuestion(Question question) {
@@ -54,8 +65,13 @@ public class QuestionServiceImpl extends BaseServiceImpl implements QuestionServ
 
 	@Override
 	public Question saveOrUpdate(Question entity) throws IllegalAccessException, InvocationTargetException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			Question lockEntity = questionDAO.findByIdUsingLock(entity.getId(), LockMode.PESSIMISTIC_WRITE);
+			BeanUtils.copyProperties(lockEntity, entity);
+			return questionDAO.saveOrUpdate(lockEntity);
+		} catch (Exception e) {
+			throw e;
+		}
 	}
 
 	@Override
@@ -90,6 +106,27 @@ public class QuestionServiceImpl extends BaseServiceImpl implements QuestionServ
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Collections.emptyList();
+		}
+	}
+
+	public QuestionInfo saveOrUpdate(QuestionInfo questionInfo) {
+		try {
+			if (questionInfo.getId() == null) {
+
+				Question question = new Question();
+				QuestionConvertHelper.copyValueQuestionInfoToQuestion(question, questionInfo);
+				question.setSubject(subjectService.findById(questionInfo.getSubjectId()));
+				question.setLevel(levelService.findById(questionInfo.getLevelId()));
+				return QuestionConvertHelper.convertQuestionToQuestionInfo(questionDAO.saveOrUpdate(question));
+			} else {
+				Question question = questionDAO.findByIdUsingLock(questionInfo.getId(), LockMode.PESSIMISTIC_WRITE);
+				QuestionConvertHelper.copyValueQuestionInfoToQuestion(question, questionInfo);
+				question.setSubject(subjectService.findById(questionInfo.getSubjectId()));
+				question.setLevel(levelService.findById(questionInfo.getLevelId()));
+				return QuestionConvertHelper.convertQuestionToQuestionInfo(questionDAO.saveOrUpdate(question));
+			}
+		} catch (Exception e) {
+			throw e;
 		}
 	}
 

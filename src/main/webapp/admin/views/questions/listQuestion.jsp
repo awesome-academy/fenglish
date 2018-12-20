@@ -25,6 +25,8 @@
 <spring:message code="title.admin.logout" var="logout" />
 <spring:message code="title.admin.menuQuestion" var="questionHeader" />
 
+<spring:message code="title.admin.questions.import" var="questionImport" />
+
 <div class="container" style="margin-top: 30px">
 	<c:if test="${not empty msg}">
 		<div class="alert alert-${css} alert-dismissible" role="alert">
@@ -38,6 +40,24 @@
 
 	<div class="row md-col-8">
 		<h2>${questionHeader}</h2>
+	</div>
+	<div class="row" style="margin-top: 20px">
+		<form:form method="POST" action="/fenglish/admin/questions/upload"
+			enctype="multipart/form-data">
+			<table>
+				<tr>
+					<td>${questionImport}</td>
+				</tr>
+				<tr>
+					<td><input type="file" name="multipartFile"
+						class="btn-success"
+						accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" /></td>
+				</tr>
+				<tr>
+					<td><input type="submit" value="Submit" class="btn-success" /></td>
+				</tr>
+			</table>
+		</form:form>
 	</div>
 	<div class="row" style="margin-top: 20px">
 		<div class="md-col-8">
@@ -78,7 +98,8 @@
 								<td>${question.correctAnswer}</td>
 								<td>${question.subject.subjectName}</td>
 								<td>${question.level.name}</td>
-								<td><spring:url value="/admin/questions/${question.id}/edit"
+								<td><spring:url
+										value="/admin/questions/${question.id}/edit"
 										var="editActionUrl" />
 									<button class="btn btn-warning"
 										onclick="location.href='${editActionUrl}'">${btnEdit}</button></td>
@@ -89,16 +110,9 @@
 					</tbody>
 				</table>
 				<tag:paginate offset="${pageNumber}" count="${count}"
-					uri="${pageContext.request.contextPath}/admin/users" next="&raquo;"
-					previous="&laquo;" />
+					uri="${pageContext.request.contextPath}/admin/questions"
+					next="&raquo;" previous="&laquo;" />
 			</fieldset>
 		</div>
-	</div>
-	<div>
-		<textarea name="editor" class="ckeditor" id="editor"></textarea>
-		<!-- <script src="{!! asset('ckeditor/ckeditor.js') !!}"></script> -->
-		<script>
-    		CKEditor.replace('editor');
-		</script>
 	</div>
 </div>

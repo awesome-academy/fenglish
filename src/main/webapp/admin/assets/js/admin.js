@@ -57,9 +57,9 @@ $(".btnDeleteQuestion").on("click", function() {
 			confirm : function() {
 				$.ajax({
 					type : "DELETE",
-					url : "/fenglish/admin/question/" + $text,
+					url : "/fenglish/admin/questions/" + $text,
 					success : function(response) {
-						window.location.replace("/fenglish/admin/question");
+						window.location.replace("/fenglish/admin/questions");
 					}
 				});
 			},

@@ -3,16 +3,15 @@ package vn.framgia.dao.impl;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.hibernate.Transaction;
 
 import vn.framgia.dao.GenericDAO;
 import vn.framgia.dao.QuestionDAO;
 import vn.framgia.model.Question;
 
 public class QuestionDAOImpl extends GenericDAO<Integer, Question> implements QuestionDAO {
-	@Autowired
-	QuestionDAO questionDAO;
 	private static final Logger logger = Logger.getLogger(QuestionDAOImpl.class);
 
 	public QuestionDAOImpl() {
@@ -39,7 +38,6 @@ public class QuestionDAOImpl extends GenericDAO<Integer, Question> implements Qu
 
 	@Override
 	public Question findQuestionById(int id) {
-		// TODO Auto-generated method stub
 		return (Question) getSession().createQuery("from Question q where q.id =:id").setParameter("id", id)
 				.getSingleResult();
 	}
@@ -54,9 +52,23 @@ public class QuestionDAOImpl extends GenericDAO<Integer, Question> implements Qu
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Question> getQuestionByIdExercise(Integer idExercise) {
-		String hql = "SELECT a FROM Question a "
-				+ "INNER JOIN ExerciseDetail b ON a.id = b.question.id "
+		String hql = "SELECT a FROM Question a " + "INNER JOIN ExerciseDetail b ON a.id = b.question.id "
 				+ "WHERE a.deleted = 0 AND b.exercise.id = :idExercise";
 		return getSession().createQuery(hql).setParameter("idExercise", idExercise).getResultList();
+	}
+
+	@Override
+	public boolean saveListQuestion(List<Question> listQuestion) {
+		int batchSize = 30;
+		int totalRecords = listQuestion.size();
+		for (int i = 0; i < totalRecords; i++) {
+			Question question = listQuestion.get(i);
+			getSession().saveOrUpdate(question);
+			if (i % batchSize == 0 && i > 0) {
+				getSession().flush();
+				getSession().clear();
+			}
+		}
+		return true;
 	}
 }

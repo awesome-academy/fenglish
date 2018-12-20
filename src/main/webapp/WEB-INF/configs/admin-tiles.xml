@@ -73,6 +73,13 @@
 		<put-attribute name="body"
 			value="/admin/views/questions/questionForm.jsp" />
 	</definition>
+	
+	<!-- Question Form Create -->
+	<definition name="/questions/create" extends="/admin/baseLayout">
+		<put-attribute name="title" value="title.admin.menuCreateQuestion" />
+		<put-attribute name="body"
+			value="/admin/views/questions/createQuestion.jsp" />
+	</definition>
 
 	<!-- Question Form Create -->
 	<definition name="/questions/create"

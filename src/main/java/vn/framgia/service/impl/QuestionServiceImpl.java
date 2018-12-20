@@ -118,13 +118,24 @@ public class QuestionServiceImpl extends BaseServiceImpl implements QuestionServ
 				question.setSubject(subjectService.findById(questionInfo.getSubjectId()));
 				question.setLevel(levelService.findById(questionInfo.getLevelId()));
 				return QuestionConvertHelper.convertQuestionToQuestionInfo(questionDAO.saveOrUpdate(question));
-			} else {
-				Question question = questionDAO.findByIdUsingLock(questionInfo.getId(), LockMode.PESSIMISTIC_WRITE);
-				QuestionConvertHelper.copyValueQuestionInfoToQuestion(question, questionInfo);
-				question.setSubject(subjectService.findById(questionInfo.getSubjectId()));
-				question.setLevel(levelService.findById(questionInfo.getLevelId()));
-				return QuestionConvertHelper.convertQuestionToQuestionInfo(questionDAO.saveOrUpdate(question));
 			}
+			Question question = questionDAO.findByIdUsingLock(questionInfo.getId(), LockMode.PESSIMISTIC_WRITE);
+			QuestionConvertHelper.copyValueQuestionInfoToQuestion(question, questionInfo);
+			question.setSubject(subjectService.findById(questionInfo.getSubjectId()));
+			question.setLevel(levelService.findById(questionInfo.getLevelId()));
+			return QuestionConvertHelper.convertQuestionToQuestionInfo(questionDAO.saveOrUpdate(question));
+		} catch (Exception e) {
+			throw e;
+		}
+	}
+
+	@Override
+	public boolean saveListQuestion(List<Question> listQuestion) {
+		try {
+			if (listQuestion == null)
+				return false;
+			questionDAO.saveListQuestion(listQuestion);
+			return true;
 		} catch (Exception e) {
 			throw e;
 		}

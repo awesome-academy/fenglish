@@ -21,7 +21,7 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	
+
 	<bean id="LevelDAO" class="vn.framgia.dao.impl.LevelDAOImpl">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
@@ -33,8 +33,9 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	
-	<bean id="exerciseDetailDAO" class="vn.framgia.dao.impl.ExerciseDetailDAOImpl">
+
+	<bean id="exerciseDetailDAO"
+		class="vn.framgia.dao.impl.ExerciseDetailDAOImpl">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>

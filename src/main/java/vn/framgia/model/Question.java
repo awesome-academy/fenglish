@@ -157,4 +157,13 @@ public class Question implements java.io.Serializable {
 		this.exerciseDetails = exerciseDetails;
 	}
 
+	@Override
+	public String toString() {
+		return "Question [id=" + id + ", level=" + level + ", subject=" + subject + ", question=" + question
+				+ ", typeQuestion=" + typeQuestion + ", mp3Question=" + mp3Question + ", imgQuestion=" + imgQuestion
+				+ ", option1=" + option1 + ", option2=" + option2 + ", option3=" + option3 + ", option4=" + option4
+				+ ", correctAnswer=" + correctAnswer + ", deleted=" + deleted + ", exerciseDetails=" + exerciseDetails
+				+ "]";
+	}
+
 }

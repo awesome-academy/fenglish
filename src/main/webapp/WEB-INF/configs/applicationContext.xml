@@ -9,8 +9,10 @@
     http://www.springframework.org/schema/mvc 
     http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-	<mvc:resources location="/client/assets/" mapping="/client/assets/**" />
-	<mvc:resources location="/admin/assets/" mapping="/admin/assets/**" />
+	<mvc:resources location="/client/assets/"
+		mapping="/client/assets/**" />
+	<mvc:resources location="/admin/assets/"
+		mapping="/admin/assets/**" />
 
 	<!-- Load all annotation from java class -->
 	<context:annotation-config />
@@ -53,6 +55,11 @@
 			</list>
 		</property>
 		<property name="fallbackToSystemLocale" value="false" />
+	</bean>
+
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="100000" />
 	</bean>
 
 </beans>

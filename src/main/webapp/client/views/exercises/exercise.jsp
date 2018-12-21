@@ -17,7 +17,7 @@
 			<div class="col_box_baihoc_view col_box_test" id="test_random">
 				<form id="testing_form" action="/test/result" method="POST">
 					<div class="head-list-read">
-						<h1>Chủ đề: ${subjectName}</h1>
+						<h1>Chủ đề: ${subject.subjectName}</h1>
 					</div>
 					<div class="question alias_answer" data-question="120397"
 						style="padding: 0">
@@ -29,7 +29,7 @@
 									</div>
 									<c:if test="${question.option1 != null}">
 										<label class="fulltest_answer_label"> <input
-											type="radio" data-iquestion="2"> <span>${question.option1}</span>
+											type="radio" data-iquestion="${count.index + 1}" name="anser"> <span>${question.option1}</span>
 										</label>
 									</c:if>
 									<c:if test="${question.option2 != null}">

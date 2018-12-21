@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.http.client.ClientProtocolException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,16 +18,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import vn.framgia.bean.GoogleAccountInfo;
-import vn.framgia.service.GoogleUtilsService;
-import vn.framgia.service.UserService;
+import vn.framgia.controller.BaseController;
 
 @Controller
-public class IndexController {
-
-	@Autowired
-	GoogleUtilsService googleUtilsService;
-	@Autowired
-	UserService userService;
+public class IndexController extends BaseController {
 	
 	@RequestMapping(value = { "/", "home" }, method = RequestMethod.GET)
 	public String hello() {

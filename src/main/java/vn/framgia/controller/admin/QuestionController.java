@@ -2,7 +2,6 @@ package vn.framgia.controller.admin;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,15 +11,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import vn.framgia.bean.QuestionInfo;
+import vn.framgia.controller.BaseController;
 import vn.framgia.helper.QuestionConvertHelper;
-import vn.framgia.service.QuestionService;
 
 @Controller
 @RequestMapping("/admin")
-public class QuestionController {
+public class QuestionController extends BaseController {
 	private static final int pageSize = 10;
-	@Autowired
-	QuestionService questionService;
 
 	@RequestMapping(value = "/questions/page={pageNumber}", method = RequestMethod.GET)
 	public String index(@PathVariable("pageNumber") Integer pageNumber, Model model) {

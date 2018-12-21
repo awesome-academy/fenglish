@@ -11,7 +11,8 @@
 		<!-- Logo -->
 		<div class="logo_container">
 			<div class="logo">
-				<img src="client/assets/images/logo.png" alt=""> <span>fenglish</span>
+				<spring:url value="/client/assets/images/logo.png" var="imgLogo" />
+				<img src="${imgLogo}" alt=""> <span>fenglish</span>
 			</div>
 		</div>
 
@@ -23,7 +24,8 @@
 						href="${pageContext.request.contextPath}">trang chủ</a></li>
 					<li class="main_nav_item"><a href="news.html">tin tức</a></li>
 					<li class="main_nav_item"><a href="#">khóa học</a></li>
-					<li class="main_nav_item"><a href="${pageContext.request.contextPath}/subjects">bài thi</a></li>
+					<li class="main_nav_item"><a
+						href="${pageContext.request.contextPath}/subjects">bài thi</a></li>
 					<li class="main_nav_item"><a href="contact.html">liên hệ</a></li>
 					<!-- <li class="main_nav_item"><a href="elements.html"></a></li> -->
 				</ul>
@@ -41,8 +43,10 @@
 			</c:when>
 			<c:otherwise>
 				<ul>
-					<li><a href="${pageContext.request.contextPath}/login" class="login">Đăng nhập</a></li>
-					<li><a href="${pageContext.request.contextPath}/register" class="registration">Đăng ký?</a></li>
+					<li><a href="${pageContext.request.contextPath}/login"
+						class="login">Đăng nhập</a></li>
+					<li><a href="${pageContext.request.contextPath}/register"
+						class="registration">Đăng ký?</a></li>
 					<li><a
 						href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8080/fenglish/login-google&response_type=code
     &client_id=625291988126-2t7q2gvarc6v04ohsnl4dbslv9mpihk4.apps.googleusercontent.com&approval_prompt=force">Login

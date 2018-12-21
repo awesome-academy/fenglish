@@ -26,7 +26,7 @@
 								<ul class="list_test">
 									<li>
 										<div>
-											<a href="#">${subject.subjectName}</a>
+											<a href="${pageContext.request.contextPath}/exercises/create/${subject.id}">${subject.subjectName}</a>
 										</div>
 									</li>
 								</ul>

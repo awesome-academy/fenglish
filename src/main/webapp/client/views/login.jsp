@@ -6,8 +6,7 @@
 
 <div class="home">
 	<div class="home_background_container prlx_parent">
-		<div class="home_background prlx"
-			style="background-image: url(client/assets/images/contact_background.jpg)"></div>
+		<div class="home_background prlx"></div>
 	</div>
 </div>
 

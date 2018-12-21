@@ -2,18 +2,17 @@ package vn.framgia.service.impl;
 
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collections;
 import java.util.List;
 
 import org.hibernate.LockMode;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import vn.framgia.dao.QuestionDAO;
+import vn.framgia.bean.QuestionInfo;
+import vn.framgia.helper.QuestionConvertHelper;
 import vn.framgia.model.Question;
 import vn.framgia.service.QuestionService;
 
 public class QuestionServiceImpl extends BaseServiceImpl implements QuestionService {
-	@Autowired
-	QuestionDAO questionDAO;
 
 	@Override
 	public boolean createQuestion(Question question) {
@@ -81,6 +80,17 @@ public class QuestionServiceImpl extends BaseServiceImpl implements QuestionServ
 	public Question findQuestionById(int id) {
 		// TODO Auto-generated method stub
 		return questionDAO.findQuestionById(id);
+	}
+
+	@Override
+	public List<QuestionInfo> getListQuestionByIdExercise(Integer idExercise) {
+		try {
+			List<Question> questions = questionDAO.getQuestionByIdExercise(idExercise);
+			return QuestionConvertHelper.convertListQuestionToListQuestionInfo(questions);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Collections.emptyList();
+		}
 	}
 
 }

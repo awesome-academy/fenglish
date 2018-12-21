@@ -7,6 +7,7 @@
 	<bean id="UserService" parent="baseTransactionProxy">
 		<property name="target">
 			<bean class="vn.framgia.service.impl.UserServiceImpl">
+				<property name="userDAO" ref="userDAO" />
 			</bean>
 		</property>
 	</bean>
@@ -22,6 +23,7 @@
 	<bean id="questionService" parent="baseTransactionProxy">
 		<property name="target">
 			<bean class="vn.framgia.service.impl.QuestionServiceImpl">
+				<property name="questionDAO" ref="questionDAO" />
 			</bean>
 		</property>
 	</bean>
@@ -33,5 +35,24 @@
 			</bean>
 		</property>
 	</bean>
-
+	
+	<bean id="ExerciseService" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="vn.framgia.service.impl.ExerciseServiceImpl">
+				<property name="exerciseDAO" ref="exerciseDAO" />
+				<property name="userDAO" ref="userDAO" />
+				<property name="exerciseDetailDAO" ref="exerciseDetailDAO" />
+				<property name="questionDAO" ref="questionDAO" />
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="ExerciseDetailService" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="vn.framgia.service.impl.ExerciseDetailServiceImpl">
+				<property name="exerciseDetailDAO" ref="exerciseDetailDAO" />
+			</bean>
+		</property>
+	</bean>
+	
 </beans>

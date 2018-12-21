@@ -13,7 +13,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="Course Project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" type="text/x-icon" href="client/assets/images/logo.png">
+<spring:url value="/client/assets/images/logo.png" var="imgLogo" />
+<link rel="icon" type="text/x-icon" href="${imgLogo}">
 <title><tiles:insertAttribute name="title" ignore="true" /></title>
 
 <tilesx:useAttribute id="defaultCss" name="default-css"

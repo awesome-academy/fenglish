@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.http.client.ClientProtocolException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,16 +19,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import vn.framgia.bean.GoogleAccountInfo;
 import vn.framgia.controller.BaseController;
-import vn.framgia.dao.QuestionDAO;
-import vn.framgia.service.GoogleUtilsService;
-import vn.framgia.service.UserService;
+import vn.framgia.helper.ROLES;
 
 @Controller
 public class IndexController extends BaseController {
-	@Autowired
-	GoogleUtilsService googleUtilsService;
-	@Autowired
-	UserService userService;
 
 	@RequestMapping(value = { "/", "home" }, method = RequestMethod.GET)
 	public String hello() {
@@ -67,7 +60,10 @@ public class IndexController extends BaseController {
 				userDetail.getAuthorities());
 		authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 		SecurityContextHolder.getContext().setAuthentication(authentication);
+		boolean hasAdminRole = authentication.getAuthorities().stream()
+				.anyMatch(r -> r.getAuthority().equals(ROLES.ADMIN.toString()));
 		session.setAttribute("userName", authentication.getName());
+		session.setAttribute("isAdmin", hasAdminRole);
 		return "redirect:/";
 	}
 

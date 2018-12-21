@@ -5,6 +5,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
 import java.util.List;
 
+import javax.persistence.LockModeType;
+
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.log4j.Logger;
 import org.hibernate.LockMode;
@@ -19,7 +21,7 @@ import vn.framgia.model.User;
 import vn.framgia.service.UserService;
 
 public class UserServiceImpl extends BaseServiceImpl implements UserService {
-	
+
 	private static final Logger logger = Logger.getLogger(UserServiceImpl.class);
 
 	@Autowired
@@ -128,9 +130,9 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean confirmRegister(String email, String token) {
+	public boolean updateConfirmRegister(String email, String token) {
 		try {
-			User userInDB = userDAO.findUserByEmail(email);
+			User userInDB = userDAO.findUserByEmailAndUsingLock(email, LockModeType.PESSIMISTIC_WRITE);
 			if (userInDB == null)
 				return false;
 			if (userInDB.getRole().equals(ROLES.UNCONFIRM.toString())

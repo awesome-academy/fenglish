@@ -35,7 +35,7 @@
 							<div class="col-md-3 col-lg-3 " align="center">
 								<c:choose>
 									<c:when
-										test='${current_user.avatar == null || "".equals(user.avatar)}'>
+										test='${current_user.avatar == null || "".equals(current_user.avatar)}'>
 										<spring:url value="/client/assets/images/default-avatar.png"
 											var="defaultAvatar" />
 										<img alt="User Pic" src="${defaultAvatar}"

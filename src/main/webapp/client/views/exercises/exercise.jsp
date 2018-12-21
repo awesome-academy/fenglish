@@ -15,51 +15,54 @@
 	<div class="row">
 		<div class="col-md-8 col-sm-8 col-xs-12">
 			<div class="col_box_baihoc_view col_box_test" id="test_random">
-				<form id="testing_form" action="/test/result" method="POST">
+				<form id="testing_form" action="${pageContext.request.contextPath}/exercises/result" method="POST">
 					<div class="head-list-read">
 						<h1>Chủ đề: ${subject.subjectName}</h1>
 					</div>
-					<div class="question alias_answer" data-question="120397"
-						style="padding: 0">
+					<div class="question alias_answer">
 						<div class="myquestionarea">
-							<div id="testing_answer_120397_2">
-								<c:forEach items="${questions}" var="question" varStatus="count">
+							<c:forEach items="${questions}" var="question" varStatus="count">
+								<div id="testing_answer[${id_exercise}][${count.index + 1}]">
 									<div class="question_number">
 										<b>Question ${count.index + 1}: </b><span>${question.question}</span>
 									</div>
 									<c:if test="${question.option1 != null}">
 										<label class="fulltest_answer_label"> <input
-											type="radio" data-iquestion="${count.index + 1}" name="anser"> <span>${question.option1}</span>
+											type="radio" name="answer[${id_exercise}][${question.id}]"
+											value="1"> <span>${question.option1}</span>
 										</label>
 									</c:if>
 									<c:if test="${question.option2 != null}">
 										<label class="fulltest_answer_label"> <input
-											type="radio" data-iquestion="2"> <span>${question.option2}</span>
+											type="radio" name="answer[${id_exercise}][${question.id}]"
+											value="2">
+											<span>${question.option2}</span>
 										</label>
 									</c:if>
 									<c:if test="${question.option3 != null}">
 										<label class="fulltest_answer_label"> <input
-											type="radio" data-iquestion="2"> <span>${question.option3}</span>
+											type="radio" name="answer[${id_exercise}][${question.id}]"
+											value="3">
+											<span>${question.option3}</span>
 										</label>
 									</c:if>
 									<c:if test="${question.option4 != null}">
 										<label class="fulltest_answer_label"> <input
-											type="radio" data-iquestion="2"> <span>${question.option4}</span>
+											type="radio" name="answer[${id_exercise}][${question.id}]"
+											value="4">
+											<span>${question.option4}</span>
 										</label>
 									</c:if>
-								</c:forEach>
-							</div>
+								</div>
+							</c:forEach>
 						</div>
 					</div>
 					<div>
+						<input name="id_exercise" value="${id_exercise}" type="hidden">
 						<div class="btn-bh testing_result_button"
 							id="testing_answer_button">
-							<a href="javascript:void(0)"
-								onclick="return mshoatoeic.send_answer_training()">Score</a>
+							<button type="submit" class="btn btn-success" value="Score">Score</button>
 						</div>
-						<input name="test_id" value="13947" type="hidden"> <input
-							type="hidden" name="token"
-							value="c899ebb2032bbc2f65f0a26ce69b39bf">
 					</div>
 				</form>
 			</div>

@@ -2,6 +2,8 @@ package vn.framgia.dao;
 
 import java.util.List;
 
+import javax.persistence.LockModeType;
+
 import vn.framgia.model.User;
 
 public interface UserDAO extends BaseDAO<Integer, User> {
@@ -14,5 +16,6 @@ public interface UserDAO extends BaseDAO<Integer, User> {
 	Long count();
 	
 	boolean deleteUser(User user);
-
+	
+	User findUserByEmailAndUsingLock(String email, LockModeType lockMode);
 }

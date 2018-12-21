@@ -10,4 +10,6 @@ public interface ExerciseService extends BaseService<Integer, Exercise> {
 	
 	boolean checkUserAuthentication(Integer id, String authName);
 	
+	ExerciseInfo findExerciseById(Integer id);
+	
 }

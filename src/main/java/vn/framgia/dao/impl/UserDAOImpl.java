@@ -2,6 +2,7 @@ package vn.framgia.dao.impl;
 
 import java.util.List;
 
+import javax.persistence.LockModeType;
 import javax.persistence.Query;
 
 import org.apache.log4j.Logger;
@@ -71,6 +72,12 @@ public class UserDAOImpl extends GenericDAO<Integer, User> implements UserDAO {
 		String hql = "UPDATE User u SET u.deleted = 1 WHERE u.id = :id";
 		getSession().createQuery(hql).setParameter("id", user.getId()).executeUpdate();
 		return true;
+	}
+
+	@Override
+	public User findUserByEmailAndUsingLock(String email, LockModeType lockMode) {
+		String hql = "FROM User a WHERE a.email = :email AND a.deleted = 0";
+		return (User) getSession().createQuery(hql).setParameter("email", email).setLockMode(lockMode).getSingleResult();
 	}
 
 }

@@ -27,6 +27,10 @@
 					<li class="main_nav_item"><a
 						href="${pageContext.request.contextPath}/subjects">bài thi</a></li>
 					<li class="main_nav_item"><a href="contact.html">liên hệ</a></li>
+					<c:if test="${userName != null && isAdmin}">
+						<li class="main_nav_item"><a
+							href="${pageContext.request.contextPath}/admin/">Admin</a></li>
+					</c:if>
 					<!-- <li class="main_nav_item"><a href="elements.html"></a></li> -->
 				</ul>
 			</div>

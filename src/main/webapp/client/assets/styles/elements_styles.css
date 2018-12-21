@@ -224,7 +224,7 @@ h1::selection, h2::selection, h3::selection, h4::selection, h5::selection,
 }
 
 .form-control {
-	color: #db5246;
+	color: #333333;
 }
 
 section {
@@ -1797,4 +1797,8 @@ p.lead {
 .edit-form {
     color: #000;
     top: -100px;
+}
+
+.error {
+	color: red;
 }

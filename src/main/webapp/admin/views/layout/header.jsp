@@ -2,7 +2,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<spring:url value="/admin/" var="urlHome" />
+<spring:url value="/" var="urlHome" />
+<spring:url value="/admin/" var="urlAdmin" />
 <spring:url value="/admin/subjects" var="urlSubject" />
 <spring:url value="/admin/logout" var="logoutActionUrl" />
 <spring:url value="/admin/assets/images/flag-vi.png" var="flagVi" />
@@ -36,7 +37,7 @@
 			<a class="navbar-brand" href="${urlHome}">FEnglish</a>
 		</div>
 		<ul class="nav navbar-nav">
-			<li><a href="${urlHome}">${menuUser}</a></li>
+			<li><a href="${urlAdmin}">${menuUser}</a></li>
 			<li class="dropdown"><a class="dropdown-toggle"
 				data-toggle="dropdown" href="#">${menuQuestion}<span
 					class="caret"></span></a>

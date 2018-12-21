@@ -18,12 +18,12 @@ import vn.framgia.bean.UserInfo;
 import vn.framgia.controller.BaseController;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/admin/users")
 public class UsersController extends BaseController {
 
 	private static final int maxResult = 10;
 	
-	@RequestMapping(value = "/users/page={offset}", method = RequestMethod.GET)
+	@RequestMapping(value = "/page={offset}", method = RequestMethod.GET)
 	public String index(@PathVariable("offset") Integer offset, Model model) {
 
 		List<UserInfo> users = userService.loadUsers(offset, maxResult);
@@ -34,7 +34,7 @@ public class UsersController extends BaseController {
 		return "/users/index";
 	}
 	
-	@RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public String detail(@PathVariable("id") Integer id, Model model) {
 
 		UserInfo user = userService.findUserById(id);
@@ -48,7 +48,7 @@ public class UsersController extends BaseController {
 		return "/users/detail";
 	}
 
-	@RequestMapping(value = "/users/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseBody
 	public String delete(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
 
@@ -63,7 +63,7 @@ public class UsersController extends BaseController {
 		return "redirect:/admin/";
 	}
 
-	@RequestMapping(value = "/users/{id}/edit", method = RequestMethod.GET)
+	@RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
 	public String edit(@PathVariable("id") Integer id, Model model) {
 
 		UserInfo userForm = userService.findUserById(id);
@@ -72,7 +72,7 @@ public class UsersController extends BaseController {
 		return "/users/edit";
 	}
 
-	@RequestMapping(value = "/users/update", method = RequestMethod.POST)
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(@Valid @ModelAttribute("userForm") UserInfo userForm, BindingResult bindingResult,
 			RedirectAttributes redirectAttributes) {
 

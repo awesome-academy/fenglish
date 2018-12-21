@@ -2,6 +2,8 @@ package vn.framgia.service;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import vn.framgia.bean.UserInfo;
 import vn.framgia.model.User;
 
@@ -19,10 +21,11 @@ public interface UserService extends BaseService<Integer, User> {
 
 	UserInfo findUserById(Integer key);
 
-	User saveUserOrUpdate(UserInfo userInfo);
+	UserInfo saveUserOrUpdate(UserInfo userInfo);
 
 	boolean saveUserAfferRegister(User user, String token);
 
 	boolean confirmRegister(String email, String token);
-
+	
+	UserInfo updateUserAndChangeAvatar(UserInfo userInfo, MultipartFile file);
 }

@@ -29,6 +29,7 @@
 				value="/client/assets/styles/bootstrap4/popper.js" />
 			<add-attribute
 				value="/client/assets/styles/bootstrap4/bootstrap.min.js" />
+			<add-attribute value="/client/assets/js/jquery-ui.js" />
 			<add-attribute
 				value="/client/assets/plugins/greensock/TweenMax.min.js" />
 			<add-attribute
@@ -270,6 +271,8 @@
 				value="/client/assets/styles/elements_styles.css" />
 			<add-attribute
 				value="/client/assets/styles/elements_responsive.css" />
+			<add-attribute
+				value="/client/assets/styles/jquery-ui.css" />
 		</put-list-attribute>
 
 		<!-- Login Js -->
@@ -278,6 +281,7 @@
 				value="/client/assets/plugins/progressbar/progressbar.min.js" />
 			<add-attribute
 				value="/client/assets/js/elements_custom.js" />
+			<add-attribute value="/client/assets/js/edit_user.js" />
 		</put-list-attribute>
 
 		<put-list-attribute name="home-css" />

@@ -2,17 +2,28 @@ package vn.framgia.service.impl;
 
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collections;
 import java.util.List;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.log4j.Logger;
 import org.hibernate.LockMode;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.multipart.MultipartFile;
 
 import vn.framgia.bean.UserInfo;
+import vn.framgia.helper.FileUploadHelper;
+import vn.framgia.helper.ROLES;
 import vn.framgia.helper.UserConvertHelper;
 import vn.framgia.model.User;
 import vn.framgia.service.UserService;
 
 public class UserServiceImpl extends BaseServiceImpl implements UserService {
+	
+	private static final Logger logger = Logger.getLogger(UserServiceImpl.class);
+
+	@Autowired
+	private FileUploadHelper fileUploadHelper;
 
 	@Override
 	public User findByEmail(String email) {
@@ -22,12 +33,11 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 	@Override
 
 	public List<User> findAll(int page, int userPerPage) {
-		// TODO Auto-generated method stub
 		try {
 			return userDAO.listAll(page, userPerPage);
 		} catch (Exception e) {
-			// TODO: handle exception
-			return null;
+			logger.error("Error in findAll: " + e.getMessage());
+			return Collections.emptyList();
 		}
 	}
 
@@ -36,7 +46,7 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 		try {
 			return userDAO.findById(key);
 		} catch (Exception e) {
-			// TODO: handle exception
+			logger.error("Error in findById: " + e.getMessage());
 			return null;
 		}
 	}
@@ -68,7 +78,12 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 
 	@Override
 	public UserInfo findUserById(Integer key) {
-		return UserConvertHelper.convertSingleUserToUserInfo(userDAO.findById(key));
+		try {
+			return UserConvertHelper.convertSingleUserToUserInfo(userDAO.findById(key));
+		} catch (Exception e) {
+			logger.error("Error in findUserById: " + e.getMessage());
+			return null;
+		}
 	}
 
 	@Override
@@ -77,18 +92,20 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 			User entity = userDAO.findByIdUsingLock(id, LockMode.PESSIMISTIC_WRITE);
 			return userDAO.deleteUser(entity);
 		} catch (Exception e) {
+			logger.error("Error in deleteUserById: " + e.getMessage());
 			throw e;
 		}
 	}
 
 	@Override
-	public User saveUserOrUpdate(UserInfo userInfo) {
+	public UserInfo saveUserOrUpdate(UserInfo userInfo) {
 		User user = userDAO.findByIdUsingLock(userInfo.getId(), LockMode.PESSIMISTIC_WRITE);
 
 		try {
 			UserConvertHelper.convertSingleUserInfoToUser(user, userInfo);
-			return userDAO.saveOrUpdate(user);
+			return UserConvertHelper.convertSingleUserToUserInfo(userDAO.saveOrUpdate(user));
 		} catch (Exception e) {
+			logger.error("Error in saveUserOrUpdate: " + e.getMessage());
 			throw e;
 		}
 	}
@@ -99,12 +116,13 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 			User userInDB = userDAO.findUserByEmail(user.getEmail());
 			if (userInDB == null) {
 				user.setPasswordResetToken(token);
-				user.setRole("ROLE_USER");
+				user.setRole(ROLES.UNCONFIRM.toString());
 				userDAO.saveOrUpdate(user);
 				return true;
 			}
 			return false;
 		} catch (Exception e) {
+			logger.error("Error in saveUserAfferRegister: " + e.getMessage());
 			throw e;
 		}
 	}
@@ -115,15 +133,37 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 			User userInDB = userDAO.findUserByEmail(email);
 			if (userInDB == null)
 				return false;
-			if (userInDB.getRole().equals("ROLE_UNCONFIRM") && userInDB.getPasswordResetToken().equals(token)) {
-				userInDB.setRole("ROLE_USER");
+			if (userInDB.getRole().equals(ROLES.UNCONFIRM.toString())
+					&& userInDB.getPasswordResetToken().equals(token)) {
+				userInDB.setRole(ROLES.USER.toString());
 				userDAO.saveOrUpdate(userInDB);
 				return true;
 			}
 			return false;
 		} catch (Exception e) {
-			// TODO: handle exception
+			logger.error("Error in confirmRegister: " + e.getMessage());
 			throw e;
 		}
 	}
+
+	@Override
+	public UserInfo updateUserAndChangeAvatar(UserInfo userInfo, MultipartFile file) {
+		try {
+			// Lock Object
+			User user = userDAO.findByIdUsingLock(userInfo.getId(), LockMode.PESSIMISTIC_WRITE);
+			UserConvertHelper.convertSingleUserInfoToUser(user, userInfo);
+
+			// Upload Avatar
+			user.setAvatar(fileUploadHelper.upFile(file));
+
+			// Update Profile
+			userDAO.saveOrUpdate(user);
+
+			return UserConvertHelper.convertSingleUserToUserInfo(user);
+		} catch (Exception e) {
+			logger.error("Error in updateUserAndChangeAvatar: " + e.getMessage());
+			throw e;
+		}
+	}
+
 }

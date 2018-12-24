@@ -52,6 +52,7 @@
 				<value>classpath:messages</value>
 				<value>classpath:google-login</value>
 				<value>classpath:mailconfig</value>
+				<value>classpath:cloudinary-storage</value>
 			</list>
 		</property>
 		<property name="fallbackToSystemLocale" value="false" />
@@ -60,6 +61,10 @@
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="100000" />
+	</bean>
+
+	<bean id="fileUploadHelper"
+		class="vn.framgia.helper.FileUploadHelper">
 	</bean>
 
 </beans>

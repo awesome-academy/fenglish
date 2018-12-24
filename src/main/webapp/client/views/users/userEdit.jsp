@@ -15,65 +15,70 @@
 	<br />
 	<div class="col-md-6" style="margin: 0 auto;">
 		<spring:url value="/users/update" var="userActionUrl" />
-		<form class="form-horizontal" method="post" action="${userActionUrl}"
-			enctype="multipart/form-data">
-			<input hidden="true" name="id" value="${user.id}"> <input
-				hidden="true" name="passwordHash" value="${user.passwordHash}">
-			<input hidden="true" name="passwordResetToken"
-				value="${user.passwordResetToken}"> <input hidden="true"
-				name="birthday" value="${user.birthday}"> <input
-				hidden="true" name="role" value="${user.role}">
+		<form:form class="form-horizontal" method="POST"
+			action="${userActionUrl}" enctype="multipart/form-data"
+			modelAttribute="userForm">
+			<form:hidden path="id" />
+			<form:hidden path="passwordHash" />
+			<form:hidden path="passwordResetToken" />
+			<form:hidden path="avatar" />
+			<form:hidden path="role" />
 			<div class="col-md-3 col-lg-3 " align="center">
-				<spring:url value="/client/assets/images/default-avatar.png"
-					var="defaultAvatar" />
 				<div>
-					<img alt="User Pic" src="${defaultAvatar}"
-						class="img-circle img-responsive"> <input type="file"
-						name="avatar">
+					<c:choose>
+						<c:when test='${userForm.avatar == null || "".equals(userForm.avatar)}'>
+							<spring:url value="/client/assets/images/default-avatar.png"
+								var="defaultAvatar" />
+							<img alt="User Pic" src="${defaultAvatar}"
+								class="img-circle img-responsive">
+						</c:when>
+						<c:otherwise>
+							<img alt="User Pic" src="${userForm.avatar}"
+								class="img-circle img-responsive">
+						</c:otherwise>
+					</c:choose>
+					<input type="file" name="imgAvatar" accept="image/*" />
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Tên</label>
 				<div class="col-sm-9">
-					<input name="fullname" class="form-control" id="fullname"
-						placeholder="Tên" value="${user.fullname}">
+					<form:input path="fullname" class="form-control" id="fullname"
+						placeholder="Tên" autocomplete="off" />
+					<form:errors path="fullname" cssClass="error" />
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Email</label>
 				<div class="col-sm-9">
-					<input name="email" class="form-control" id="email"
-						placeholder="Email" value="${user.email}">
+					<form:input path="email" class="form-control" id="email"
+						placeholder="Email" autocomplete="off" />
+					<form:errors path="email" cssClass="error" />
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Điện thoại</label>
 				<div class="col-sm-9">
-					<input name="phone" class="form-control" id="phone"
-						placeholder="Điện thoại" value="${user.phone}">
+					<form:input path="phone" class="form-control" id="phone"
+						placeholder="Điện thoại" autocomplete="off" />
+					<form:errors path="phone" cssClass="error" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Ngày sinh</label>
+				<div class="col-sm-9">
+					<form:input path="birthday" class="form-control" id="birthday"
+						type="text" autocomplete="off" />
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Giới tính</label>
 				<div class="col-sm-9">
-					<c:choose>
-						<c:when test='${user.gender == "Nam"}'>
-							<label class="radio-inline"> <input type="radio"
-								name="gender" value="Nam" checked="checked" /> Nam
-							</label>
-							<label class="radio-inline"> <input type="radio"
-								name="gender" value="Nu" /> Nữ
-							</label>
-						</c:when>
-						<c:otherwise>
-							<label class="radio-inline"> <input type="radio"
-								name="gender" value="Nam" /> Nam
-							</label>
-							<label class="radio-inline"> <input type="radio"
-								name="gender" value="Nu" checked="checked" /> Nữ
-							</label>
-						</c:otherwise>
-					</c:choose>
+					<label class="radio-inline"> <form:radiobutton
+							path="gender" value="Nam" /> Nam
+					</label> <label class="radio-inline"> <form:radiobutton
+							path="gender" value="Nu" /> Nữ
+					</label>
 				</div>
 			</div>
 			<div class="form-group">
@@ -82,6 +87,6 @@
 						nhật</button>
 				</div>
 			</div>
-		</form>
+		</form:form>
 	</div>
 </div>

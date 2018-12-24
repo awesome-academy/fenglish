@@ -1,4 +1,4 @@
-package vn.framgia.controller.admin;
+package vn.framgia.controller.client;
 
 import javax.servlet.http.HttpSession;
 
@@ -29,7 +29,7 @@ public class UserRegisterController extends BaseController {
 			final RedirectAttributes redirectAttributes) {
 		String passwordResetToken = emailHelper.getPasswordResetToken();
 		User user;
-		user = UserConvertHelper.convertUserInfoForRegister(userInfo);		
+		user = UserConvertHelper.convertUserInfoForRegister(userInfo);
 		if (userService.saveUserAfferRegister(user, passwordResetToken)) {
 			mailService.sendSimpleMessage(userInfo.getEmail(), passwordResetToken);
 			return "/client/register-confirm";
@@ -41,8 +41,8 @@ public class UserRegisterController extends BaseController {
 	@GetMapping(path = "/register/confirm/{email}/{token}")
 	public String confirmUser(@PathVariable String email, @PathVariable String token) {
 		if(userService.confirmRegister(email, token)) {
-			return "/login";
+			return "redirect:/login";
 		};
-		return "redirect:/login";
+		return "redirect:/";
 	}
 }

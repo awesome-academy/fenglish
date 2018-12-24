@@ -9,7 +9,7 @@ import org.apache.log4j.Logger;
 public class DatetimeConvertHelper {
 
 	private static final Logger logger = Logger.getLogger(DatetimeConvertHelper.class);
-	private static final String dateFormat = "dd-MM-yyyy";
+	private static final String dateFormat = "dd/MM/yyyy";
 
 	public static String convertDateToString(Timestamp date) {
 

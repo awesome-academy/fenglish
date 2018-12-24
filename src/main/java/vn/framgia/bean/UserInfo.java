@@ -11,17 +11,21 @@ public class UserInfo {
 	private String passwordHash;
 	private String passwordResetToken;	
 	private String password;
-	@Pattern(regexp = "^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$")
-	private String email;
 	private String avatar;
 	private String gender;
 	private String birthday;
 	private String role;
 	private GoogleAccount googleAccount;
+	
+	@Pattern(regexp = "^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$")
+	private String email;
+	
 	@NotBlank
 	private String fullname;
+	
 	@PhoneConstraint
 	private String phone;
+	
 	public UserInfo() {
 
 	}

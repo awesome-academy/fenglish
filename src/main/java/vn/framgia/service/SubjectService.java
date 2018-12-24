@@ -17,4 +17,6 @@ public interface SubjectService extends BaseService<Integer, Subject> {
 	
 	List<SubjectInfo> loadAllSubject();
 	
+	SubjectInfo getSubjectInExercise(Integer idExercise);
+	
 }

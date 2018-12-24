@@ -37,7 +37,8 @@
 		<c:choose>
 			<c:when test="${sessionScope.userName != null}">
 				<ul>
-					<li><a href="logout" class="login">Wellcome ${userName} </a></li>
+					<li><a href="${pageContext.request.contextPath}/users/show"
+						class="login">Wellcome ${userName} </a></li>
 					<li><a href="<c:url value="/security_logout" />">Logout</a></li>
 				</ul>
 			</c:when>

@@ -49,4 +49,13 @@ public class SubjectDAOImpl extends GenericDAO<Integer, Subject> implements Subj
 		return getSession().createQuery(hql).getResultList();
 	}
 
+	@Override
+	public Subject getSubjectInExercise(Integer idExercise) {
+		String hql = "SELECT a "
+				+ "FROM Subject a "
+				+ "INNER JOIN Exercise b ON a.id = b.subject.id "
+				+ "WHERE b.id = :idExercise";
+		return (Subject) getSession().createQuery(hql).setParameter("idExercise", idExercise).getSingleResult();
+	}
+
 }

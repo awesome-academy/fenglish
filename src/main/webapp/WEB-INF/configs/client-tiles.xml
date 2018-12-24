@@ -168,6 +168,7 @@
 		<put-list-attribute name="login-js" />
 	</definition>
 
+	<!-- Show Subject -->
 	<definition name="/client/subjects/index"
 		extends="/client/baseLayout">
 		<put-attribute name="title" value="Chọn chủ đề" />
@@ -175,7 +176,7 @@
 			value="/client/views/subjects/listSubject.jsp" />
 		<put-attribute name="footer"
 			value="/client/views/layout/elementFooter.jsp" />
-		
+
 		<!-- Login Css -->
 		<put-list-attribute name="login-css">
 			<add-attribute
@@ -183,7 +184,7 @@
 			<add-attribute
 				value="/client/assets/styles/elements_responsive.css" />
 		</put-list-attribute>
-		
+
 		<!-- Login Js -->
 		<put-list-attribute name="login-js">
 			<add-attribute
@@ -191,11 +192,12 @@
 			<add-attribute
 				value="/client/assets/js/elements_custom.js" />
 		</put-list-attribute>
-		
+
 		<put-list-attribute name="home-css" />
 		<put-list-attribute name="home-js" />
 	</definition>
-	
+
+	<!-- Show Exercise -->
 	<definition name="/client/exercise"
 		extends="/client/baseLayout">
 		<put-attribute name="title" value="Làm bài thi" />
@@ -203,7 +205,7 @@
 			value="/client/views/exercises/exercise.jsp" />
 		<put-attribute name="footer"
 			value="/client/views/layout/elementFooter.jsp" />
-		
+
 		<!-- Login Css -->
 		<put-list-attribute name="login-css">
 			<add-attribute
@@ -211,7 +213,7 @@
 			<add-attribute
 				value="/client/assets/styles/elements_responsive.css" />
 		</put-list-attribute>
-		
+
 		<!-- Login Js -->
 		<put-list-attribute name="login-js">
 			<add-attribute
@@ -219,7 +221,65 @@
 			<add-attribute
 				value="/client/assets/js/elements_custom.js" />
 		</put-list-attribute>
-		
+
+		<put-list-attribute name="home-css" />
+		<put-list-attribute name="home-js" />
+	</definition>
+
+	<!-- Show Exercise -->
+	<definition name="/client/user-info"
+		extends="/client/baseLayout">
+		<put-attribute name="title" value="Thông tin cá nhân" />
+		<put-attribute name="body"
+			value="/client/views/users/userInfo.jsp" />
+		<put-attribute name="footer"
+			value="/client/views/layout/elementFooter.jsp" />
+
+		<!-- Login Css -->
+		<put-list-attribute name="login-css">
+			<add-attribute
+				value="/client/assets/styles/elements_styles.css" />
+			<add-attribute
+				value="/client/assets/styles/elements_responsive.css" />
+		</put-list-attribute>
+
+		<!-- Login Js -->
+		<put-list-attribute name="login-js">
+			<add-attribute
+				value="/client/assets/plugins/progressbar/progressbar.min.js" />
+			<add-attribute
+				value="/client/assets/js/elements_custom.js" />
+		</put-list-attribute>
+
+		<put-list-attribute name="home-css" />
+		<put-list-attribute name="home-js" />
+	</definition>
+
+	<!-- Edit Profile -->
+	<definition name="/client/edit-profile"
+		extends="/client/baseLayout">
+		<put-attribute name="title" value="Chỉnh sửa thông tin" />
+		<put-attribute name="body"
+			value="/client/views/users/userEdit.jsp" />
+		<put-attribute name="footer"
+			value="/client/views/layout/elementFooter.jsp" />
+
+		<!-- Login Css -->
+		<put-list-attribute name="login-css">
+			<add-attribute
+				value="/client/assets/styles/elements_styles.css" />
+			<add-attribute
+				value="/client/assets/styles/elements_responsive.css" />
+		</put-list-attribute>
+
+		<!-- Login Js -->
+		<put-list-attribute name="login-js">
+			<add-attribute
+				value="/client/assets/plugins/progressbar/progressbar.min.js" />
+			<add-attribute
+				value="/client/assets/js/elements_custom.js" />
+		</put-list-attribute>
+
 		<put-list-attribute name="home-css" />
 		<put-list-attribute name="home-js" />
 	</definition>

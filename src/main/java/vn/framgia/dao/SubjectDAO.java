@@ -14,4 +14,6 @@ public interface SubjectDAO extends BaseDAO<Integer, Subject> {
 	
 	List<Subject> loadAllSubject();
 	
+	Subject getSubjectInExercise(Integer idExercise);
+	
 }

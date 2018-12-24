@@ -10,7 +10,7 @@
 	</div>
 </div>
 
-<div class="login">
+<div>
 	<div class="container-fluid">
 		<div class="row row-eq-height">
 			<div class="col-lg-3 nopadding"></div>

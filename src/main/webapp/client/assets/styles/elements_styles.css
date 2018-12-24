@@ -318,7 +318,7 @@ section {
 3. Header
 *********************************/
 .header {
-	position: fixed;
+	position: relative;
 	top: 45px;
 	left: 50%;
 	-webkit-transform: translateX(-50%);
@@ -674,7 +674,7 @@ section {
 
 .home_background_container {
 	position: absolute;
-	top: 0;
+	bottom: 105px;
 	left: 0;
 	width: 100%;
 	height: 100%;
@@ -1111,6 +1111,8 @@ section {
 	width: 100%;
 	height: 100%;
 	background: #ececec;
+	position:  relative;
+	top: -90px;
 }
 
 .search_content {
@@ -1254,8 +1256,8 @@ input:last-of-type {
 }
 
 .col_box_test {
-	margin-top: 43px;
-	clear: both
+	margin-top: -90px;
+	clear: both;
 }
 
 .head-list-read {
@@ -1360,9 +1362,9 @@ input:last-of-type {
 
 .col_box_baihoc_view {
 	margin-top: 30px;
-	margin-bottom: 30px;
 	font-size: 16px;
-	clear: both
+	clear: both;
+	top: -80px;
 }
 
 .col_box_baihoc_view .head-list-video {
@@ -1748,4 +1750,51 @@ p.lead {
 
 .myquestionarea label {
 	display: block;
+}
+
+.carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive,
+	.thumbnail a>img, .thumbnail>img {
+	display: block;
+	max-width: 100%;
+	height: auto
+}
+
+.img-rounded {
+	border-radius: 6px
+}
+
+.img-thumbnail {
+	display: inline-block;
+	max-width: 100%;
+	height: auto;
+	padding: 4px;
+	line-height: 1.42857143;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	-webkit-transition: all .2s ease-in-out;
+	-o-transition: all .2s ease-in-out;
+	transition: all .2s ease-in-out
+}
+
+.img-circle {
+	border-radius: 50%;
+}
+
+.table-user-information, .user-title {
+	color: #000;
+}
+
+.panel.panel-info {
+    position: relative;
+    top: -105px;
+}
+
+.panel-heading {
+	margin-bottom: 20px;
+}
+
+.edit-form {
+    color: #000;
+    top: -100px;
 }

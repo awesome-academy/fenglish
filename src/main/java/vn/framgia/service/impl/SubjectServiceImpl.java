@@ -114,4 +114,14 @@ public class SubjectServiceImpl extends BaseServiceImpl implements SubjectServic
 		}
 	}
 
+	@Override
+	public SubjectInfo getSubjectInExercise(Integer idExercise) {
+		try {
+			return SubjectConvertHelper.convertSingleSubjectToSubjectInfo(subjectDAO.getSubjectInExercise(idExercise));
+		} catch (Exception e) {
+			logger.error("Error in getSubjectInExercise: " + e.getMessage());
+			return new SubjectInfo();
+		}
+	}
+
 }

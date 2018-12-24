@@ -2,22 +2,39 @@ package vn.framgia.controller.admin;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import vn.framgia.bean.LevelInfo;
 import vn.framgia.bean.QuestionInfo;
+import vn.framgia.bean.SubjectInfo;
 import vn.framgia.controller.BaseController;
 import vn.framgia.helper.QuestionConvertHelper;
+import vn.framgia.service.LevelService;
+import vn.framgia.service.QuestionService;
+import vn.framgia.service.SubjectService;
 
 @Controller
 @RequestMapping("/admin")
+
 public class QuestionController extends BaseController {
 	private static final int pageSize = 10;
+	@Autowired
+	QuestionService questionService;
+	@Autowired
+	SubjectService subjectService;
+	@Autowired
+	LevelService levelService;
 
 	@RequestMapping(value = "/questions/page={pageNumber}", method = RequestMethod.GET)
 	public String index(@PathVariable("pageNumber") Integer pageNumber, Model model) {
@@ -50,7 +67,49 @@ public class QuestionController extends BaseController {
 	public String edit(@PathVariable("id") Integer id, Model model) {
 		QuestionInfo questionInfo = QuestionConvertHelper
 				.convertQuestionToQuestionInfo(questionService.findQuestionById(id));
+		List<SubjectInfo> listSubjectInfo = subjectService.loadSubjects(1, pageSize);
+		List<LevelInfo> listLevelInfo = levelService.loadLevels(1, pageSize);
 		model.addAttribute("questionForm", questionInfo);
+		model.addAttribute("listSubjectInfo", listSubjectInfo);
+		model.addAttribute("listLevelInfo", listLevelInfo);
 		return "/questions/edit";
+	}
+
+	@RequestMapping(value = "/questions/update", method = RequestMethod.POST)
+	public String update(@Valid @ModelAttribute("questionForm") QuestionInfo questionForm, BindingResult bindingResult,
+			RedirectAttributes redirectAttributes) {
+
+		if (bindingResult.hasErrors()) {
+			return "/questions/edit";
+		}
+		questionService.saveOrUpdate(questionForm);
+		redirectAttributes.addFlashAttribute("css", "success");
+		redirectAttributes.addFlashAttribute("msg", "msg.user.updatesuccess");
+
+		return "redirect:/admin/questions/page=1";
+	}
+
+	@RequestMapping(value = "/questions/new", method = RequestMethod.GET)
+	public String createQuestionForm(Model model) {
+		List<SubjectInfo> listSubjectInfo = subjectService.loadSubjects(1, pageSize);
+		List<LevelInfo> listLevelInfo = levelService.loadLevels(1, pageSize);
+		QuestionInfo questionInfo = new QuestionInfo();
+		model.addAttribute("questionForm", questionInfo);
+		model.addAttribute("listSubjectInfo", listSubjectInfo);
+		model.addAttribute("listLevelInfo", listLevelInfo);
+		return "/questions/create";
+	}
+
+	@RequestMapping(value = "/questions/create", method = RequestMethod.POST)
+	public String createQuestion(@Valid @ModelAttribute("questionForm") QuestionInfo questionForm,
+			BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+		if (bindingResult.hasErrors()) {
+			return "/questions/edit";
+		}
+		questionService.saveOrUpdate(questionForm);
+		redirectAttributes.addFlashAttribute("css", "success");
+		redirectAttributes.addFlashAttribute("msg", "msg.user.updatesuccess");
+
+		return "redirect:/admin/questions/page=1";
 	}
 }

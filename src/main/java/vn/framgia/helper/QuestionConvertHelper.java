@@ -37,6 +37,14 @@ public class QuestionConvertHelper {
 		return question;
 	}
 	
+	public static void copyValueQuestionInfoToQuestion(Question question, QuestionInfo questionInfo) {
+		try {
+			BeanUtils.copyProperties(question, questionInfo);
+		} catch (Exception e) {
+			logger.error("Error in convertQuestionInfo: " + e.getMessage());
+		}
+	}
+	
 	public static List<QuestionInfo> convertListQuestionToListQuestionInfo(List<Question> listQuestion) {
 
 		List<QuestionInfo> listQuestionInfo = new ArrayList<QuestionInfo>();

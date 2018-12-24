@@ -7,6 +7,8 @@
 <spring:url value="/admin/logout" var="logoutActionUrl" />
 <spring:url value="/admin/assets/images/flag-vi.png" var="flagVi" />
 <spring:url value="/admin/assets/images/flag-en.png" var="flagEn" />
+<spring:url value="/admin/questions/page=1" var="listQuestion" />
+<spring:url value="/admin/questions/new" var="createQuestion" />
 <spring:message code="title.admin.language" var="language" />
 <spring:message code="title.admin.menuUser" var="menuUser" />
 <spring:message code="title.admin.menuQuestion" var="menuQuestion" />
@@ -39,8 +41,8 @@
 				data-toggle="dropdown" href="#">${menuQuestion}<span
 					class="caret"></span></a>
 				<ul class="dropdown-menu">
-					<li><a href="#">${menuListQuestion}</a></li>
-					<li><a href="#">${menuCreateQuestion}</a></li>
+					<li><a href="${listQuestion}">${menuListQuestion}</a></li>
+					<li><a href="${createQuestion}">${menuCreateQuestion}</a></li>
 				</ul></li>
 			<li><a href="${urlSubject}">${menuSubject}</a></li>
 			<li><a href="#">${menuPost}</a></li>

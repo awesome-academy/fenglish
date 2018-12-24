@@ -31,6 +31,7 @@
 			<add-attribute
 				value="/admin/assets/js/jquery-confirm.min.js" />
 			<add-attribute value="/admin/assets/js/admin.js" />
+			<add-attribute value="/ckeditor/ckeditor.js" />
 		</put-list-attribute>
 	</definition>
 
@@ -55,19 +56,31 @@
 		<put-attribute name="body"
 			value="/admin/views/user/userForm.jsp" />
 	</definition>
-	
+
 	<!-- List Question -->
-	<definition name="/questions/index" extends="/admin/baseLayout">
+	<definition name="/questions/index"
+		extends="/admin/baseLayout">
 		<put-attribute name="title" value="title.admin.home" />
 		<put-attribute name="body"
 			value="/admin/views/questions/listQuestion.jsp" />
 	</definition>
 
 	<!-- Question Form Edit -->
-	<definition name="/questions/edit" extends="/admin/baseLayout">
-		<put-attribute name="title" value="title.admin.questionEdit" />
+	<definition name="/questions/edit"
+		extends="/admin/baseLayout">
+		<put-attribute name="title"
+			value="title.admin.questionEdit" />
 		<put-attribute name="body"
 			value="/admin/views/questions/questionForm.jsp" />
+	</definition>
+
+	<!-- Question Form Create -->
+	<definition name="/questions/create"
+		extends="/admin/baseLayout">
+		<put-attribute name="title"
+			value="title.admin.menuCreateQuestion" />
+		<put-attribute name="body"
+			value="/admin/views/questions/createQuestion.jsp" />
 	</definition>
 
 	<!-- List Subject -->
@@ -84,7 +97,8 @@
 		extends="/admin/baseLayout">
 		<put-attribute name="title"
 			value="title.admin.createSubject" />
-		<put-attribute name="body" value="/admin/views/subject/subjectForm.jsp" />
+		<put-attribute name="body"
+			value="/admin/views/subject/subjectForm.jsp" />
 	</definition>
 
 </tiles-definitions>

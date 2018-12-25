@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.log4j.Logger;
@@ -121,6 +123,21 @@ public class SubjectServiceImpl extends BaseServiceImpl implements SubjectServic
 		} catch (Exception e) {
 			logger.error("Error in getSubjectInExercise: " + e.getMessage());
 			return new SubjectInfo();
+		}
+	}
+
+	@Override
+	public Map<Integer, Subject> loadMapSubject() {
+		// TODO Auto-generated method stub
+		Map<Integer, Subject> map = null;
+		try {
+			List<Subject> listSubject = subjectDAO.loadAllSubject();
+			map = listSubject.stream().collect(Collectors.toMap(x -> x.getId(), x -> x));
+			return map;
+		} catch (Exception e) {
+			// TODO: handle exception
+			logger.error(e.getMessage());
+			return null;
 		}
 	}
 

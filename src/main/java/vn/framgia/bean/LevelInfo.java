@@ -1,6 +1,5 @@
 package vn.framgia.bean;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import vn.framgia.model.Question;
@@ -10,6 +9,7 @@ public class LevelInfo {
 	private String name;
 	private Boolean deleted;
 	private List<Question> questions = null;
+
 	public LevelInfo() {
 	}
 

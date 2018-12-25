@@ -54,7 +54,7 @@ public class LevelConvertHelper {
 
 		try {
 			List<Level> Levels = new ArrayList<Level>();
-			
+
 			for (LevelInfo LevelInfo : LevelInfos) {
 				Level Level = new Level();
 				convertSingleLevelInfoToLevel(Level, LevelInfo);

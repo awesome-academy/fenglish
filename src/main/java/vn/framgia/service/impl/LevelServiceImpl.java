@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.log4j.Logger;
@@ -12,6 +14,7 @@ import org.hibernate.LockMode;
 import vn.framgia.bean.LevelInfo;
 import vn.framgia.helper.LevelConvertHelper;
 import vn.framgia.model.Level;
+import vn.framgia.model.Subject;
 import vn.framgia.service.LevelService;
 
 public class LevelServiceImpl extends BaseServiceImpl implements LevelService {
@@ -106,6 +109,21 @@ public class LevelServiceImpl extends BaseServiceImpl implements LevelService {
 		} catch (Exception e) {
 			logger.error("Error in loadAllLevel: " + e.getMessage());
 			return Collections.emptyList();
+		}
+	}
+
+	@Override
+	public Map<Integer, Level> loadMapLevel() {
+		// TODO Auto-generated method stub
+		Map<Integer, Level> map = null;
+		try {
+			List<Level> listLevel = levelDAO.loadAllLevel();
+			map = listLevel.stream().collect(Collectors.toMap(x -> x.getId(), x -> x));
+			return map;
+		} catch (Exception e) {
+			// TODO: handle exception
+			logger.error(e.getMessage());
+			return null;
 		}
 	}
 

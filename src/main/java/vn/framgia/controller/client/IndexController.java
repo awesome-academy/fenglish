@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.http.client.ClientProtocolException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,10 +20,17 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import vn.framgia.bean.GoogleAccountInfo;
 import vn.framgia.controller.BaseController;
+import vn.framgia.dao.QuestionDAO;
+import vn.framgia.service.GoogleUtilsService;
+import vn.framgia.service.UserService;
 
 @Controller
 public class IndexController extends BaseController {
-	
+	@Autowired
+	GoogleUtilsService googleUtilsService;
+	@Autowired
+	UserService userService;
+
 	@RequestMapping(value = { "/", "home" }, method = RequestMethod.GET)
 	public String hello() {
 		return "/client/index";
@@ -50,7 +58,7 @@ public class IndexController extends BaseController {
 		GoogleAccountInfo googleAccountInfo = googleUtilsService.getGoogleAccount(accessToken);
 		// check if email exist ?
 		if (userService.findByEmail(googleAccountInfo.getEmail()) == null) {
-			redirectAttributes.addFlashAttribute("googleAccountInfo",googleAccountInfo);
+			redirectAttributes.addFlashAttribute("googleAccountInfo", googleAccountInfo);
 			return "redirect:/register";
 		}
 
@@ -62,5 +70,5 @@ public class IndexController extends BaseController {
 		session.setAttribute("userName", authentication.getName());
 		return "redirect:/";
 	}
-	
+
 }

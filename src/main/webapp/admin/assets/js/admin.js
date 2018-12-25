@@ -374,7 +374,37 @@ function removeInput(element) {
 					});
 		}
 	});
-
 	count--;
 	form_group.remove();
 }
+
+/* post */
+$(".btnDeletePost")
+		.on(
+				"click",
+				function() {
+					var $row = $(this).closest("tr");
+					var $text = $row.find(".idPost").text();
+					$
+							.confirm({
+								title : "Confirm",
+								content : "Delete Post?",
+								buttons : {
+									confirm : function() {
+										$
+												.ajax({
+													type : "DELETE",
+													url : "/fenglish/admin/posts/"
+															+ $text,
+													success : function(response) {
+														window.location
+																.replace("/fenglish/admin/posts/page=1");
+													}
+												});
+									},
+									cancel : function() {
+										$.alert("Canceled!");
+									}
+								}
+							});
+				});

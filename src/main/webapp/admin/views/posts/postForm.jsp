@@ -29,41 +29,25 @@
 			</div>
 			<div class="form-group">
 				<label class="col-sm-3 control-label">${colContent}</label>
-			</div>
-			<div>
-				<div class="col-md-12">
+				<div class="col-sm-9">
 					<form:textarea path="content" class="form-control" id="content"
 						placeholder="" />
 					<form:errors path="content" class="error" />
 				</div>
-				<script type="text/javascript">
-					CKEDITOR.replace('content');
-					CKEDITOR.config.height = 500;
-				</script>
 			</div>
-			<%-- <div class="form-group">
-				<label class="col-sm-3 control-label">${colCreatedTime}</label>
-				<div class="col-sm-9">
-					<form:input type="datetime" path="createdTime" class="form-control"
-						id="createdTime" placeholder="" />
-					<form:errors path="createdTime" class="error" />
-				</div>
-			</div> --%>
 			<div class="form-group">
 				<label class="col-sm-3 control-label">${colCategory}</label>
 				<div class="col-sm-9">
 					<form:select class="form-control" id="element_10" name="element_10"
-						path="">
-						<option value="" selected="selected"></option>
-						<c:forEach items="" var="levelInfo" varStatus="count">
-							<option value=""></option>
+						path="categoryId">
+						<option value="${postForm.category.id}" selected="selected">${postForm.category.categoryName}</option>
+						<c:forEach items="${categoryInfos}" var="categoryInfo"
+							varStatus="count">
+							<option value="${categoryInfo.id}">${categoryInfo.categoryName}</option>
 						</c:forEach>
 					</form:select>
 				</div>
 			</div>
-
-
-
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 					<button type="submit" class="btn-lg btn-primary pull-right">UPDATE</button>

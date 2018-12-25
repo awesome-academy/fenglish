@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import vn.framgia.bean.CategoryInfo;
 import vn.framgia.bean.PostInfo;
 import vn.framgia.controller.BaseController;
 import vn.framgia.helper.PostConvertHelper;
@@ -23,7 +25,7 @@ import vn.framgia.helper.PostConvertHelper;
 public class PostsController extends BaseController {
 	private static final int pageSize = 10;
 
-	@RequestMapping(value = "/posts/create", method = RequestMethod.GET)
+	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String create() {
 		return "/create";
 	}
@@ -58,7 +60,9 @@ public class PostsController extends BaseController {
 	@RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
 	public String edit(@PathVariable("id") Integer id, Model model) {
 		PostInfo postInfo = PostConvertHelper.convertSinglePostToPostInfo(postService.findPostById(id));
+		List<CategoryInfo> categoryInfos = categoryService.loadAllCategoryInfo();
 		model.addAttribute("postForm", postInfo);
+		model.addAttribute("categoryInfos", categoryInfos);
 		return "/posts/edit";
 	}
 
@@ -70,7 +74,7 @@ public class PostsController extends BaseController {
 		}
 		postService.saveOrUpdatePostInfo(postInfo);
 		redirectAttributes.addFlashAttribute("css", "success");
-		redirectAttributes.addFlashAttribute("msg", "msg.user.updatesuccess");
+		redirectAttributes.addFlashAttribute("msg", "msg.post.updatesuccess");
 		return "redirect:/admin/posts/page=1";
 	}
 }

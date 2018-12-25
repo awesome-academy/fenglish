@@ -3,6 +3,7 @@ package vn.framgia.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import vn.framgia.helper.EmailHelper;
+import vn.framgia.service.CategoryService;
 import vn.framgia.service.EmailService;
 import vn.framgia.service.ExerciseDetailService;
 import vn.framgia.service.ExerciseService;
@@ -32,4 +33,6 @@ public class BaseController {
 	protected ExerciseDetailService exerciseDetailService;
 	@Autowired
 	protected PostService postService;
+	@Autowired
+	protected CategoryService categoryService;
 }

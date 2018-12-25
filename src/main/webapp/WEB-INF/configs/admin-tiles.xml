@@ -32,6 +32,7 @@
 				value="/admin/assets/js/jquery-confirm.min.js" />
 			<add-attribute value="/admin/assets/js/admin.js" />
 			<add-attribute value="/admin/assets/js/dynamic-form.js" />
+			<add-attribute value="/admin/assets/js/ckeditorConfig.js" />
 			<add-attribute value="/ckeditor/ckeditor.js" />
 		</put-list-attribute>
 	</definition>

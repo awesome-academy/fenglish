@@ -66,8 +66,11 @@ public class PostConvertHelper {
 			return Collections.emptyList();
 		}
 	}
+
 	public static void copyValuePostInfoToPost(Post post, PostInfo postInfo) {
 		try {
+			postInfo.setDeleted(post.getDeleted());
+			postInfo.setPostTags(post.getPostTags());
 			BeanUtils.copyProperties(post, postInfo);
 		} catch (Exception e) {
 			logger.error("Error in convertPostInfo: " + e.getMessage());

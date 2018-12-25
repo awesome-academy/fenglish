@@ -10,8 +10,8 @@ public class PostDAOImpl extends GenericDAO<Integer, Post> implements PostDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Post> loadPost(int pageSize, int pageNumber) {
-		return (List<Post>) getSession().createQuery("from Post p where p.deleted = 0").setFirstResult((pageNumber - 1) * pageSize)
-				.setMaxResults(pageSize).getResultList();
+		return (List<Post>) getSession().createQuery("from Post p where p.deleted = 0")
+				.setFirstResult((pageNumber - 1) * pageSize).setMaxResults(pageSize).getResultList();
 	}
 
 	@Override
@@ -27,7 +27,6 @@ public class PostDAOImpl extends GenericDAO<Integer, Post> implements PostDAO {
 
 	@Override
 	public Post findPostById(int id) {
-		return (Post) getSession().createQuery("from Post q where q.id =:id").setParameter("id", id)
-				.getSingleResult();
+		return (Post) getSession().createQuery("from Post q where q.id =:id").setParameter("id", id).getSingleResult();
 	}
 }

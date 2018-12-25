@@ -35,7 +35,7 @@
 			</bean>
 		</property>
 	</bean>
-	
+
 	<bean id="LevelService" parent="baseTransactionProxy">
 		<property name="target">
 			<bean class="vn.framgia.service.impl.LevelServiceImpl">
@@ -62,11 +62,19 @@
 			</bean>
 		</property>
 	</bean>
-	
+
 	<bean id="googleUtilsService" parent="baseTransactionProxy">
 		<property name="target">
 			<bean class="vn.framgia.service.impl.GoogleUtilsServiceImpl">
 				<property name="userDAO" ref="userDAO" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="PostService" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="vn.framgia.service.impl.PostServiceImpl">
+				<property name="postDAO" ref="postDAO" />
 			</bean>
 		</property>
 	</bean>

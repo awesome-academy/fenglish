@@ -25,7 +25,7 @@ public interface UserService extends BaseService<Integer, User> {
 
 	boolean saveUserAfferRegister(User user, String token);
 
-	boolean confirmRegister(String email, String token);
+	boolean updateConfirmRegister(String email, String token);
 	
 	UserInfo updateUserAndChangeAvatar(UserInfo userInfo, MultipartFile file);
 }

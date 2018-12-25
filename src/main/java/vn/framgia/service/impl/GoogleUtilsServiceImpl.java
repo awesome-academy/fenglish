@@ -7,7 +7,6 @@ import java.util.List;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.fluent.Form;
 import org.apache.http.client.fluent.Request;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.core.GrantedAuthority;
@@ -20,15 +19,12 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import vn.framgia.bean.GoogleAccountInfo;
-import vn.framgia.dao.UserDAO;
 import vn.framgia.service.GoogleUtilsService;
 
 @Component
 @PropertySource(ignoreResourceNotFound = true, value = "classpath:google-login.properties")
-public class GoogleUtilsServiceImpl implements GoogleUtilsService{
-	@Autowired
-	UserDAO userDAO;
-
+public class GoogleUtilsServiceImpl extends BaseServiceImpl implements GoogleUtilsService{
+	
 	@Value("${google.app.id}")
 	String googleAppId;
 	@Value("${google.app.secret}")

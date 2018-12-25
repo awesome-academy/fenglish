@@ -14,7 +14,6 @@ import org.hibernate.LockMode;
 import vn.framgia.bean.LevelInfo;
 import vn.framgia.helper.LevelConvertHelper;
 import vn.framgia.model.Level;
-import vn.framgia.model.Subject;
 import vn.framgia.service.LevelService;
 
 public class LevelServiceImpl extends BaseServiceImpl implements LevelService {

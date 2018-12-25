@@ -40,7 +40,7 @@ public class UserRegisterController extends BaseController {
 
 	@GetMapping(path = "/register/confirm/{email}/{token}")
 	public String confirmUser(@PathVariable String email, @PathVariable String token) {
-		if(userService.confirmRegister(email, token)) {
+		if(userService.updateConfirmRegister(email, token)) {
 			return "redirect:/login";
 		};
 		return "redirect:/";

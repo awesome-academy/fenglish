@@ -1717,7 +1717,7 @@ p.lead {
 	margin-right: 10px;
 }
 
-.btn-bh a {
+.btn-bh button {
 	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e8f1f9+0,cbebff+8,459df4+100 */
 	background: rgb(232, 241, 249); /* Old browsers */
 	background: -moz-linear-gradient(top, rgba(232, 241, 249, 1) 0%,
@@ -1744,7 +1744,7 @@ p.lead {
 	border-radius: 30px;
 }
 
-.btn-bh a:hover {
+.btn-bh button:hover {
 	color: #FF0103;;
 }
 
@@ -1800,5 +1800,16 @@ p.lead {
 }
 
 .error {
+	color: red;
+}
+
+.result_container {
+	align-items: center;
+	text-align:  center;
+	top: -70px;
+	padding-bottom: 165px;
+}
+
+.score {
 	color: red;
 }

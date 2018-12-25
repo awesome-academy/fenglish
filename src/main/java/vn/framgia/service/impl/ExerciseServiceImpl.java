@@ -5,6 +5,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import vn.framgia.bean.ExerciseInfo;
 import vn.framgia.helper.ExerciseConvertHelper;
 import vn.framgia.model.Exercise;
@@ -15,6 +17,8 @@ import vn.framgia.model.User;
 import vn.framgia.service.ExerciseService;
 
 public class ExerciseServiceImpl extends BaseServiceImpl implements ExerciseService {
+
+	private static final Logger logger = Logger.getLogger(ExerciseServiceImpl.class);
 
 	@Override
 	public Exercise findById(Serializable key) {
@@ -65,6 +69,7 @@ public class ExerciseServiceImpl extends BaseServiceImpl implements ExerciseServ
 
 			return exerciseInfo;
 		} catch (Exception e) {
+			logger.error("Error in createExercise: " + e.getMessage());
 			throw e;
 		}
 	}
@@ -78,8 +83,27 @@ public class ExerciseServiceImpl extends BaseServiceImpl implements ExerciseServ
 			}
 			return false;
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Error in checkUserAuthentication: " + e.getMessage());
 			return false;
+		}
+	}
+
+	@Override
+	public ExerciseInfo findExerciseById(Integer id) {
+		try {
+			ExerciseInfo exerciseInfo = ExerciseConvertHelper.convertSingleExerciseToExerciseInfo(exerciseDAO.findById(id));
+			List<ExerciseDetail> exerciseDetails = exerciseDetailDAO.findExerciseDetails(id);
+			List<Question> questions = questionDAO.getQuestionByIdExercise(id);
+
+			for (int i = 0; i < exerciseDetails.size(); i++) {
+				exerciseDetails.get(i).setQuestion(questions.get(i));
+			}
+			exerciseInfo.setExerciseDetails(exerciseDetails);
+
+			return exerciseInfo;
+		} catch (Exception e) {
+			logger.error("Error in findExerciseById: " + e.getMessage());
+			return null;
 		}
 	}
 

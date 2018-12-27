@@ -73,10 +73,12 @@
 		<put-attribute name="body"
 			value="/admin/views/questions/questionForm.jsp" />
 	</definition>
-	
+
 	<!-- Question Form Create -->
-	<definition name="/questions/create" extends="/admin/baseLayout">
-		<put-attribute name="title" value="title.admin.menuCreateQuestion" />
+	<definition name="/questions/create"
+		extends="/admin/baseLayout">
+		<put-attribute name="title"
+			value="title.admin.menuCreateQuestion" />
 		<put-attribute name="body"
 			value="/admin/views/questions/createQuestion.jsp" />
 	</definition>
@@ -108,4 +110,25 @@
 			value="/admin/views/subject/subjectForm.jsp" />
 	</definition>
 
+	<!-- Create Subject Form -->
+	<definition name="/posts/create" extends="/admin/baseLayout">
+		<put-attribute name="title"
+			value="title.admin.post.create" />
+		<put-attribute name="body"
+			value="/admin/views/posts/postediter.jsp" />
+	</definition>
+
+	<!-- List Post -->
+	<definition name="/posts/index" extends="/admin/baseLayout">
+		<put-attribute name="title" value="title.admin.home" />
+		<put-attribute name="body"
+			value="/admin/views/posts/listPost.jsp" />
+	</definition>
+
+	<!-- Post Form Edit -->
+	<definition name="/posts/edit" extends="/admin/baseLayout">
+		<put-attribute name="title" value="title.admin.postEdit" />
+		<put-attribute name="body"
+			value="/admin/views/posts/postForm.jsp" />
+	</definition>
 </tiles-definitions>

@@ -41,4 +41,9 @@
 		</property>
 	</bean>
 
+	<bean id="postDAO" class="vn.framgia.dao.impl.PostDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
 </beans>

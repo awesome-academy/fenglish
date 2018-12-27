@@ -7,6 +7,7 @@ import vn.framgia.service.EmailService;
 import vn.framgia.service.ExerciseDetailService;
 import vn.framgia.service.ExerciseService;
 import vn.framgia.service.GoogleUtilsService;
+import vn.framgia.service.PostService;
 import vn.framgia.service.QuestionService;
 import vn.framgia.service.SubjectService;
 import vn.framgia.service.UserService;
@@ -29,4 +30,6 @@ public class BaseController {
 	protected ExerciseService exerciseService;
 	@Autowired
 	protected ExerciseDetailService exerciseDetailService;
+	@Autowired
+	protected PostService postService;
 }

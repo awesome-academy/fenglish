@@ -10,6 +10,8 @@
 <spring:url value="/admin/assets/images/flag-en.png" var="flagEn" />
 <spring:url value="/admin/questions/page=1" var="listQuestion" />
 <spring:url value="/admin/questions/new" var="createQuestion" />
+<spring:url value="/admin/posts/page=1" var="listPost" />
+<spring:url value="/admin/posts/new" var="createPost" />
 <spring:message code="title.admin.language" var="language" />
 <spring:message code="title.admin.menuUser" var="menuUser" />
 <spring:message code="title.admin.menuQuestion" var="menuQuestion" />
@@ -18,6 +20,9 @@
 <spring:message code="title.admin.menuCreateQuestion"
 	var="menuCreateQuestion" />
 <spring:message code="title.admin.menuPost" var="menuPost" />
+<spring:message code="title.admin.post.createPostMenu"
+	var="menuCreatePost" />
+<spring:message code="title.admin.post.listPostMenu" var="menuListPost" />
 <spring:message code="title.admin.menuSubject" var="menuSubject" />
 <spring:message code="title.admin.logout" var="logout" />
 
@@ -46,7 +51,12 @@
 					<li><a href="${createQuestion}">${menuCreateQuestion}</a></li>
 				</ul></li>
 			<li><a href="${urlSubject}">${menuSubject}</a></li>
-			<li><a href="#">${menuPost}</a></li>
+			<li class="dropdown"><a class="dropdown-toggle"
+				data-toggle="dropdown" href="#">${menuPost}<span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="${listPost}">${menuListPost}</a></li>
+					<li><a href="${createPost}">${menuCreatePost}</a></li>
+				</ul></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
 			<li><a href="#">Hi, Admin</a></li>

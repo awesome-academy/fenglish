@@ -13,7 +13,8 @@
 		mapping="/client/assets/**" />
 	<mvc:resources location="/admin/assets/"
 		mapping="/admin/assets/**" />
-
+	<mvc:resources location="/ckeditor/"
+		mapping="/ckeditor/**" />
 	<!-- Load all annotation from java class -->
 	<context:annotation-config />
 

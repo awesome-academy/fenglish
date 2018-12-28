@@ -34,6 +34,6 @@ src/main/resources/datasources.properties
 *.classpath
 *.settings
 .project
-src/main/resources/mail.properties
+src/main/resources/mailconfig.properties
 src/main/resources/cloudinary-storage.properties
 .springBeans

@@ -42,35 +42,6 @@
 					<form:errors path="typeQuestion" class="error" />
 				</div>
 			</div>
-			<div id="dynamic_form">
-				<div class="form-group">
-					<label class="col-sm-3 control-label">${colOption1}</label>
-					<div class="col-sm-9">
-						<input name="option1" class="form-control" id="option1" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label">${colOption2}</label>
-					<div class="col-sm-9">
-						<input name="option2" class="form-control" id="option2" />
-					</div>
-				</div>
-				<div class="button-group pull-">
-					<a href="javascript:void(0)" class="btn btn-primary" id="plus">+</a>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label">${colCorrectAnswer}</label>
-				<div class="col-sm-9">
-					<form:select class="form-control" id="element_10" name="element_10"
-						path="correctAnswer">
-						<option value="1">${colOption1}</option>
-						<option value="2">${colOption2}</option>
-						<option value="3">${colOption3}</option>
-						<option value="4">${colOption4}</option>
-					</form:select>
-				</div>
-			</div>
 			<div class="form-group">
 				<label class="col-sm-3 control-label">${colSubject}</label>
 				<div class="col-sm-9">
@@ -95,7 +66,38 @@
 					</form:select>
 				</div>
 			</div>
-
+			<div id="dynamic_form">
+				<label class="control-label">Đáp án</label>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">${colOption1}</label>
+					<div class="col-sm-9">
+						<span class="col-sm-7"><input name="option1" class="form-control" id="option1" /></span>
+						<span class="col-sm-2"><input type="radio" name="correctAnswer" class="form-control" value="1"></span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">${colOption2}</label>
+					<div class="col-sm-9">
+						<span class="col-sm-7"><input name="option2" class="form-control col-sm-6" id="option2" /></span>
+						<span class="col-sm-2"><input type="radio" name="correctAnswer" class="form-control" value="2"></span>
+					</div>
+				</div>
+				<div class="button-group pull-">
+					<a href="javascript:void(0)" class="btn btn-primary" id="plus">+</a>
+				</div>
+			</div>
+			<%-- <div class="form-group">
+				<label class="col-sm-3 control-label">${colCorrectAnswer}</label>
+				<div class="col-sm-9">
+					<form:select class="form-control" id="element_10" name="element_10"
+						path="correctAnswer">
+						<option value="1">${colOption1}</option>
+						<option value="2">${colOption2}</option>
+						<option value="3">${colOption3}</option>
+						<option value="4">${colOption4}</option>
+					</form:select>
+				</div>
+			</div> --%>
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 					<button type="submit" class="btn-lg btn-primary pull-right">${questionCreate}</button>

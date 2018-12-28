@@ -86,7 +86,6 @@ public class ExerciseController extends BaseController {
 			}
 
 			Integer answer = Integer.parseInt(answerRequest);
-			exerciseDetail.setAnswer(answer);
 
 			if (answer == exerciseDetail.getQuestion().getCorrectAnswer()) {
 				score++;

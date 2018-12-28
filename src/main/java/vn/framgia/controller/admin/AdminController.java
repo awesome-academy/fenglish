@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/admin")
 public class AdminController {
 
-	@RequestMapping(value = {"/", "/home"}, method = RequestMethod.GET)
+	@RequestMapping(value = {"", "/home"}, method = RequestMethod.GET)
 	public String index() {
 		return "forward:/admin/users/page=1/";
 	}

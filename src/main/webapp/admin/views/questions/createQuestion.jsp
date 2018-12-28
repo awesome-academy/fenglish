@@ -16,7 +16,8 @@
 	var="colCorrectAnswer" />
 <spring:message code="title.question.levelId" var="colLevelId" />
 <spring:message code="title.question.subject" var="colSubject" />
-<spring:message code="title.admin.menuCreateQuestion" var="questionCreate" />
+<spring:message code="title.admin.menuCreateQuestion"
+	var="questionCreate" />
 
 <div class="container" style="margin: 0 auto;">
 	<h1>${questionCreate}</h1>
@@ -41,45 +42,28 @@
 					<form:errors path="typeQuestion" class="error" />
 				</div>
 			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label">${colOption1}</label>
-				<div class="col-sm-9">
-					<form:input path="option1" class="form-control" id="option1"
-						placeholder="" />
-					<form:errors path="option1" class="error" />
+			<div id="dynamic_form">
+				<div class="form-group">
+					<label class="col-sm-3 control-label">${colOption1}</label>
+					<div class="col-sm-9">
+						<input name="option1" class="form-control" id="option1" />
+					</div>
 				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label">${colOption2}</label>
-				<div class="col-sm-9">
-					<form:input path="option2" class="form-control" id="option2"
-						placeholder="" />
-					<form:errors path="option2" class="error" />
+				<div class="form-group">
+					<label class="col-sm-3 control-label">${colOption2}</label>
+					<div class="col-sm-9">
+						<input name="option2" class="form-control" id="option2" />
+					</div>
 				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label">${colOption3}</label>
-				<div class="col-sm-9">
-					<form:input path="option3" class="form-control" id="option3"
-						placeholder="" />
-					<form:errors path="option3" class="error" />
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label">${colOption4}</label>
-				<div class="col-sm-9">
-					<form:input path="option4" class="form-control" id="option4"
-						placeholder="" />
-					<form:errors path="option4" class="error" />
+				<div class="button-group pull-">
+					<a href="javascript:void(0)" class="btn btn-primary" id="plus">+</a>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-3 control-label">${colCorrectAnswer}</label>
 				<div class="col-sm-9">
-					<form:select class="form-control" id="element_10"
-						name="element_10" path="correctAnswer">
-						<option value="${questionForm.correctAnswer}" selected="selected">${questionForm.correctAnswer}</option>
-							varStatus="count">
+					<form:select class="form-control" id="element_10" name="element_10"
+						path="correctAnswer">
 						<option value="1">${colOption1}</option>
 						<option value="2">${colOption2}</option>
 						<option value="3">${colOption3}</option>
@@ -90,9 +74,8 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label">${colSubject}</label>
 				<div class="col-sm-9">
-					<form:select class="form-control" id="element_10"
-						name="element_10" path="subjectId">
-						<option value="questionForm.subject.id" selected="selected">${questionForm.subject.subjectName}</option>
+					<form:select class="form-control" id="element_10" name="element_10"
+						path="subjectId">
 						<c:forEach items="${listSubjectInfo}" var="subjectInfo"
 							varStatus="count">
 							<option value="${subjectInfo.id}">${subjectInfo.subjectName}</option>
@@ -101,11 +84,10 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label">${colSubject}</label>
+				<label class="col-sm-3 control-label">${colLevelId}</label>
 				<div class="col-sm-9">
-					<form:select class="form-control" id="element_10"
-						name="element_10" path="levelId">
-						<option value="questionForm.level.id" selected="selected">${questionForm.level.name}</option>
+					<form:select class="form-control" id="element_10" name="element_10"
+						path="levelId">
 						<c:forEach items="${listLevelInfo}" var="levelInfo"
 							varStatus="count">
 							<option value="${levelInfo.id}">${levelInfo.name}</option>
@@ -113,8 +95,6 @@
 					</form:select>
 				</div>
 			</div>
-
-
 
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">

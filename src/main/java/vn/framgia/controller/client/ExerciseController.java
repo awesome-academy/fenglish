@@ -66,12 +66,17 @@ public class ExerciseController extends BaseController {
 			model.addAttribute("total_question", 0);
 			return "/client/exercise/result";
 		}
-		
-		int score = 0;
-		int totalQuestion = exerciseInfo.getExerciseDetails().size();
-		
-		List<ExerciseDetail> exerciseDetails = exerciseInfo.getExerciseDetails();
 
+		int totalQuestion = exerciseInfo.getExerciseDetails().size();
+		int score = getScore(idExercise, exerciseInfo.getExerciseDetails(), request);
+		model.addAttribute("score", score);
+		model.addAttribute("total_question", totalQuestion);
+
+		return "/client/exercise/result";
+	}
+
+	private int getScore(Integer idExercise, List<ExerciseDetail> exerciseDetails, HttpServletRequest request) {
+		int score = 0;
 		for (ExerciseDetail exerciseDetail : exerciseDetails) {
 			String answerPatern = "answer[" + idExercise + "][" + exerciseDetail.getQuestion().getId() + "]";
 			String answerRequest = request.getParameter(answerPatern);
@@ -79,7 +84,7 @@ public class ExerciseController extends BaseController {
 			if (answerRequest == null) {
 				continue;
 			}
-			
+
 			Integer answer = Integer.parseInt(answerRequest);
 			exerciseDetail.setAnswer(answer);
 
@@ -87,12 +92,8 @@ public class ExerciseController extends BaseController {
 				score++;
 			}
 		}
-		
 
-		model.addAttribute("score", score);
-		model.addAttribute("total_question", totalQuestion);
-
-		return "/client/exercise/result";
+		return score;
 	}
 
 }

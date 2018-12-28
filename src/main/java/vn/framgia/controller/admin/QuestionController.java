@@ -3,6 +3,7 @@ package vn.framgia.controller.admin;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -109,10 +110,11 @@ public class QuestionController extends BaseController {
 
 	@RequestMapping(value = "/questions/create", method = RequestMethod.POST)
 	public String createQuestion(@Valid @ModelAttribute("questionForm") QuestionInfo questionForm,
-			BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+			HttpServletRequest request, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 		if (bindingResult.hasErrors()) {
-			return "/questions/edit";
+			return "/questions/create";
 		}
+		
 		questionService.saveOrUpdate(questionForm);
 		redirectAttributes.addFlashAttribute("css", "success");
 		redirectAttributes.addFlashAttribute("msg", "msg.user.updatesuccess");

@@ -5,7 +5,9 @@
 
 <spring:message code="title.user.userDetail" var="userDetail" />
 <spring:message code="title.user.name" var="colName" />
+<spring:message code="title.user.gender" var="colGender" />
 <spring:message code="title.user.phone" var="colPhone" />
+<spring:message code="title.user.birthday" var="colBirthday" />
 
 <div class="container">
 	<div class="row">
@@ -48,16 +50,12 @@
 											<td>${user.phone}</td>
 										</tr>
 										<tr>
-											<td>Gender</td>
+											<td>${colGender}</td>
 											<td>${user.gender}</td>
 										</tr>
 										<tr>
-											<td>Password Hash</td>
-											<td>${user.passwordHash}</td>
-										</tr>
-										<tr>
-											<td>Token Reset Password</td>
-											<td>${user.passwordResetToken}</td>
+											<td>${colBirthday}</td>
+											<td>${user.birthday}</td>
 										</tr>
 									</tbody>
 								</table>

@@ -33,7 +33,7 @@ import vn.framgia.service.QuestionService;
 import vn.framgia.service.SubjectService;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/admin/questions")
 
 public class QuestionController extends BaseController {
 	private static final int pageSize = 10;
@@ -46,7 +46,7 @@ public class QuestionController extends BaseController {
 	@Autowired
 	ExcelApachePoiHelper excelApachePoiHelper;
 
-	@RequestMapping(value = "/questions/page={pageNumber}", method = RequestMethod.GET)
+	@RequestMapping(value = "/page={pageNumber}", method = RequestMethod.GET)
 	public String index(@PathVariable("pageNumber") Integer pageNumber, Model model) {
 
 		List<QuestionInfo> listQuestionInfo = QuestionConvertHelper
@@ -58,7 +58,7 @@ public class QuestionController extends BaseController {
 		return "/questions/index";
 	}
 
-	@RequestMapping(value = "/question/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseBody
 	public String delete(@PathVariable("id") Integer id, Model model, RedirectAttributes redirectAttributes) {
 
@@ -73,7 +73,7 @@ public class QuestionController extends BaseController {
 		return "redirect:/admin/";
 	}
 
-	@RequestMapping(value = "/questions/{id}/edit", method = RequestMethod.GET)
+	@RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
 	public String edit(@PathVariable("id") Integer id, Model model) {
 		QuestionInfo questionInfo = QuestionConvertHelper
 				.convertQuestionToQuestionInfo(questionService.findQuestionById(id));
@@ -85,7 +85,7 @@ public class QuestionController extends BaseController {
 		return "/questions/edit";
 	}
 
-	@RequestMapping(value = "/questions/update", method = RequestMethod.POST)
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(@Valid @ModelAttribute("questionForm") QuestionInfo questionForm, BindingResult bindingResult,
 			RedirectAttributes redirectAttributes) {
 		if (bindingResult.hasErrors()) {
@@ -97,7 +97,7 @@ public class QuestionController extends BaseController {
 		return "redirect:/admin/questions/page=1";
 	}
 
-	@RequestMapping(value = "/questions/new", method = RequestMethod.GET)
+	@RequestMapping(value = "/new", method = RequestMethod.GET)
 	public String createQuestionForm(Model model) {
 		List<SubjectInfo> listSubjectInfo = subjectService.loadSubjects(1, pageSize);
 		List<LevelInfo> listLevelInfo = levelService.loadLevels(1, pageSize);
@@ -108,7 +108,7 @@ public class QuestionController extends BaseController {
 		return "/questions/create";
 	}
 
-	@RequestMapping(value = "/questions/create", method = RequestMethod.POST)
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String createQuestion(@Valid @ModelAttribute("questionForm") QuestionInfo questionForm,
 			HttpServletRequest request, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 		if (bindingResult.hasErrors()) {
@@ -121,7 +121,7 @@ public class QuestionController extends BaseController {
 		return "redirect:/admin/questions/page=1";
 	}
 
-	@RequestMapping(value = "/questions/upload", method = RequestMethod.POST)
+	@RequestMapping(value = "/upload", method = RequestMethod.POST)
 	public String uploadXlsx(@RequestParam("multipartFile") MultipartFile multipartFile,
 			RedirectAttributes redirectAttributes) {
 		Map<Integer, Subject> mapSubject = subjectService.loadMapSubject();

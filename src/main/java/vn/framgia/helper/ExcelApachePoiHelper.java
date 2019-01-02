@@ -67,6 +67,7 @@ public class ExcelApachePoiHelper {
 		question.setSubject(
 				mapSubject == null ? null : mapSubject.get((int) questionRow.getCell(7).getNumericCellValue()));
 		question.setLevel(mapLevel == null ? null : mapLevel.get((int) questionRow.getCell(8).getNumericCellValue()));
+		question.setDeleted(false);
 		return question;
 	}
 }

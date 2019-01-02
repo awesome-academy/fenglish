@@ -45,6 +45,7 @@ public class ExerciseServiceImpl extends BaseServiceImpl implements ExerciseServ
 			User user = userDAO.findUserByEmail(authName);
 			exercise.setUser(user);
 			exercise.setSubject(subject);
+			exercise.setDeleted(false);
 
 			Exercise exercisePersist = exerciseDAO.saveOrUpdate(exercise);
 
@@ -60,7 +61,6 @@ public class ExerciseServiceImpl extends BaseServiceImpl implements ExerciseServ
 			for (Question question : questions.subList(0, totalQuestion)) {
 				ExerciseDetail exerciseDetail = new ExerciseDetail();
 				exerciseDetail.setExercise(exercisePersist);
-				question.setCorrectAnswer(null);
 				exerciseDetail.setQuestion(question);
 				exerciseDetailDAO.saveOrUpdate(exerciseDetail);
 			}

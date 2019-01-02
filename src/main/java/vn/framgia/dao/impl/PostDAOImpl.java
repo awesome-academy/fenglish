@@ -2,12 +2,9 @@ package vn.framgia.dao.impl;
 
 import java.util.List;
 
-import javax.persistence.Query;
-
 import vn.framgia.dao.GenericDAO;
 import vn.framgia.dao.PostDAO;
 import vn.framgia.model.Post;
-import vn.framgia.model.Question;
 
 public class PostDAOImpl extends GenericDAO<Integer, Post> implements PostDAO {
 	@SuppressWarnings("unchecked")

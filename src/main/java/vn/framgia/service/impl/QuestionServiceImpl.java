@@ -117,6 +117,7 @@ public class QuestionServiceImpl extends BaseServiceImpl implements QuestionServ
 				QuestionConvertHelper.copyValueQuestionInfoToQuestion(question, questionInfo);
 				question.setSubject(subjectService.findById(questionInfo.getSubjectId()));
 				question.setLevel(levelService.findById(questionInfo.getLevelId()));
+				question.setDeleted(false);
 				return QuestionConvertHelper.convertQuestionToQuestionInfo(questionDAO.saveOrUpdate(question));
 			}
 			Question question = questionDAO.findByIdUsingLock(questionInfo.getId(), LockMode.PESSIMISTIC_WRITE);

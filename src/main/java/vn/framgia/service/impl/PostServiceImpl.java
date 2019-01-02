@@ -1,7 +1,6 @@
 package vn.framgia.service.impl;
 
 import java.io.Serializable;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
 import java.util.List;
 
@@ -21,13 +20,13 @@ public class PostServiceImpl extends BaseServiceImpl implements PostService {
 	}
 
 	@Override
-	public Post saveOrUpdate(Post entity) throws IllegalAccessException, InvocationTargetException {
+	public Post saveOrUpdate(Post entity) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public boolean delete(Post entity) throws IllegalAccessException, InvocationTargetException {
+	public boolean delete(Post entity) {
 		// TODO Auto-generated method stub
 		return false;
 	}

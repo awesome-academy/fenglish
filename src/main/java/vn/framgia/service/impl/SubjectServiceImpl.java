@@ -1,15 +1,14 @@
 package vn.framgia.service.impl;
 
 import java.io.Serializable;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.log4j.Logger;
 import org.hibernate.LockMode;
+import org.springframework.beans.BeanUtils;
 
 import vn.framgia.bean.SubjectInfo;
 import vn.framgia.helper.SubjectConvertHelper;
@@ -26,13 +25,12 @@ public class SubjectServiceImpl extends BaseServiceImpl implements SubjectServic
 	}
 
 	@Override
-	public Subject saveOrUpdate(Subject entity) throws IllegalAccessException, InvocationTargetException {
+	public Subject saveOrUpdate(Subject entity) {
 		logger.info("Save Or Update Subject id = " + entity.getId());
 
-		Subject subject = subjectDAO.findByIdUsingLock(entity.getId(), LockMode.PESSIMISTIC_WRITE);
-
 		try {
-			BeanUtils.copyProperties(subject, entity);
+			Subject subject = subjectDAO.findByIdUsingLock(entity.getId(), LockMode.PESSIMISTIC_WRITE);
+			BeanUtils.copyProperties(entity, subject);
 			return subjectDAO.saveOrUpdate(subject);
 		} catch (Exception e) {
 			logger.error("Error in saveOrUpdate Subject: " + e.getMessage());
@@ -41,13 +39,12 @@ public class SubjectServiceImpl extends BaseServiceImpl implements SubjectServic
 	}
 
 	@Override
-	public boolean delete(Subject entity) throws IllegalAccessException, InvocationTargetException {
+	public boolean delete(Subject entity) {
 		logger.info("Delete Subject id = " + entity.getId());
 
-		Subject subject = subjectDAO.findByIdUsingLock(entity.getId(), LockMode.PESSIMISTIC_WRITE);
-
 		try {
-			BeanUtils.copyProperties(subject, entity);
+			Subject subject = subjectDAO.findByIdUsingLock(entity.getId(), LockMode.PESSIMISTIC_WRITE);
+			BeanUtils.copyProperties(entity, subject);
 			subjectDAO.delete(subject);
 			return true;
 		} catch (Exception e) {

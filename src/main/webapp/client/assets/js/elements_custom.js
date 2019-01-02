@@ -417,4 +417,39 @@ $(document).ready(function()
 	    	});
 		}
 	}
+	
+	/* 
+
+	8. Add timer
+
+	*/
+	var contextUrl = $("#contextUrl").val();
+	
+	$(".exercise").ready(function() {
+		var createDate = Number($("#create_time").val()) + 20 * 60 * 1000;
+		
+		var x = setInterval(function() {
+			var now = new Date().getTime();
+			
+			var distance = createDate - now;
+
+			var minutes = getValue(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)));
+			var seconds = getValue(Math.floor((distance % (1000 * 60)) / 1000));
+
+			$("#timer").html(minutes + ":" + seconds);
+
+			if (distance < 0) {
+				clearInterval(x);
+				$("#timer").html("Hết giờ");
+				$("#testing_form").submit();
+			}
+		}, 1000);
+	});
+	
+	function getValue(number) {
+		if (number < 10) {
+			return "0" + number;
+		}
+		return number;
+	}
 });

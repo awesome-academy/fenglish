@@ -12,4 +12,5 @@ public interface ExerciseService extends BaseService<Integer, Exercise> {
 	
 	ExerciseInfo findExerciseById(Integer id);
 	
+	ExerciseInfo saveOrUpdateExercise(ExerciseInfo exerciseInfo);
 }

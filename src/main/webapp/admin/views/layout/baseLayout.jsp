@@ -14,6 +14,8 @@
 <meta name="author" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<spring:url value="/" var="contextUrl"/>
+
 <tilesx:useAttribute name="css" id="listCss" classname="java.util.List" />
 <tilesx:useAttribute name="js" id="listJs" classname="java.util.List" />
 <tilesx:useAttribute name="title" id="title"
@@ -39,6 +41,8 @@
 	<footer>
 		<tiles:insertAttribute name="footer" />
 	</footer>
+
+	<input id="contextUrl" type="hidden" value="${contextUrl}">
 
 	<c:forEach var="item" items="${listJs}">
 		<script src="<c:url value='${item}'/>" type="text/javascript"></script>

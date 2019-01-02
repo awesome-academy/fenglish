@@ -24,8 +24,13 @@
 <spring:message code="title.admin.logout" var="logout" />
 <spring:message code="title.admin.logout" var="logout" />
 <spring:message code="title.admin.menuQuestion" var="questionHeader" />
-
 <spring:message code="title.admin.questions.import" var="questionImport" />
+
+<spring:message code="content.question.confirm" var="contentConfirm"/>
+<spring:message code="msg.question.deletesuccess" var="deleteSuccess" />
+
+<input id="contentConfirm" type="hidden" value="${contentConfirm}" >
+<input id="deleteSuccess" type="hidden" value="${deleteSuccess}" >
 
 <div class="container" style="margin-top: 30px">
 	<c:if test="${not empty msg}">

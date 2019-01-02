@@ -1,38 +1,78 @@
-/*user*/
-$(".btnDeleteUser").on("click", function() {
-	var $row = $(this).closest("tr");
-	var $text = $row.find(".idUser").text();
-	$.confirm({
-		title : "Confirm",
-		content : "Delete User?",
-		buttons : {
-			confirm : function() {
-				$.ajax({
-					type : "DELETE",
-					url : "/fenglish/admin/users/" + $text,
-					success : function(response) {
-						$.confirm({
-							title : "Message",
-							content : "Delete User success!",
-							buttons : {
-								confirm : function() {
-									window.location.replace("/fenglish/admin");
+/* user */
+$(".btnDeleteUser")
+		.on(
+				"click",
+				function() {
+					var $row = $(this).closest("tr");
+					var $text = $row.find(".idUser").text();
+					var contextUrl = $("#contextUrl").val();
+
+					$
+							.confirm({
+								title : $("#titleConfirm").val(),
+								content : $("#contentConfirm").val(),
+								buttons : {
+									confirm : {
+										text : $("#btnConfirm").val(),
+										action : function() {
+											$
+													.ajax({
+														type : "DELETE",
+														url : contextUrl
+																+ "admin/users/"
+																+ $text,
+														success : function(
+																response) {
+															$
+																	.confirm({
+																		title : $(
+																				"#titleMessage")
+																				.val(),
+																		content : $(
+																				"#deleteSuccess")
+																				.val(),
+																		buttons : {
+																			confirm : {
+																				text : $(
+																						"#btnOk")
+																						.val(),
+																				action : function() {
+																					window.location
+																							.replace(contextUrl
+																									+ "admin");
+																				}
+																			}
+																		}
+																	});
+														},
+														error : function(xhr,
+																ajaxOptions,
+																thrownError) {
+															alert(xhr.status);
+															alert(thrownError);
+														}
+													});
+										}
+									},
+									cancel : {
+										text : $("#btnCancel").val(),
+										action : function() {
+											$.confirm({
+												title : "",
+												content : $("#contentCanceled")
+														.val(),
+												buttons : {
+													confirm : {
+														text : $("#btnOk")
+																.val()
+													}
+												}
+											});
+										}
+									}
 								}
-							}
-						});
-					},
-					error : function(xhr, ajaxOptions, thrownError) {
-						alert(xhr.status);
-						alert(thrownError);
-					}
+							});
 				});
-			},
-			cancel : function() {
-				$.alert("Canceled!");
-			}
-		}
-	});
-});
 
 /* subject */
 $(".btnDeleteSubject")
@@ -41,40 +81,65 @@ $(".btnDeleteSubject")
 				function() {
 					var $row = $(this).closest("tr");
 					var $text = $row.find(".idSubject").text();
+					var contextUrl = $("#contextUrl").val();
+
 					$
 							.confirm({
-								title : "Confirm",
-								content : "Delete Subject?",
+								title : $("#titleConfirm").val(),
+								content : $("#contentConfirm").val(),
 								buttons : {
-									confirm : function() {
-										$
-												.ajax({
-													type : "DELETE",
-													url : "/fenglish/admin/subjects/"
-															+ $text,
-													success : function(response) {
-														$
-																.confirm({
-																	title : "Message",
-																	content : "Delete Subject success!",
-																	buttons : {
-																		confirm : function() {
-																			window.location
-																					.replace("/fenglish/admin/subjects");
+									confirm : {
+										text : $("#btnConfirm").val(),
+										action : function() {
+											$
+													.ajax({
+														type : "DELETE",
+														url : contextUrl
+																+ "admin/subjects/"
+																+ $text,
+														success : function(
+																response) {
+															$
+																	.confirm({
+																		title : $(
+																				"#titleMessage")
+																				.val(),
+																		content : $(
+																				"#deleteSuccess")
+																				.val(),
+																		buttons : {
+																			confirm : function() {
+																				window.location
+																						.replace(contextUrl
+																								+ "admin/subjects");
+																			}
 																		}
-																	}
-																});
-													},
-													error : function(xhr,
-															ajaxOptions,
-															thrownError) {
-														alert(xhr.status);
-														alert(thrownError);
-													}
-												});
+																	});
+														},
+														error : function(xhr,
+																ajaxOptions,
+																thrownError) {
+															alert(xhr.status);
+															alert(thrownError);
+														}
+													});
+										}
 									},
-									cancel : function() {
-										$.alert("Canceled!");
+									cancel : {
+										text : $("#btnCancel").val(),
+										action : function() {
+											$.confirm({
+												title : "",
+												content : $("#contentCanceled")
+														.val(),
+												buttons : {
+													confirm : {
+														text : $("#btnOk")
+																.val()
+													}
+												}
+											});
+										}
 									}
 								}
 							});
@@ -87,40 +152,65 @@ $(".btnDeleteQuestion")
 				function() {
 					var $row = $(this).closest("tr");
 					var $text = $row.find(".idQuestion").text();
+					var contextUrl = $("#contextUrl").val();
+
 					$
 							.confirm({
-								title : "Confirm",
-								content : "Delete Question?",
+								title : $("#titleConfirm").val(),
+								content : $("#contentConfirm").val(),
 								buttons : {
-									confirm : function() {
-										$
-												.ajax({
-													type : "DELETE",
-													url : "/fenglish/admin/questions/"
-															+ $text,
-													success : function(response) {
-														$
-																.confirm({
-																	title : "Message",
-																	content : "Delete Question success!",
-																	buttons : {
-																		confirm : function() {
-																			window.location
-																					.replace("/fenglish/admin/questions");
+									confirm : {
+										text : $("#btnConfirm").val(),
+										action : function() {
+											$
+													.ajax({
+														type : "DELETE",
+														url : contextUrl
+																+ "admin/questions/"
+																+ $text,
+														success : function(
+																response) {
+															$
+																	.confirm({
+																		title : $(
+																				"#titleMessage")
+																				.val(),
+																		content : $(
+																				"#deleteSuccess")
+																				.val(),
+																		buttons : {
+																			confirm : function() {
+																				window.location
+																						.replace(contextUrl
+																								+ "admin/questions");
+																			}
 																		}
-																	}
-																});
-													},
-													error : function(xhr,
-															ajaxOptions,
-															thrownError) {
-														alert(xhr.status);
-														alert(thrownError);
-													}
-												});
+																	});
+														},
+														error : function(xhr,
+																ajaxOptions,
+																thrownError) {
+															alert(xhr.status);
+															alert(thrownError);
+														}
+													});
+										}
 									},
-									cancel : function() {
-										$.alert("Canceled!");
+									cancel : {
+										text : $("#btnCancel").val(),
+										action : function() {
+											$.confirm({
+												title : "",
+												content : $("#contentCanceled")
+														.val(),
+												buttons : {
+													confirm : {
+														text : $("#btnOk")
+																.val()
+													}
+												}
+											});
+										}
 									}
 								}
 							});
@@ -133,34 +223,59 @@ $(".btnDeletePost")
 				function() {
 					var $row = $(this).closest("tr");
 					var $text = $row.find(".idPost").text();
+					var contextUrl = $("#contextUrl").val();
+
 					$
 							.confirm({
-								title : "Confirm",
-								content : "Delete Post?",
+								title : $("#titleConfirm").val(),
+								content : $("#contentConfirm").val(),
 								buttons : {
-									confirm : function() {
-										$
-												.ajax({
-													type : "DELETE",
-													url : "/fenglish/admin/posts/"
-															+ $text,
-													success : function(response) {
-														$
-																.confirm({
-																	title : "Message",
-																	content : "Delete Post success!",
-																	buttons : {
-																		confirm : function() {
-																			window.location
-																					.replace("/fenglish/admin/posts/page=1");
+									confirm : {
+										text : $("#btnConfirm").val(),
+										action : function() {
+											$
+													.ajax({
+														type : "DELETE",
+														url : contextUrl
+																+ "admin/posts/"
+																+ $text,
+														success : function(
+																response) {
+															$
+																	.confirm({
+																		title : $(
+																				"#titleMessage")
+																				.val(),
+																		content : $(
+																				"#deleteSuccess")
+																				.val(),
+																		buttons : {
+																			confirm : function() {
+																				window.location
+																						.replace(contextUrl
+																								+ "admin/posts/page=1");
+																			}
 																		}
-																	}
-																});
-													}
-												});
+																	});
+														}
+													});
+										}
 									},
-									cancel : function() {
-										$.alert("Canceled!");
+									cancel : {
+										text : $("#btnCancel").val(),
+										action : function() {
+											$.confirm({
+												title : "",
+												content : $("#contentCanceled")
+														.val(),
+												buttons : {
+													confirm : {
+														text : $("#btnOk")
+																.val()
+													}
+												}
+											});
+										}
 									}
 								}
 							});
@@ -192,22 +307,22 @@ function addMoreInput() {
 
 	var span1 = document.createElement("span");
 	span1.className = "col-sm-7";
-	
+
 	var input = document.createElement("input");
 	input.type = "text";
 	input.name = "option" + count;
 	input.id = "option" + count;
 	input.className = "form-control";
-	
+
 	var span2 = document.createElement("span");
 	span2.className = "col-sm-2";
-	
+
 	var radio = document.createElement("input");
 	radio.type = "radio";
 	radio.name = "correctAnswer";
 	radio.className = "form-control";
 	radio.value = count;
-	
+
 	var a = document.createElement("a");
 	a.href = "javascript:void(0)";
 	a.className = "btn btn-danger";
@@ -246,14 +361,17 @@ function removeInput(element) {
 
 	input.each(function() {
 		if (this.name == "option3") {
-			$("#dynamic_form .form-group").last().find("input").each(function() {
-				if (this.type == "text") {
-					$(this).parents(".col-sm-9").siblings("label").html("C");
-					$(this).attr("id", "option3").attr("name", "option3");
-				} else {
-					$(this).val(3);
-				}
-			});
+			$("#dynamic_form .form-group").last().find("input").each(
+					function() {
+						if (this.type == "text") {
+							$(this).parents(".col-sm-9").siblings("label")
+									.html("C");
+							$(this).attr("id", "option3").attr("name",
+									"option3");
+						} else {
+							$(this).val(3);
+						}
+					});
 		}
 	});
 

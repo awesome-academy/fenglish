@@ -15,6 +15,12 @@
 <spring:message code="title.admin.logout" var="logout" />
 <spring:message code="title.admin.menuUser" var="userHeader" />
 
+<spring:message code="content.user.confirm" var="contentConfirm"/>
+<spring:message code="msg.user.deletesuccess" var="deleteSuccess" />
+
+<input id="contentConfirm" type="hidden" value="${contentConfirm}" >
+<input id="deleteSuccess" type="hidden" value="${deleteSuccess}" >
+
 <div class="container" style="margin-top: 30px">
 	<c:if test="${not empty msg}">
 		<div class="alert alert-${css} alert-dismissible" role="alert">

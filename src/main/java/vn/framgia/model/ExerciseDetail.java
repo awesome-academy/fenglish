@@ -13,7 +13,7 @@ public class ExerciseDetail implements java.io.Serializable {
 
 	public ExerciseDetail() {
 	}
-	
+
 	public ExerciseDetail(Exercise exercise, Question question, Integer answer) {
 		super();
 		this.exercise = exercise;

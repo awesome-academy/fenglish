@@ -1,6 +1,7 @@
 package vn.framgia.model;
 // Generated Dec 7, 2018 9:59:06 AM by Hibernate Tools 5.3.6.Final
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,19 +16,24 @@ public class Exercise implements java.io.Serializable {
 	private String exerciseName;
 	private String exerciseImg;
 	private Integer totalQuestion;
+	private Timestamp createTime;
+	private Boolean submitted;
 	private Boolean deleted;
 	private List<ExerciseDetail> exerciseDetails = new ArrayList<ExerciseDetail>();
 
 	public Exercise() {
 	}
 
-	public Exercise(Subject subject, User user, String exerciesName, String exerciesImg, Integer totalQuestion,
-			Boolean deleted, List<ExerciseDetail> exerciseDetails) {
+	public Exercise(Subject subject, User user, String exerciseName, String exerciseImg, Integer totalQuestion,
+			Timestamp createTime, Boolean submitted, Boolean deleted, List<ExerciseDetail> exerciseDetails) {
+		super();
 		this.subject = subject;
 		this.user = user;
-		this.exerciseName = exerciesName;
-		this.exerciseImg = exerciesImg;
+		this.exerciseName = exerciseName;
+		this.exerciseImg = exerciseImg;
 		this.totalQuestion = totalQuestion;
+		this.createTime = createTime;
+		this.submitted = submitted;
 		this.deleted = deleted;
 		this.exerciseDetails = exerciseDetails;
 	}
@@ -94,6 +100,22 @@ public class Exercise implements java.io.Serializable {
 
 	public void setExerciseDetails(List<ExerciseDetail> exerciseDetails) {
 		this.exerciseDetails = exerciseDetails;
+	}
+
+	public Timestamp getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Timestamp createTime) {
+		this.createTime = createTime;
+	}
+
+	public Boolean getSubmitted() {
+		return submitted;
+	}
+
+	public void setSubmitted(Boolean submitted) {
+		this.submitted = submitted;
 	}
 	
 }

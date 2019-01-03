@@ -1,15 +1,14 @@
 package vn.framgia.service.impl;
 
 import java.io.Serializable;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.log4j.Logger;
 import org.hibernate.LockMode;
+import org.springframework.beans.BeanUtils;
 
 import vn.framgia.bean.LevelInfo;
 import vn.framgia.helper.LevelConvertHelper;
@@ -26,11 +25,11 @@ public class LevelServiceImpl extends BaseServiceImpl implements LevelService {
 	}
 
 	@Override
-	public Level saveOrUpdate(Level entity) throws IllegalAccessException, InvocationTargetException {
+	public Level saveOrUpdate(Level entity) {
 		logger.info("Save Or Update Level id = " + entity.getId());
 		try {
 			Level level = levelDAO.findByIdUsingLock(entity.getId(), LockMode.PESSIMISTIC_WRITE);
-			BeanUtils.copyProperties(level, entity);
+			BeanUtils.copyProperties(entity, level);
 			return levelDAO.saveOrUpdate(level);
 		} catch (Exception e) {
 			logger.error("Error in saveOrUpdate Level: " + e.getMessage());
@@ -39,11 +38,11 @@ public class LevelServiceImpl extends BaseServiceImpl implements LevelService {
 	}
 
 	@Override
-	public boolean delete(Level entity) throws IllegalAccessException, InvocationTargetException {
+	public boolean delete(Level entity) {
 		logger.info("Delete Level id = " + entity.getId());
 		try {
 			Level level = levelDAO.findByIdUsingLock(entity.getId(), LockMode.PESSIMISTIC_WRITE);
-			BeanUtils.copyProperties(level, entity);
+			BeanUtils.copyProperties(entity, level);
 			levelDAO.delete(level);
 			return true;
 		} catch (Exception e) {

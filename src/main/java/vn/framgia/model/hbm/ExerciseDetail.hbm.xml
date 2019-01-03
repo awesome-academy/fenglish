@@ -12,5 +12,8 @@
         <many-to-one class="vn.framgia.model.Question" fetch="select" name="question">
             <column name="questions_id"/>
         </many-to-one>
+        <property name="answer" type="java.lang.Integer">
+        	<column name="answer" />
+        </property>
     </class>
 </hibernate-mapping>

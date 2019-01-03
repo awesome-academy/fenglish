@@ -21,6 +21,12 @@
         <property  name="totalQuestion" type="java.lang.Integer">
             <column name="total_question"/>
         </property>
+        <property name="createTime" type="java.sql.Timestamp">
+        	<column name="create_time" />
+        </property>
+        <property name="submitted" type="java.lang.Boolean">
+        	<column name="submitted" />
+        </property>
         <property  name="deleted" type="java.lang.Boolean">
             <column name="deleted"/>
         </property>

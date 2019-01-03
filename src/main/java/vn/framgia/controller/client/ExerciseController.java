@@ -28,12 +28,19 @@ public class ExerciseController extends BaseController {
 	public String showExercise(@PathVariable("id") Integer id, Model model, Authentication authentication) {
 
 		if (exerciseService.checkUserAuthentication(id, authentication.getName())) {
+			ExerciseInfo exercise = exerciseService.findExerciseById(id);
+			
+			if (exercise.getSubmitted()) {
+				return "redirect:/";
+			}
+			
 			SubjectInfo subject = subjectService.getSubjectInExercise(id);
 			List<QuestionInfo> questions = questionService.getListQuestionByIdExercise(id);
 
 			model.addAttribute("subject", subject);
 			model.addAttribute("questions", questions);
-			model.addAttribute("id_exercise", id);
+			model.addAttribute("exercise_id", exercise.getId());
+			model.addAttribute("create_time", exercise.getCreateTime().getTime());
 
 			return "/client/exercise";
 		}
@@ -57,7 +64,7 @@ public class ExerciseController extends BaseController {
 
 	@RequestMapping(value = "/result", method = RequestMethod.POST)
 	public String markExercise(HttpServletRequest request, Model model) {
-		Integer idExercise = Integer.parseInt(request.getParameter("id_exercise"));
+		Integer idExercise = Integer.parseInt(request.getParameter("exercise_id"));
 
 		ExerciseInfo exerciseInfo = exerciseService.findExerciseById(idExercise);
 
@@ -69,6 +76,10 @@ public class ExerciseController extends BaseController {
 
 		int totalQuestion = exerciseInfo.getExerciseDetails().size();
 		int score = getScore(idExercise, exerciseInfo.getExerciseDetails(), request);
+		
+		exerciseInfo.setSubmitted(true);
+		exerciseService.saveOrUpdateExercise(exerciseInfo);
+		
 		model.addAttribute("score", score);
 		model.addAttribute("total_question", totalQuestion);
 
@@ -86,6 +97,9 @@ public class ExerciseController extends BaseController {
 			}
 
 			Integer answer = Integer.parseInt(answerRequest);
+
+			exerciseDetail.setAnswer(answer);
+			exerciseDetailService.saveOrUpdate(exerciseDetail);
 
 			if (answer == exerciseDetail.getQuestion().getCorrectAnswer()) {
 				score++;

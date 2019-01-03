@@ -1,5 +1,6 @@
 package vn.framgia.bean;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import vn.framgia.model.ExerciseDetail;
@@ -13,20 +14,26 @@ public class ExerciseInfo {
 	private String exerciseName;
 	private String exerciseImg;
 	private Integer totalQuestion;
+	private Timestamp createTime;
+	private Boolean submitted;
+	private Boolean deleted;
 	private List<ExerciseDetail> exerciseDetails;
 	
 	public ExerciseInfo() {
 
 	}
 
-	public ExerciseInfo(Integer id, Subject subject, User user, String exerciseName, String exerciseImg,
-			Integer totalQuestion, List<ExerciseDetail> exerciseDetails) {
-		this.id = id;
+	public ExerciseInfo(Subject subject, User user, String exerciseName, String exerciseImg, Integer totalQuestion,
+			Timestamp createTime, Boolean submitted, Boolean deleted, List<ExerciseDetail> exerciseDetails) {
+		super();
 		this.subject = subject;
 		this.user = user;
 		this.exerciseName = exerciseName;
 		this.exerciseImg = exerciseImg;
 		this.totalQuestion = totalQuestion;
+		this.createTime = createTime;
+		this.submitted = submitted;
+		this.deleted = deleted;
 		this.exerciseDetails = exerciseDetails;
 	}
 
@@ -84,6 +91,30 @@ public class ExerciseInfo {
 
 	public void setExerciseDetails(List<ExerciseDetail> exerciseDetails) {
 		this.exerciseDetails = exerciseDetails;
+	}
+
+	public Timestamp getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Timestamp createTime) {
+		this.createTime = createTime;
+	}
+
+	public Boolean getSubmitted() {
+		return submitted;
+	}
+
+	public void setSubmitted(Boolean submitted) {
+		this.submitted = submitted;
+	}
+
+	public Boolean getDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(Boolean deleted) {
+		this.deleted = deleted;
 	}
 	
 }

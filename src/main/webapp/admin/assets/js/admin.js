@@ -1,285 +1,209 @@
 /* user */
-$(".btnDeleteUser")
-		.on(
-				"click",
-				function() {
-					var $row = $(this).closest("tr");
-					var $text = $row.find(".idUser").text();
-					var contextUrl = $("#contextUrl").val();
+$(".btnDeleteUser").on("click", function() {
+    var $row = $(this).closest("tr");
+    var $text = $row.find(".idUser").text();
+    var contextUrl = $("#contextUrl").val();
 
-					$
-							.confirm({
-								title : $("#titleConfirm").val(),
-								content : $("#contentConfirm").val(),
-								buttons : {
-									confirm : {
-										text : $("#btnConfirm").val(),
-										action : function() {
-											$
-													.ajax({
-														type : "DELETE",
-														url : contextUrl
-																+ "admin/users/"
-																+ $text,
-														success : function(
-																response) {
-															$
-																	.confirm({
-																		title : $(
-																				"#titleMessage")
-																				.val(),
-																		content : $(
-																				"#deleteSuccess")
-																				.val(),
-																		buttons : {
-																			confirm : {
-																				text : $(
-																						"#btnOk")
-																						.val(),
-																				action : function() {
-																					window.location
-																							.replace(contextUrl
-																									+ "admin");
-																				}
-																			}
-																		}
-																	});
-														},
-														error : function(xhr,
-																ajaxOptions,
-																thrownError) {
-															alert(xhr.status);
-															alert(thrownError);
-														}
-													});
-										}
-									},
-									cancel : {
-										text : $("#btnCancel").val(),
-										action : function() {
-											$.confirm({
-												title : "",
-												content : $("#contentCanceled")
-														.val(),
-												buttons : {
-													confirm : {
-														text : $("#btnOk")
-																.val()
-													}
-												}
-											});
-										}
-									}
-								}
-							});
-				});
+    $.confirm({
+        title: $("#titleConfirm").val(),
+        content: $("#contentConfirm").val(),
+        buttons: {
+            confirm: {
+                text: $("#btnConfirm").val(),
+                action: function() {
+                    $.ajax({
+                        type: "DELETE",
+                        url: contextUrl + "admin/users/" + $text,
+                        success: function(response) {
+                            $.confirm({
+                                title: $("#titleMessage").val(),
+                                content: $("#deleteSuccess").val(),
+                                buttons: {
+                                    confirm: {
+                                        text: $("#btnOk").val(),
+                                        action: function() {
+                                            window.location.replace(contextUrl + "admin");
+                                        }
+                                    }
+                                }
+                            });
+                        },
+                        error: function(xhr, ajaxOptions, thrownError) {
+                            alert(xhr.status);
+                            alert(thrownError);
+                        }
+                    });
+                }
+            },
+            cancel: {
+                text: $("#btnCancel").val(),
+                action: function() {
+                    $.confirm({
+                        title: "",
+                        content: $("#contentCanceled").val(),
+                        buttons: {
+                            confirm: {
+                                text: $("#btnOk").val()
+                            }
+                        }
+                    });
+                }
+            }
+        }
+    });
+});
 
 /* subject */
-$(".btnDeleteSubject")
-		.on(
-				"click",
-				function() {
-					var $row = $(this).closest("tr");
-					var $text = $row.find(".idSubject").text();
-					var contextUrl = $("#contextUrl").val();
+$(".btnDeleteSubject").on("click", function() {
+	var $row = $(this).closest("tr");
+	var $text = $row.find(".idSubject").text();
+	var contextUrl = $("#contextUrl").val();
 
-					$
-							.confirm({
-								title : $("#titleConfirm").val(),
-								content : $("#contentConfirm").val(),
+	$.confirm({
+		title : $("#titleConfirm").val(),
+		content : $("#contentConfirm").val(),
+		buttons : {
+			confirm : {
+				text : $("#btnConfirm").val(),
+				action : function() {
+					$.ajax({
+						type : "DELETE",
+						url : contextUrl + "admin/subjects/" + $text,
+						success : function(response) {
+							$.confirm({
+								title : $("#titleMessage").val(),
+								content : $("#deleteSuccess").val(),
 								buttons : {
-									confirm : {
-										text : $("#btnConfirm").val(),
-										action : function() {
-											$
-													.ajax({
-														type : "DELETE",
-														url : contextUrl
-																+ "admin/subjects/"
-																+ $text,
-														success : function(
-																response) {
-															$
-																	.confirm({
-																		title : $(
-																				"#titleMessage")
-																				.val(),
-																		content : $(
-																				"#deleteSuccess")
-																				.val(),
-																		buttons : {
-																			confirm : function() {
-																				window.location
-																						.replace(contextUrl
-																								+ "admin/subjects");
-																			}
-																		}
-																	});
-														},
-														error : function(xhr,
-																ajaxOptions,
-																thrownError) {
-															alert(xhr.status);
-															alert(thrownError);
-														}
-													});
-										}
-									},
-									cancel : {
-										text : $("#btnCancel").val(),
-										action : function() {
-											$.confirm({
-												title : "",
-												content : $("#contentCanceled")
-														.val(),
-												buttons : {
-													confirm : {
-														text : $("#btnOk")
-																.val()
-													}
-												}
-											});
-										}
+									confirm : function() {
+										window.location.replace(contextUrl + "admin/subjects");
 									}
 								}
 							});
-				});
+						},
+						error : function(xhr, ajaxOptions, thrownError) {
+							alert(xhr.status);
+							alert(thrownError);
+						}
+					});
+				}
+			},
+			cancel : {
+				text : $("#btnCancel").val(),
+				action : function() {
+					$.confirm({
+						title : "",
+						content : $("#contentCanceled").val(),
+						buttons : {
+							confirm : {
+								text : $("#btnOk").val()
+							}
+						}
+					});
+				}
+			}
+		}
+	});
+});
 
 /* question */
-$(".btnDeleteQuestion")
-		.on(
-				"click",
-				function() {
-					var $row = $(this).closest("tr");
-					var $text = $row.find(".idQuestion").text();
-					var contextUrl = $("#contextUrl").val();
+$(".btnDeleteQuestion").on("click", function() {
+	var $row = $(this).closest("tr");
+	var $text = $row.find(".idQuestion").text();
+	var contextUrl = $("#contextUrl").val();
 
-					$
-							.confirm({
-								title : $("#titleConfirm").val(),
-								content : $("#contentConfirm").val(),
+	$.confirm({
+		title : $("#titleConfirm").val(),
+		content : $("#contentConfirm").val(),
+		buttons : {
+			confirm : {
+				text : $("#btnConfirm").val(),
+				action : function() {
+					$.ajax({
+						type : "DELETE",
+						url : contextUrl + "admin/questions/" + $text,
+						success : function(response) {
+							$.confirm({
+								title : $("#titleMessage").val(),
+								content : $("#deleteSuccess").val(),
 								buttons : {
-									confirm : {
-										text : $("#btnConfirm").val(),
-										action : function() {
-											$
-													.ajax({
-														type : "DELETE",
-														url : contextUrl
-																+ "admin/questions/"
-																+ $text,
-														success : function(
-																response) {
-															$
-																	.confirm({
-																		title : $(
-																				"#titleMessage")
-																				.val(),
-																		content : $(
-																				"#deleteSuccess")
-																				.val(),
-																		buttons : {
-																			confirm : function() {
-																				window.location
-																						.replace(contextUrl
-																								+ "admin/questions");
-																			}
-																		}
-																	});
-														},
-														error : function(xhr,
-																ajaxOptions,
-																thrownError) {
-															alert(xhr.status);
-															alert(thrownError);
-														}
-													});
-										}
-									},
-									cancel : {
-										text : $("#btnCancel").val(),
-										action : function() {
-											$.confirm({
-												title : "",
-												content : $("#contentCanceled")
-														.val(),
-												buttons : {
-													confirm : {
-														text : $("#btnOk")
-																.val()
-													}
-												}
-											});
-										}
+									confirm : function() {
+										window.location.replace(contextUrl + "admin/questions");
 									}
 								}
 							});
-				});
+						},
+						error : function(xhr, ajaxOptions, thrownError) {
+							alert(xhr.status);
+							alert(thrownError);
+						}
+					});
+				}
+			},
+			cancel : {
+				text : $("#btnCancel").val(),
+				action : function() {
+					$.confirm({
+						title : "",
+						content : $("#contentCanceled").val(),
+						buttons : {
+							confirm : {
+								text : $("#btnOk").val()
+							}
+						}
+					});
+				}
+			}
+		}
+	});
+});
 
 /* post */
-$(".btnDeletePost")
-		.on(
-				"click",
-				function() {
-					var $row = $(this).closest("tr");
-					var $text = $row.find(".idPost").text();
-					var contextUrl = $("#contextUrl").val();
+$(".btnDeletePost").on("click", function() {
+	var $row = $(this).closest("tr");
+	var $text = $row.find(".idPost").text();
+	var contextUrl = $("#contextUrl").val();
 
-					$
-							.confirm({
-								title : $("#titleConfirm").val(),
-								content : $("#contentConfirm").val(),
+	$.confirm({
+		title : $("#titleConfirm").val(),
+		content : $("#contentConfirm").val(),
+		buttons : {
+			confirm : {
+			text : $("#btnConfirm").val(),
+			action : function() {
+				$.ajax({
+					type : "DELETE",
+					url : contextUrl + "admin/posts/" + $text,
+					success : function(response) {
+						$.confirm({
+							title : $("#titleMessage").val(),
+								content : $("#deleteSuccess").val(),
 								buttons : {
-									confirm : {
-										text : $("#btnConfirm").val(),
-										action : function() {
-											$
-													.ajax({
-														type : "DELETE",
-														url : contextUrl
-																+ "admin/posts/"
-																+ $text,
-														success : function(
-																response) {
-															$
-																	.confirm({
-																		title : $(
-																				"#titleMessage")
-																				.val(),
-																		content : $(
-																				"#deleteSuccess")
-																				.val(),
-																		buttons : {
-																			confirm : function() {
-																				window.location
-																						.replace(contextUrl
-																								+ "admin/posts/page=1");
-																			}
-																		}
-																	});
-														}
-													});
-										}
-									},
-									cancel : {
-										text : $("#btnCancel").val(),
-										action : function() {
-											$.confirm({
-												title : "",
-												content : $("#contentCanceled")
-														.val(),
-												buttons : {
-													confirm : {
-														text : $("#btnOk")
-																.val()
-													}
-												}
-											});
-										}
+									confirm : function() {
+										window.location.replace(contextUrl + "admin/posts/page=1");
 									}
 								}
 							});
-				});
+						}
+					});
+				}
+			},
+			cancel : {
+				text : $("#btnCancel").val(),
+				action : function() {
+					$.confirm({
+						title : "",
+						content : $("#contentCanceled").val(),
+						buttons : {
+							confirm : {
+								text : $("#btnOk").val()
+							}
+						}
+					});
+				}
+			}
+		}
+	});
+});
 
 /* dynamic form */
 var count = 2;
@@ -361,17 +285,14 @@ function removeInput(element) {
 
 	input.each(function() {
 		if (this.name == "option3") {
-			$("#dynamic_form .form-group").last().find("input").each(
-					function() {
+			$("#dynamic_form .form-group").last().find("input").each(function() {
 						if (this.type == "text") {
-							$(this).parents(".col-sm-9").siblings("label")
-									.html("C");
-							$(this).attr("id", "option3").attr("name",
-									"option3");
+							$(this).parents(".col-sm-9").siblings("label").html("C");
+							$(this).attr("id", "option3").attr("name", "option3");
 						} else {
 							$(this).val(3);
 						}
-					});
+			});
 		}
 	});
 

@@ -1,15 +1,14 @@
 package vn.framgia.service.impl;
 
 import java.io.Serializable;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.LockModeType;
 
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.log4j.Logger;
 import org.hibernate.LockMode;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -54,18 +53,28 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 	}
 
 	@Override
-	public User saveOrUpdate(User entity) throws IllegalAccessException, InvocationTargetException {
-		User lockEntity = userDAO.findByIdUsingLock(entity.getId(), LockMode.PESSIMISTIC_WRITE);
-		BeanUtils.copyProperties(lockEntity, entity);
-		return userDAO.saveOrUpdate(lockEntity);
+	public User saveOrUpdate(User entity) {
+		try {
+			User lockEntity = userDAO.findByIdUsingLock(entity.getId(), LockMode.PESSIMISTIC_WRITE);
+			BeanUtils.copyProperties(entity, lockEntity);
+			return userDAO.saveOrUpdate(lockEntity);
+		} catch (Exception e) {
+			logger.error("Error in saveOrUpdate: " + e.getMessage());
+			throw e;
+		}
 	}
 
 	@Override
-	public boolean delete(User entity) throws IllegalAccessException, InvocationTargetException {
-		User lockEntity = userDAO.findByIdUsingLock(entity.getId(), LockMode.PESSIMISTIC_WRITE);
-		BeanUtils.copyProperties(lockEntity, entity);
-		userDAO.delete(lockEntity);
-		return true;
+	public boolean delete(User entity) {
+		try {
+			User lockEntity = userDAO.findByIdUsingLock(entity.getId(), LockMode.PESSIMISTIC_WRITE);
+			BeanUtils.copyProperties(entity, lockEntity);
+			userDAO.delete(lockEntity);
+			return true;
+		} catch (Exception e) {
+			logger.error("Error in delete: " + e.getMessage());
+			throw e;
+		}
 	}
 
 	@Override
@@ -101,9 +110,8 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 
 	@Override
 	public UserInfo saveUserOrUpdate(UserInfo userInfo) {
-		User user = userDAO.findByIdUsingLock(userInfo.getId(), LockMode.PESSIMISTIC_WRITE);
-
 		try {
+			User user = userDAO.findByIdUsingLock(userInfo.getId(), LockMode.PESSIMISTIC_WRITE);
 			UserConvertHelper.convertSingleUserInfoToUser(user, userInfo);
 			return UserConvertHelper.convertSingleUserToUserInfo(userDAO.saveOrUpdate(user));
 		} catch (Exception e) {

@@ -68,5 +68,8 @@
 	<c:forEach items="${loginJs}" var="item">
 		<script src="<c:url value='${item}'/>" type="text/javascript"></script>
 	</c:forEach>
+	
+	<spring:url value="/" var="contextUrl" />
+	<input id="contextUrl" type="hidden" value="${contextUrl}" >
 </body>
 </html>

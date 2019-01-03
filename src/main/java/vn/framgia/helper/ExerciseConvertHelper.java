@@ -14,14 +14,13 @@ public class ExerciseConvertHelper {
 
 	private static final Logger logger = Logger.getLogger(ExerciseConvertHelper.class);
 
-	public static Exercise convertSingleExerciseInfoToExercise(ExerciseInfo exerciseInfo) {
+	public static Exercise convertSingleExerciseInfoToExercise(ExerciseInfo exerciseInfo, Exercise exercise) {
 		try {
-			Exercise exercise = new Exercise();
 			BeanUtils.copyProperties(exerciseInfo, exercise);
 			return exercise;
 		} catch (Exception e) {
 			logger.error("Error in convert ExerciseInfo to Exercise: " + e.getMessage());
-			return new Exercise();
+			return null;
 		}
 	}
 
@@ -31,7 +30,9 @@ public class ExerciseConvertHelper {
 			List<Exercise> exercises = new ArrayList<Exercise>();
 
 			for (ExerciseInfo exerciseInfo : exerciseInfos) {
-				exercises.add(convertSingleExerciseInfoToExercise(exerciseInfo));
+				Exercise exercise = new Exercise();
+				convertSingleExerciseInfoToExercise(exerciseInfo, exercise);
+				exercises.add(exercise);
 			}
 
 			return exercises;

@@ -1,11 +1,13 @@
 package vn.framgia.service.impl;
 
 import java.io.Serializable;
-import java.lang.reflect.InvocationTargetException;
+import java.sql.Timestamp;
 import java.util.Collections;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.LockMode;
+import org.springframework.beans.BeanUtils;
 
 import vn.framgia.bean.ExerciseInfo;
 import vn.framgia.helper.ExerciseConvertHelper;
@@ -26,15 +28,28 @@ public class ExerciseServiceImpl extends BaseServiceImpl implements ExerciseServ
 	}
 
 	@Override
-	public Exercise saveOrUpdate(Exercise entity) throws IllegalAccessException, InvocationTargetException {
-		// TODO Auto-generated method stub
-		return null;
+	public Exercise saveOrUpdate(Exercise entity) {
+		try {
+			Exercise lockEntity = exerciseDAO.findByIdUsingLock(entity.getId(), LockMode.PESSIMISTIC_WRITE);
+			BeanUtils.copyProperties(entity, lockEntity);
+			return exerciseDAO.saveOrUpdate(lockEntity);
+		} catch (Exception e) {
+			logger.error("Error in saveOrUpdate: " + e.getMessage());
+			throw e;
+		}
 	}
 
 	@Override
-	public boolean delete(Exercise entity) throws IllegalAccessException, InvocationTargetException {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean delete(Exercise entity) {
+		try {
+			Exercise lockEntity = exerciseDAO.findByIdUsingLock(entity.getId(), LockMode.PESSIMISTIC_WRITE);
+			BeanUtils.copyProperties(entity, lockEntity);
+			exerciseDAO.delete(lockEntity);
+			return true;
+		} catch (Exception e) {
+			logger.error("Error in delete: " + e.getMessage());
+			throw e;
+		}
 	}
 
 	@Override
@@ -45,6 +60,8 @@ public class ExerciseServiceImpl extends BaseServiceImpl implements ExerciseServ
 			User user = userDAO.findUserByEmail(authName);
 			exercise.setUser(user);
 			exercise.setSubject(subject);
+			exercise.setCreateTime(new Timestamp(System.currentTimeMillis()));
+			exercise.setSubmitted(false);
 			exercise.setDeleted(false);
 
 			Exercise exercisePersist = exerciseDAO.saveOrUpdate(exercise);
@@ -91,7 +108,8 @@ public class ExerciseServiceImpl extends BaseServiceImpl implements ExerciseServ
 	@Override
 	public ExerciseInfo findExerciseById(Integer id) {
 		try {
-			ExerciseInfo exerciseInfo = ExerciseConvertHelper.convertSingleExerciseToExerciseInfo(exerciseDAO.findById(id));
+			ExerciseInfo exerciseInfo = ExerciseConvertHelper
+					.convertSingleExerciseToExerciseInfo(exerciseDAO.findById(id));
 			List<ExerciseDetail> exerciseDetails = exerciseDetailDAO.findExerciseDetails(id);
 			List<Question> questions = questionDAO.getQuestionByIdExercise(id);
 
@@ -104,6 +122,19 @@ public class ExerciseServiceImpl extends BaseServiceImpl implements ExerciseServ
 		} catch (Exception e) {
 			logger.error("Error in findExerciseById: " + e.getMessage());
 			return null;
+		}
+	}
+
+	@Override
+	public ExerciseInfo saveOrUpdateExercise(ExerciseInfo exerciseInfo) {
+		try {
+			Exercise lockEntity = exerciseDAO.findByIdUsingLock(exerciseInfo.getId(), LockMode.PESSIMISTIC_WRITE);
+			exerciseInfo.setExerciseDetails(Collections.emptyList());
+			ExerciseConvertHelper.convertSingleExerciseInfoToExercise(exerciseInfo, lockEntity);
+			return ExerciseConvertHelper.convertSingleExerciseToExerciseInfo(exerciseDAO.saveOrUpdate(lockEntity));
+		} catch (Exception e) {
+			logger.error("Error in saveOrUpdateExercise: " + e.getMessage());
+			throw e;
 		}
 	}
 

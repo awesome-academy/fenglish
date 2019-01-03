@@ -1,11 +1,11 @@
 package vn.framgia.service.impl;
 
 import java.io.Serializable;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
 import java.util.List;
-import org.apache.commons.beanutils.BeanUtils;
+
 import org.hibernate.LockMode;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import vn.framgia.bean.QuestionInfo;
@@ -64,10 +64,10 @@ public class QuestionServiceImpl extends BaseServiceImpl implements QuestionServ
 	}
 
 	@Override
-	public Question saveOrUpdate(Question entity) throws IllegalAccessException, InvocationTargetException {
+	public Question saveOrUpdate(Question entity) {
 		try {
 			Question lockEntity = questionDAO.findByIdUsingLock(entity.getId(), LockMode.PESSIMISTIC_WRITE);
-			BeanUtils.copyProperties(lockEntity, entity);
+			BeanUtils.copyProperties(entity, lockEntity);
 			return questionDAO.saveOrUpdate(lockEntity);
 		} catch (Exception e) {
 			throw e;
@@ -75,7 +75,7 @@ public class QuestionServiceImpl extends BaseServiceImpl implements QuestionServ
 	}
 
 	@Override
-	public boolean delete(Question entity) throws IllegalAccessException, InvocationTargetException {
+	public boolean delete(Question entity) {
 		// TODO Auto-generated method stub
 		return false;
 	}

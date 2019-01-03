@@ -1,6 +1,5 @@
 package vn.framgia.bean;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import vn.framgia.model.Post;
@@ -9,7 +8,7 @@ public class CategoryInfo {
 	private Integer id;
 	private String categoryName;
 	private Boolean status;
-	private List<Post> posts = new ArrayList<>();
+	private List<Post> posts;
 
 	public CategoryInfo() {
 	}

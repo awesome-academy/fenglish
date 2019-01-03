@@ -1,7 +1,6 @@
 package vn.framgia.service.impl;
 
 import java.io.Serializable;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
 import java.util.List;
 
@@ -21,13 +20,13 @@ public class CategoryServiceImpl extends BaseServiceImpl implements CategoryServ
 	}
 
 	@Override
-	public Category saveOrUpdate(Category entity) throws IllegalAccessException, InvocationTargetException {
+	public Category saveOrUpdate(Category entity){
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public boolean delete(Category entity) throws IllegalAccessException, InvocationTargetException {
+	public boolean delete(Category entity){
 		// TODO Auto-generated method stub
 		return false;
 	}

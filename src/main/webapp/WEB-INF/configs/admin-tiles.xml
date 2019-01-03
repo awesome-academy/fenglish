@@ -117,7 +117,7 @@
 		<put-attribute name="title"
 			value="title.admin.post.create" />
 		<put-attribute name="body"
-			value="/admin/views/posts/postediter.jsp" />
+			value="/admin/views/posts/createPost.jsp" />
 	</definition>
 
 	<!-- List Post -->

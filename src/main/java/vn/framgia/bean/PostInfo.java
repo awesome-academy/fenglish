@@ -9,6 +9,7 @@ import vn.framgia.model.PostTag;
 public class PostInfo {
 	private Integer id;
 	private Category category;
+	private Integer categoryId;
 	private String title;
 	private String content;
 	private Date createdTime;
@@ -93,6 +94,14 @@ public class PostInfo {
 
 	public void setPostTags(List<PostTag> postTags) {
 		this.postTags = postTags;
+	}
+
+	public Integer getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(Integer categoryId) {
+		this.categoryId = categoryId;
 	}
 
 }

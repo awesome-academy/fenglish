@@ -4,15 +4,19 @@ import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.hibernate.LockMode;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import vn.framgia.bean.PostInfo;
 import vn.framgia.helper.PostConvertHelper;
 import vn.framgia.model.Post;
+import vn.framgia.service.CategoryService;
 import vn.framgia.service.PostService;
 
 public class PostServiceImpl extends BaseServiceImpl implements PostService {
-
+	@Autowired
+	CategoryService categoryService;
 	@Override
 	public Post findById(Serializable key) {
 		// TODO Auto-generated method stub
@@ -65,11 +69,13 @@ public class PostServiceImpl extends BaseServiceImpl implements PostService {
 		try {
 			if (postInfo.getId() == null) {
 				Post post = new Post();
+				post.setCategory(categoryService.findById(postInfo.getCategoryId()));
 				PostConvertHelper.copyValuePostInfoToPost(post, postInfo);
 				return PostConvertHelper.convertSinglePostToPostInfo(postDAO.saveOrUpdate(post));
 			}
 			Post post = postDAO.findByIdUsingLock(postInfo.getId(), LockMode.PESSIMISTIC_WRITE);
 			PostConvertHelper.copyValuePostInfoToPost(post, postInfo);
+			post.setCategory(categoryService.findById(postInfo.getCategoryId()));
 			return PostConvertHelper.convertSinglePostToPostInfo(postDAO.saveOrUpdate(post));
 		} catch (Exception e) {
 			throw e;
@@ -79,7 +85,9 @@ public class PostServiceImpl extends BaseServiceImpl implements PostService {
 	@Override
 	public Post findPostById(int id) {
 		try {
-			return postDAO.findPostById(id);
+			Post post = postDAO.findPostById(id);
+			Hibernate.initialize(post.getCategory());
+			return post;
 		} catch (Exception e) {
 			// TODO: handle exception
 			return null;

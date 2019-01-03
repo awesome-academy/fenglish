@@ -1,10 +1,11 @@
 package vn.framgia.service.impl;
 
+import vn.framgia.dao.CategoryDAO;
 import vn.framgia.dao.ExerciseDAO;
 import vn.framgia.dao.ExerciseDetailDAO;
-import vn.framgia.dao.QuestionDAO;
 import vn.framgia.dao.LevelDAO;
 import vn.framgia.dao.PostDAO;
+import vn.framgia.dao.QuestionDAO;
 import vn.framgia.dao.SubjectDAO;
 import vn.framgia.dao.UserDAO;
 
@@ -17,6 +18,7 @@ public class BaseServiceImpl {
 	protected QuestionDAO questionDAO;
 	protected LevelDAO levelDAO;
 	protected PostDAO postDAO;
+	protected CategoryDAO categoryDAO;
 
 	public UserDAO getUserDAO() {
 		return userDAO;
@@ -72,6 +74,14 @@ public class BaseServiceImpl {
 
 	public void setPostDAO(PostDAO postDAO) {
 		this.postDAO = postDAO;
+	}
+
+	public CategoryDAO getCategoryDAO() {
+		return categoryDAO;
+	}
+
+	public void setCategoryDAO(CategoryDAO categoryDAO) {
+		this.categoryDAO = categoryDAO;
 	}
 
 }

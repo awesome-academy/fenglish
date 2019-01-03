@@ -2,6 +2,7 @@ package vn.framgia.service.impl;
 
 import java.io.Serializable;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Hibernate;
@@ -69,8 +70,10 @@ public class PostServiceImpl extends BaseServiceImpl implements PostService {
 		try {
 			if (postInfo.getId() == null) {
 				Post post = new Post();
-				post.setCategory(categoryService.findById(postInfo.getCategoryId()));
 				PostConvertHelper.copyValuePostInfoToPost(post, postInfo);
+				post.setCategory(categoryService.findById(postInfo.getCategoryId()));
+				post.setDeleted(false);
+				post.setCreatedTime(new Date());
 				return PostConvertHelper.convertSinglePostToPostInfo(postDAO.saveOrUpdate(post));
 			}
 			Post post = postDAO.findByIdUsingLock(postInfo.getId(), LockMode.PESSIMISTIC_WRITE);

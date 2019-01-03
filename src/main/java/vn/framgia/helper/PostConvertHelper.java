@@ -71,6 +71,7 @@ public class PostConvertHelper {
 		try {
 			postInfo.setDeleted(post.getDeleted());
 			postInfo.setPostTags(post.getPostTags());
+			postInfo.setCreatedTime(post.getCreatedTime());
 			BeanUtils.copyProperties(post, postInfo);
 		} catch (Exception e) {
 			logger.error("Error in convertPostInfo: " + e.getMessage());

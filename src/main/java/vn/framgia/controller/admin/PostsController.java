@@ -2,9 +2,9 @@ package vn.framgia.controller.admin;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-import org.hibernate.Hibernate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,9 +25,26 @@ import vn.framgia.helper.PostConvertHelper;
 public class PostsController extends BaseController {
 	private static final int pageSize = 10;
 
-	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public String create() {
-		return "/create";
+	@RequestMapping(value = "/new", method = RequestMethod.GET)
+	public String newPost(Model model) {
+		PostInfo postInfo = new PostInfo();
+		model.addAttribute("postForm", postInfo);
+		List<CategoryInfo> categoryInfos = categoryService.loadAllCategoryInfo();
+		model.addAttribute("categoryInfos", categoryInfos);
+		return "/posts/create";
+	}
+
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	public String createPost(@Valid @ModelAttribute("postForm") PostInfo postForm, HttpServletRequest request,
+			BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+		if (bindingResult.hasErrors()) {
+			return "/posts/create";
+		}
+
+		postService.saveOrUpdatePostInfo(postForm);
+		redirectAttributes.addFlashAttribute("css", "success");
+		redirectAttributes.addFlashAttribute("msg", "msg.post.createsuccess");
+		return "redirect:/admin/posts/page=1";
 	}
 
 	@RequestMapping(value = "/page={pageNumber}", method = RequestMethod.GET)

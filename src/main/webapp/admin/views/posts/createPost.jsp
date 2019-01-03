@@ -13,13 +13,12 @@
 <script type="text/javascript" src="${ckeditor}"></script>
 
 <div class="container" style="margin: 0 auto;">
-	<h1>Edit Post</h1>
+	<h1>Create Post</h1>
 	<br />
 	<div class="col-md-12" style="margin: 0 auto;">
-		<spring:url value="/admin/posts/update" var="postActionUrl" />
+		<spring:url value="/admin/posts/create" var="postActionUrl" />
 		<form:form class="form-horizontal" method="post"
 			modelAttribute="postForm" action="${postActionUrl}">
-			<form:hidden path="id" />
 			<div class="form-group">
 				<label class="col-sm-3 control-label">${colTitle}</label>
 				<div class="col-sm-9">
@@ -32,7 +31,6 @@
 				<div class="col-sm-9">
 					<form:select class="form-control" id="element_10" name="element_10"
 						path="categoryId">
-						<option value="${postForm.category.id}" selected="selected">${postForm.category.categoryName}</option>
 						<c:forEach items="${categoryInfos}" var="categoryInfo"
 							varStatus="count">
 							<option value="${categoryInfo.id}">${categoryInfo.categoryName}</option>
@@ -50,7 +48,7 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" class="btn-lg btn-primary pull-right">UPDATE</button>
+					<button type="submit" class="btn-lg btn-primary pull-right">CREATE</button>
 				</div>
 			</div>
 		</form:form>

@@ -25,7 +25,6 @@ public class ExerciseInfo {
 
 	public ExerciseInfo(Subject subject, User user, String exerciseName, String exerciseImg, Integer totalQuestion,
 			Timestamp createTime, Boolean submitted, Boolean deleted, List<ExerciseDetail> exerciseDetails) {
-		super();
 		this.subject = subject;
 		this.user = user;
 		this.exerciseName = exerciseName;

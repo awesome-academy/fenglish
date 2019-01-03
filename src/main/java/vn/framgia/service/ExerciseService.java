@@ -1,5 +1,7 @@
 package vn.framgia.service;
 
+import java.util.List;
+
 import vn.framgia.bean.ExerciseInfo;
 import vn.framgia.model.Exercise;
 import vn.framgia.model.Subject;
@@ -13,4 +15,7 @@ public interface ExerciseService extends BaseService<Integer, Exercise> {
 	ExerciseInfo findExerciseById(Integer id);
 	
 	ExerciseInfo saveOrUpdateExercise(ExerciseInfo exerciseInfo);
+	
+	List<ExerciseInfo> findListExerciseByIdUser(Integer idUser);
+	
 }

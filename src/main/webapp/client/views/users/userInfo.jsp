@@ -29,10 +29,12 @@
 						<h3 class="panel-title user-title">Thông tin cá nhân</h3>
 						<a href="${pageContext.request.contextPath}/users/edit">Chỉnh
 							sửa</a>
+						<span> | </span>
+						<a href="${pageContext.request.contextPath}/exercises/histories/show" >Lịch sử làm bài</a>
 					</div>
 					<div class="panel-body">
 						<div class="row">
-							<div class="col-md-3 col-lg-3 " align="center">
+							<div class="col-md-3 col-lg-3" align="center">
 								<c:choose>
 									<c:when
 										test='${current_user.avatar == null || "".equals(current_user.avatar)}'>

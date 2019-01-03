@@ -55,7 +55,7 @@ public class ExerciseConvertHelper {
 
 	public static List<ExerciseInfo> convertExerciseToExerciseInfo(List<Exercise> exercises) {
 		try {
-			List<ExerciseInfo> exerciseInfos = Collections.emptyList();
+			List<ExerciseInfo> exerciseInfos = new ArrayList<ExerciseInfo>();
 
 			for (Exercise exercise : exercises) {
 				exerciseInfos.add(convertSingleExerciseToExerciseInfo(exercise));

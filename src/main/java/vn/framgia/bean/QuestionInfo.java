@@ -28,7 +28,6 @@ public class QuestionInfo {
 	public QuestionInfo(Integer id, Level level, Subject subject, String levelName, String subjectName, int levelId,
 			int subjectId, String question, Integer typeQuestion, String mp3Question, String imgQuestion,
 			String option1, String option2, String option3, String option4, Integer correctAnswer, Boolean deleted) {
-		super();
 		this.id = id;
 		this.level = level;
 		this.subject = subject;

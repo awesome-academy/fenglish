@@ -1,8 +1,10 @@
 package vn.framgia.controller.client;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import vn.framgia.bean.ExerciseInfo;
 import vn.framgia.bean.QuestionInfo;
 import vn.framgia.bean.SubjectInfo;
+import vn.framgia.bean.UserInfo;
 import vn.framgia.controller.BaseController;
 import vn.framgia.model.ExerciseDetail;
 import vn.framgia.model.Subject;
@@ -85,6 +88,27 @@ public class ExerciseController extends BaseController {
 
 		return "/client/exercise/result";
 	}
+	
+	@RequestMapping(value = "/histories/show", method = RequestMethod.GET)
+	public String showHistory(HttpSession session, Model model) {
+		UserInfo currentUser = (UserInfo) session.getAttribute("current_user");
+		
+		if (currentUser == null) {
+			return "redirect:/";
+		}
+		
+		List<ExerciseInfo> exerciseInfos = exerciseService.findListExerciseByIdUser(currentUser.getId());
+		List<Integer> scores = new ArrayList<Integer>();
+		
+		for (ExerciseInfo exerciseInfo : exerciseInfos) {
+			scores.add(getScore(exerciseInfo.getExerciseDetails()));
+		}
+		
+		model.addAttribute("exercises", exerciseInfos);
+		model.addAttribute("scores", scores);
+		
+		return "/client/exercise/history";
+	}
 
 	private int getScore(Integer idExercise, List<ExerciseDetail> exerciseDetails, HttpServletRequest request) {
 		int score = 0;
@@ -108,5 +132,17 @@ public class ExerciseController extends BaseController {
 
 		return score;
 	}
-
+	
+	private int getScore(List<ExerciseDetail> exerciseDetails) {
+		int score = 0;
+		
+		for (ExerciseDetail exerciseDetail : exerciseDetails) {
+			if (exerciseDetail.getAnswer() == exerciseDetail.getQuestion().getCorrectAnswer()) {
+				score++;
+			}
+		}
+		
+		return score;
+	}
+	
 }

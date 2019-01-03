@@ -15,7 +15,6 @@ public class ExerciseDetailInfo {
 	}
 
 	public ExerciseDetailInfo(Integer id, Exercise exercise, Question question, Integer answer) {
-		super();
 		this.id = id;
 		this.exercise = exercise;
 		this.question = question;

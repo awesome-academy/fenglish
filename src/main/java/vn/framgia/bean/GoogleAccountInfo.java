@@ -16,7 +16,6 @@ public class GoogleAccountInfo {
 
 	public GoogleAccountInfo(String id, String email, boolean verified_email, String name, String given_name,
 			String family_name, String link, String picture, String hd) {
-		super();
 		this.id = id;
 		this.email = email;
 		this.verified_email = verified_email;

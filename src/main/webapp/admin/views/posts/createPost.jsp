@@ -12,10 +12,10 @@
 <spring:url value="/ckeditor/ckeditor.js" var="ckeditor" />
 <script type="text/javascript" src="${ckeditor}"></script>
 
-<div class="container" style="margin: 0 auto;">
+<div class="container">
 	<h1>Create Post</h1>
 	<br />
-	<div class="col-md-12" style="margin: 0 auto;">
+	<div class="col-md-12">
 		<spring:url value="/admin/posts/create" var="postActionUrl" />
 		<form:form class="form-horizontal" method="post"
 			modelAttribute="postForm" action="${postActionUrl}">

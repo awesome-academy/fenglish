@@ -114,7 +114,7 @@ public class QuestionController extends BaseController {
 		if (bindingResult.hasErrors()) {
 			return "/questions/create";
 		}
-		
+
 		questionService.saveOrUpdate(questionForm);
 		redirectAttributes.addFlashAttribute("css", "success");
 		redirectAttributes.addFlashAttribute("msg", "msg.user.updatesuccess");
@@ -123,16 +123,23 @@ public class QuestionController extends BaseController {
 
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
 	public String uploadXlsx(@RequestParam("multipartFile") MultipartFile multipartFile,
-			RedirectAttributes redirectAttributes) {
+			RedirectAttributes redirectAttributes, Model model) {
 		Map<Integer, Subject> mapSubject = subjectService.loadMapSubject();
 		Map<Integer, Level> mapLevel = levelService.loadMapLevel();
-		List<Question> listQuestion = excelApachePoiHelper.getListQuestionFromExcelFile(multipartFile, mapSubject,
+		Map<Integer, String> mapCheckExcelError = excelApachePoiHelper.checkExcelFileImport(multipartFile, mapSubject,
 				mapLevel);
-		if (listQuestion == null) {
-			redirectAttributes.addFlashAttribute("css", "error");
+
+		if (mapCheckExcelError.containsKey(0)) {
+			redirectAttributes.addFlashAttribute("css", "has-error");
 			redirectAttributes.addFlashAttribute("msg", "title.question.import.error");
 			return "redirect:/admin/questions/page=1";
 		}
+		if (!mapCheckExcelError.isEmpty()) {
+			model.addAttribute("mapError", mapCheckExcelError);
+			return "/questions/report";
+		}
+		List<Question> listQuestion = excelApachePoiHelper.getListQuestionFromExcelFile(multipartFile, mapSubject,
+				mapLevel);
 		questionService.saveListQuestion(listQuestion);
 		return "redirect:/admin/questions/page=1";
 	}

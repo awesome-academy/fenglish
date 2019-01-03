@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -69,5 +70,48 @@ public class ExcelApachePoiHelper {
 		question.setLevel(mapLevel == null ? null : mapLevel.get((int) questionRow.getCell(8).getNumericCellValue()));
 		question.setDeleted(false);
 		return question;
+	}
+
+	public Map<Integer, String> checkExcelFileImport(MultipartFile multipartFile, Map<Integer, Subject> mapSubject,
+			Map<Integer, Level> mapLevel) {
+		Map<Integer, String> mapResult = new HashMap<>();
+		try {
+			FileInputStream inputStream = new FileInputStream(convertMutipartFileToFile(multipartFile));
+			Workbook workbook = new XSSFWorkbook(inputStream);
+			Sheet xssfSheet = workbook.getSheetAt(0);
+			Iterator<Row> iterator = xssfSheet.iterator();
+			iterator.next();
+			int rowNum = 0;
+			while (iterator.hasNext()) {
+				rowNum++;
+				Row currentRow = iterator.next();
+				String rowError = checkRowExcel(currentRow, mapSubject, mapLevel);
+				if (rowError != null) {
+					mapResult.put(rowNum, rowError);
+				}
+			}
+			workbook.close();
+			return mapResult;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			mapResult.put(0, "Loi file");
+			return mapResult;
+		}
+	}
+
+	private String checkRowExcel(Row questionRow, Map<Integer, Subject> mapSubject, Map<Integer, Level> mapLevel) {
+		try {
+			if (questionRow.getCell(0).getStringCellValue() == null)
+				return "Question colum error";
+			if (!mapSubject.containsKey((int) questionRow.getCell(7).getNumericCellValue()))
+				return "Not exist subject";
+			if (!mapLevel.containsKey((int) questionRow.getCell(8).getNumericCellValue()))
+				return "Not exits level";
+			return null;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return "Exception";
+		}
 	}
 }

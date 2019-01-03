@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.hibernate.LockMode;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,8 @@ import vn.framgia.service.QuestionService;
 import vn.framgia.service.SubjectService;
 
 public class QuestionServiceImpl extends BaseServiceImpl implements QuestionService {
+	
+	private static final Logger logger = Logger.getLogger(QuestionServiceImpl.class);
 
 	@Autowired
 	QuestionDAO questionDAO;
@@ -70,6 +73,7 @@ public class QuestionServiceImpl extends BaseServiceImpl implements QuestionServ
 			BeanUtils.copyProperties(entity, lockEntity);
 			return questionDAO.saveOrUpdate(lockEntity);
 		} catch (Exception e) {
+			logger.error("Error in saveOrUpdate: " + e.getMessage());
 			throw e;
 		}
 	}
@@ -104,7 +108,7 @@ public class QuestionServiceImpl extends BaseServiceImpl implements QuestionServ
 			List<Question> questions = questionDAO.getQuestionByIdExercise(idExercise);
 			return QuestionConvertHelper.convertListQuestionToListQuestionInfo(questions);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Error in getListQuestionByIdExercise: " + e.getMessage());
 			return Collections.emptyList();
 		}
 	}
@@ -126,6 +130,7 @@ public class QuestionServiceImpl extends BaseServiceImpl implements QuestionServ
 			question.setLevel(levelService.findById(questionInfo.getLevelId()));
 			return QuestionConvertHelper.convertQuestionToQuestionInfo(questionDAO.saveOrUpdate(question));
 		} catch (Exception e) {
+			logger.error("Error in saveOrUpdateQuestionInfo: " + e.getMessage());
 			throw e;
 		}
 	}
@@ -138,7 +143,18 @@ public class QuestionServiceImpl extends BaseServiceImpl implements QuestionServ
 			questionDAO.saveListQuestion(listQuestion);
 			return true;
 		} catch (Exception e) {
+			logger.error("Error in saveListQuestion: " + e.getMessage());
 			throw e;
+		}
+	}
+
+	@Override
+	public List<QuestionInfo> searchQuestions(String name, Integer idSubject, Integer idLevel) {
+		try {
+			return QuestionConvertHelper.convertListQuestionToListQuestionInfo(questionDAO.searchQuestions(name, idSubject, idLevel));
+		} catch (Exception e) {
+			logger.error("Error in searchQuestions: " + e.getMessage());
+			return Collections.emptyList();
 		}
 	}
 

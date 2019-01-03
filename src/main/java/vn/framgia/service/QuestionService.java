@@ -25,4 +25,6 @@ public interface QuestionService extends BaseService<Integer, Question> {
 	QuestionInfo saveOrUpdate(QuestionInfo questionInfo);
 	
 	boolean saveListQuestion(List<Question> question);
+	
+	List<QuestionInfo> searchQuestions(String name, Integer idSubject, Integer idLevel);
 }

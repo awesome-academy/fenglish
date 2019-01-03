@@ -1,11 +1,15 @@
 package vn.framgia.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import vn.framgia.model.Level;
 import vn.framgia.model.Subject;
 
 public class QuestionInfo {
 	private Integer id;
+	@JsonIgnore
 	private Level level;
+	@JsonIgnore
 	private Subject subject;
 	private String levelName;
 	private String subjectName;

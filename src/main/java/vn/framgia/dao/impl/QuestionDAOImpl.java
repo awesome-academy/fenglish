@@ -1,13 +1,24 @@
 package vn.framgia.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.JoinType;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
 
 import vn.framgia.dao.GenericDAO;
 import vn.framgia.dao.QuestionDAO;
+import vn.framgia.model.Level;
 import vn.framgia.model.Question;
+import vn.framgia.model.Subject;
 
 public class QuestionDAOImpl extends GenericDAO<Integer, Question> implements QuestionDAO {
 	private static final Logger logger = Logger.getLogger(QuestionDAOImpl.class);
@@ -68,5 +79,38 @@ public class QuestionDAOImpl extends GenericDAO<Integer, Question> implements Qu
 			}
 		}
 		return true;
+	}
+
+	@Override
+	public List<Question> searchQuestions(String name, Integer idSubject, Integer idLevel) {
+		return getSession().createQuery(getCriteria(name, idSubject, idLevel)).getResultList();
+	}
+
+	private CriteriaQuery<Question> getCriteria(String name, Integer idSubject, Integer idLevel) {
+		CriteriaBuilder builder = getSession().getCriteriaBuilder();
+		CriteriaQuery<Question> cq = builder.createQuery(Question.class);
+		Root<Question> root = cq.from(Question.class);
+
+		Join<Question, Subject> subjectJoin = root.join("subject", JoinType.INNER);
+		Join<Question, Level> levelJoin = root.join("level", JoinType.INNER);
+
+		cq.select(root);
+
+		List<Predicate> predicates = new ArrayList<Predicate>();
+
+		if (StringUtils.isNotBlank(name)) {
+			predicates.add(builder.like(root.get("question"), "%" + name + "%"));
+		}
+
+		if (idSubject != null) {
+			predicates.add(builder.equal(subjectJoin.get("id"), idSubject));
+		}
+
+		if (idLevel != null) {
+			predicates.add(builder.equal(levelJoin.get("id"), idLevel));
+		}
+
+		cq.where(predicates.stream().toArray(Predicate[]::new));
+		return cq;
 	}
 }

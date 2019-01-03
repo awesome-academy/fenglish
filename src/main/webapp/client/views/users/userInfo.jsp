@@ -30,7 +30,7 @@
 						<a href="${pageContext.request.contextPath}/users/edit">Chỉnh
 							sửa</a>
 						<span> | </span>
-						<a href="${pageContext.request.contextPath}/exercises/histories/show" >Lịch sử làm bài</a>
+						<a href="${pageContext.request.contextPath}/exercises" >Lịch sử làm bài</a>
 					</div>
 					<div class="panel-body">
 						<div class="row">

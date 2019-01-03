@@ -18,6 +18,8 @@
 				value="/admin/assets/css/bootstrap.min.css" />
 			<add-attribute
 				value="/admin/assets/css/jquery-confirm.min.css" />
+			<add-attribute
+				value="/admin/assets/css/ng-table.min.css" />
 		</put-list-attribute>
 
 		<!-- Default Js -->
@@ -30,9 +32,15 @@
 			<add-attribute value="/admin/assets/js/jquery-ui.js" />
 			<add-attribute
 				value="/admin/assets/js/jquery-confirm.min.js" />
+
 			<add-attribute value="/admin/assets/js/admin.js" />
-			<add-attribute value="/admin/assets/js/dynamic-form.js" />
-			<add-attribute value="/admin/assets/js/ckeditorConfig.js" />
+			<add-attribute value="/admin/assets/js/angular.js" />
+			<add-attribute
+				value="/admin/assets/js/angular-route.js" />
+			<add-attribute value="/admin/assets/js/ng-table.min.js" />
+			<add-attribute value="/admin/assets/js/searchs.js"></add-attribute>
+			<add-attribute
+				value="/admin/assets/js/ckeditorConfig.js" />
 			<add-attribute value="/ckeditor/ckeditor.js" />
 		</put-list-attribute>
 	</definition>

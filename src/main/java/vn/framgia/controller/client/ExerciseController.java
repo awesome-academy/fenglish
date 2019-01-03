@@ -89,7 +89,7 @@ public class ExerciseController extends BaseController {
 		return "/client/exercise/result";
 	}
 	
-	@RequestMapping(value = "/histories/show", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public String showHistory(HttpSession session, Model model) {
 		UserInfo currentUser = (UserInfo) session.getAttribute("current_user");
 		

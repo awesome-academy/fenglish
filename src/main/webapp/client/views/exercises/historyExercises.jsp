@@ -17,7 +17,7 @@
 			<div class="panel-heading">
 				<h3 class="panel-title user-title">Lịch sử làm bài</h3>
 				<a href="${pageContext.request.contextPath}/users/show">Tài khoản</a> <span> | </span> <a
-					href="${pageContext.request.contextPath}/exercises/histories/show">Lịch sử
+					href="${pageContext.request.contextPath}/exercises">Lịch sử
 					làm bài</a>
 			</div>
 

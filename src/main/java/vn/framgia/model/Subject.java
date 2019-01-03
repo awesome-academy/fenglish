@@ -1,7 +1,6 @@
 package vn.framgia.model;
 // Generated Dec 7, 2018 9:59:06 AM by Hibernate Tools 5.3.6.Final
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,8 +11,8 @@ public class Subject implements java.io.Serializable {
 	private Integer id;
 	private String subjectName;
 	private Boolean deleted;
-	private List<Question> questions = new ArrayList<Question>();
-	private List<Exercise> exercises = new ArrayList<Exercise>();
+	private List<Question> questions;
+	private List<Exercise> exercises;
 
 	public Subject() {
 	}

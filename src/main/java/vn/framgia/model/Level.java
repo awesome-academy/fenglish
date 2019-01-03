@@ -12,7 +12,7 @@ public class Level implements java.io.Serializable {
 	private Integer id;
 	private String name;
 	private Boolean deleted;
-	private List<Question> questions = new ArrayList<Question>();
+	private List<Question> questions;
 
 	public Level() {
 	}
@@ -22,7 +22,7 @@ public class Level implements java.io.Serializable {
 		this.deleted = deleted;
 		this.questions = questions;
 	}
-
+	
 	public Integer getId() {
 		return this.id;
 	}

@@ -93,6 +93,15 @@
 		<put-attribute name="body"
 			value="/admin/views/questions/createQuestion.jsp" />
 	</definition>
+	
+	<!-- Question Form Create -->
+	<definition name="/questions/report"
+		extends="/admin/baseLayout">
+		<put-attribute name="title"
+			value="title.question.import.error" />
+		<put-attribute name="body"
+			value="/admin/views/questions/reportErrorImportExcel.jsp" />
+	</definition>
 
 	<!-- List Subject -->
 	<definition name="/subjects/index"

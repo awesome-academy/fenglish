@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Hibernate;
 import org.hibernate.LockMode;
 import org.springframework.beans.BeanUtils;
 
@@ -116,6 +117,8 @@ public class ExerciseServiceImpl extends BaseServiceImpl implements ExerciseServ
 			for (int i = 0; i < exerciseDetails.size(); i++) {
 				exerciseDetails.get(i).setQuestion(questions.get(i));
 			}
+			
+			Hibernate.initialize(exerciseInfo.getSubject());
 			exerciseInfo.setExerciseDetails(exerciseDetails);
 
 			return exerciseInfo;
@@ -135,6 +138,23 @@ public class ExerciseServiceImpl extends BaseServiceImpl implements ExerciseServ
 		} catch (Exception e) {
 			logger.error("Error in saveOrUpdateExercise: " + e.getMessage());
 			throw e;
+		}
+	}
+
+	@Override
+	public List<ExerciseInfo> findListExerciseByIdUser(Integer idUser) {
+		try {
+			List<ExerciseInfo> exerciseInfos = ExerciseConvertHelper
+					.convertExerciseToExerciseInfo(exerciseDAO.findListExerciseByIdUser(idUser));
+
+			for (int i = 0; i < exerciseInfos.size(); i++) {
+				exerciseInfos.set(i, findExerciseById(exerciseInfos.get(i).getId()));
+			}
+
+			return exerciseInfos;
+		} catch (Exception e) {
+			logger.error("Error in findListExerciseByIdUser: " + e.getMessage());
+			return Collections.emptyList();
 		}
 	}
 

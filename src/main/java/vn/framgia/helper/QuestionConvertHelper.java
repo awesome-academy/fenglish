@@ -12,29 +12,25 @@ import vn.framgia.model.Question;
 public class QuestionConvertHelper {
 	private static final Logger logger = Logger.getLogger(QuestionConvertHelper.class);
 	public static QuestionInfo convertQuestionToQuestionInfo(Question question) {
-		QuestionInfo questionInfo = new QuestionInfo();
-
 		try {
+			QuestionInfo questionInfo = new QuestionInfo();
 			BeanUtils.copyProperties(questionInfo, question);
-			questionInfo.setLevelName(question.getLevel().getName());
-			questionInfo.setSubjectName(question.getSubject().getSubjectName());
+			return questionInfo;
 		} catch (Exception e) {
 			logger.error("Error in convertQuestionInfo: " + e.getMessage());
+			return null;
 		}
-
-		return questionInfo;
 	}
 
 	public static Question convertQuestionInfoToQuestion(QuestionInfo questionInfo) {
-		Question question = new Question();
-
 		try {
+			Question question = new Question();
 			BeanUtils.copyProperties(question, questionInfo);
+			return question;
 		} catch (Exception e) {
 			logger.error("Error in convertQuestionInfo: " + e.getMessage());
+			return null;
 		}
-
-		return question;
 	}
 	
 	public static void copyValueQuestionInfoToQuestion(Question question, QuestionInfo questionInfo) {

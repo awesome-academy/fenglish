@@ -32,7 +32,6 @@ public class UserInfo {
 
 	public UserInfo(Integer id, String password, String passwordResetToken, String email, String avatar, String phone,
 			String gender, String birthday, String role, String fullname, GoogleAccount googleAccount) {
-		super();
 		this.id = id;
 		this.password = password;
 		this.passwordResetToken = passwordResetToken;

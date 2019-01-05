@@ -117,7 +117,7 @@ public class ExerciseServiceImpl extends BaseServiceImpl implements ExerciseServ
 			for (int i = 0; i < exerciseDetails.size(); i++) {
 				exerciseDetails.get(i).setQuestion(questions.get(i));
 			}
-			
+
 			Hibernate.initialize(exerciseInfo.getSubject());
 			exerciseInfo.setExerciseDetails(exerciseDetails);
 
@@ -155,6 +155,17 @@ public class ExerciseServiceImpl extends BaseServiceImpl implements ExerciseServ
 		} catch (Exception e) {
 			logger.error("Error in findListExerciseByIdUser: " + e.getMessage());
 			return Collections.emptyList();
+		}
+	}
+
+	@Override
+	public Long countExerciseByMonthAndYear(int month, int year) {
+		try {
+			return exerciseDAO.countExerciseByMonthAndYear(month, year);
+		} catch (Exception e) {
+			// TODO: handle exception
+			logger.error("error in count exercise " + e.getMessage());
+			return null;
 		}
 	}
 

@@ -18,4 +18,6 @@ public interface ExerciseService extends BaseService<Integer, Exercise> {
 	
 	List<ExerciseInfo> findListExerciseByIdUser(Integer idUser);
 	
+	public Long countExerciseByMonthAndYear(int month, int year);
+	
 }

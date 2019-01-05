@@ -85,5 +85,11 @@
 			</bean>
 		</property>
 	</bean>
+	<bean id="StatisticService" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="vn.framgia.service.impl.StatisticServiceImpl">
+			</bean>
+		</property>
+	</bean>
 
 </beans>

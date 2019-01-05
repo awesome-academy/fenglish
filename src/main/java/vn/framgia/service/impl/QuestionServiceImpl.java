@@ -18,7 +18,7 @@ import vn.framgia.service.QuestionService;
 import vn.framgia.service.SubjectService;
 
 public class QuestionServiceImpl extends BaseServiceImpl implements QuestionService {
-	
+
 	private static final Logger logger = Logger.getLogger(QuestionServiceImpl.class);
 
 	@Autowired
@@ -36,13 +36,12 @@ public class QuestionServiceImpl extends BaseServiceImpl implements QuestionServ
 
 	@Override
 	public boolean deleteQuestion(int id) {
-		// TODO Auto-generated method stub
 		try {
 			Question lockEntity = questionDAO.findByIdUsingLock(id, LockMode.PESSIMISTIC_WRITE);
-			questionDAO.delete(lockEntity);
+			questionDAO.deleteQuestion(lockEntity);
 			return true;
 		} catch (Exception e) {
-			// TODO: handle exception
+			logger.error("Error in deleteQuestion: " + e.getMessage());
 			throw e;
 		}
 

@@ -45,15 +45,8 @@ public class QuestionController extends BaseController {
 	@Autowired
 	ExcelApachePoiHelper excelApachePoiHelper;
 
-	@RequestMapping(value = "/page={pageNumber}", method = RequestMethod.GET)
-	public String index(@PathVariable("pageNumber") Integer pageNumber, Model model) {
-
-		List<QuestionInfo> listQuestionInfo = QuestionConvertHelper
-				.convertListQuestionToListQuestionInfo(questionService.listAll(pageSize, pageNumber));
-		model.addAttribute("count", questionService.countListAll());
-		model.addAttribute("pageNumber", pageNumber);
-		model.addAttribute("listQuestion", listQuestionInfo);
-
+	@RequestMapping(method = RequestMethod.GET)
+	public String index(Model model) {
 		return "/questions/index";
 	}
 
@@ -144,8 +137,9 @@ public class QuestionController extends BaseController {
 	}
 
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
-	public @ResponseBody List<QuestionInfo> searchQuestions(@RequestParam(value="name", required = false) String name,
-			@RequestParam(value = "subject", required = false) Integer idSubject, @RequestParam(value = "level", required = false) Integer idLevel) {
+	public @ResponseBody List<QuestionInfo> searchQuestions(@RequestParam(value = "name", required = false) String name,
+			@RequestParam(value = "subject", required = false) Integer idSubject,
+			@RequestParam(value = "level", required = false) Integer idLevel) {
 		return questionService.searchQuestions(name, idSubject, idLevel);
 	}
 }

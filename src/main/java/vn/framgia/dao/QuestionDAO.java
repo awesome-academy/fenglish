@@ -18,4 +18,6 @@ public interface QuestionDAO extends BaseDAO<Integer, Question> {
 	boolean saveListQuestion(List<Question> listQuestion);
 	
 	List<Question> searchQuestions(String name, Integer idSubject, Integer idLevel);
+	
+	void deleteQuestion(Question question);
 }

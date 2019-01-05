@@ -24,7 +24,6 @@ public class ExerciseConvertHelper {
 		}
 	}
 
-	@SuppressWarnings("unused")
 	public static List<Exercise> convertExerciseInfoToExercise(List<ExerciseInfo> exerciseInfos) {
 		try {
 			List<Exercise> exercises = new ArrayList<Exercise>();

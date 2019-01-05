@@ -4,11 +4,11 @@
 
 <spring:url value="/" var="urlHome" />
 <spring:url value="/admin/" var="urlAdmin" />
-<spring:url value="/admin/subjects" var="urlSubject" />
+<spring:url value="/admin/subjects/page=1" var="urlSubject" />
 <spring:url value="/admin/logout" var="logoutActionUrl" />
 <spring:url value="/admin/assets/images/flag-vi.png" var="flagVi" />
 <spring:url value="/admin/assets/images/flag-en.png" var="flagEn" />
-<spring:url value="/admin/questions/page=1" var="listQuestion" />
+<spring:url value="/admin/questions" var="listQuestion" />
 <spring:url value="/admin/questions/new" var="createQuestion" />
 <spring:url value="/admin/posts/page=1" var="listPost" />
 <spring:url value="/admin/posts/new" var="createPost" />

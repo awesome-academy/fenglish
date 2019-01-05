@@ -16,4 +16,6 @@ public interface QuestionDAO extends BaseDAO<Integer, Question> {
 	List<Question> getQuestionByIdExercise(Integer idExercise);
 
 	boolean saveListQuestion(List<Question> listQuestion);
+	
+	List<Question> searchQuestions(String name, Integer idSubject, Integer idLevel);
 }

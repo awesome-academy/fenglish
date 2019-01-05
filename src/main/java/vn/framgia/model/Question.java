@@ -22,14 +22,14 @@ public class Question implements java.io.Serializable {
 	private String option4;
 	private Integer correctAnswer;
 	private Boolean deleted;
-	private List<ExerciseDetail> exerciseDetails = new ArrayList<ExerciseDetail>();
+	private List<ExerciseDetail> exerciseDetails;
 
 	public Question() {
 	}
 
 	public Question(Level level, Subject subject, String question, Integer typeQuestion, String mp3Question,
 			String imgQuestion, String option1, String option2, String option3, String option4, Integer correctAnswer,
-			Boolean deleted, List<ExerciseDetail> exercieDetails) {
+			Boolean deleted, List<ExerciseDetail> exerciseDetails) {
 		this.level = level;
 		this.subject = subject;
 		this.question = question;
@@ -42,7 +42,7 @@ public class Question implements java.io.Serializable {
 		this.option4 = option4;
 		this.correctAnswer = correctAnswer;
 		this.deleted = deleted;
-		this.exerciseDetails = exercieDetails;
+		this.exerciseDetails = exerciseDetails;
 	}
 
 	public Integer getId() {

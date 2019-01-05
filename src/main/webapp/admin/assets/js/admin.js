@@ -168,14 +168,14 @@ $(".btnDeletePost").on("click", function() {
 		content : $("#contentConfirm").val(),
 		buttons : {
 			confirm : {
-			text : $("#btnConfirm").val(),
-			action : function() {
-				$.ajax({
-					type : "DELETE",
-					url : contextUrl + "admin/posts/" + $text,
-					success : function(response) {
-						$.confirm({
-							title : $("#titleMessage").val(),
+				text : $("#btnConfirm").val(),
+				action : function() {
+					$.ajax({
+						type : "DELETE",
+						url : contextUrl + "admin/posts/" + $text,
+						success : function(response) {
+							$.confirm({
+								title : $("#titleMessage").val(),
 								content : $("#deleteSuccess").val(),
 								buttons : {
 									confirm : function() {
@@ -183,6 +183,10 @@ $(".btnDeletePost").on("click", function() {
 									}
 								}
 							});
+						},
+						error : function(xhr, ajaxOptions, thrownError) {
+							alert(xhr.status);
+							alert(thrownError);
 						}
 					});
 				}
@@ -268,14 +272,14 @@ function addMoreInput() {
 
 function getQuestionLabel(id) {
 	switch (id) {
-	case 3:
-		return "C";
-		break;
-	case 4:
-		return "D";
-		break;
-	default:
-		return null;
+		case 3:
+			return "C";
+			break;
+		case 4:
+			return "D";
+			break;
+		default:
+			return null;
 	}
 }
 
@@ -298,34 +302,3 @@ function removeInput(element) {
 	count--;
 	form_group.remove();
 }
-
-/* post */
-$(".btnDeletePost")
-		.on(
-				"click",
-				function() {
-					var $row = $(this).closest("tr");
-					var $text = $row.find(".idPost").text();
-					$
-							.confirm({
-								title : "Confirm",
-								content : "Delete Post?",
-								buttons : {
-									confirm : function() {
-										$
-												.ajax({
-													type : "DELETE",
-													url : "/fenglish/admin/posts/"
-															+ $text,
-													success : function(response) {
-														window.location
-																.replace("/fenglish/admin/posts/page=1");
-													}
-												});
-									},
-									cancel : function() {
-										$.alert("Canceled!");
-									}
-								}
-							});
-				});

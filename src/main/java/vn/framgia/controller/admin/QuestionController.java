@@ -34,7 +34,6 @@ import vn.framgia.service.SubjectService;
 
 @Controller
 @RequestMapping("/admin/questions")
-
 public class QuestionController extends BaseController {
 	private static final int pageSize = 10;
 	@Autowired
@@ -142,5 +141,11 @@ public class QuestionController extends BaseController {
 				mapLevel);
 		questionService.saveListQuestion(listQuestion);
 		return "redirect:/admin/questions/page=1";
+	}
+
+	@RequestMapping(value = "/search", method = RequestMethod.POST)
+	public @ResponseBody List<QuestionInfo> searchQuestions(@RequestParam(value="name", required = false) String name,
+			@RequestParam(value = "subject", required = false) Integer idSubject, @RequestParam(value = "level", required = false) Integer idLevel) {
+		return questionService.searchQuestions(name, idSubject, idLevel);
 	}
 }

@@ -20,13 +20,13 @@ public class CategoryServiceImpl extends BaseServiceImpl implements CategoryServ
 	}
 
 	@Override
-	public Category saveOrUpdate(Category entity){
+	public Category saveOrUpdate(Category entity) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public boolean delete(Category entity){
+	public boolean delete(Category entity) {
 		// TODO Auto-generated method stub
 		return false;
 	}

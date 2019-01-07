@@ -15,4 +15,14 @@ public class CategoryDAOImpl extends GenericDAO<Integer, Category> implements Ca
 		return getSession().createQuery(hql).getResultList();
 	}
 
+	@Override
+	public List<Category> loadCategoryExistPost() {
+		String hql = "SELECT a "
+				+ "FROM Category a "
+				+ "INNER JOIN Post b ON a.id = b.category.id "
+				+ "GROUP BY a.id "
+				+ "HAVING COUNT(b.id) > 0";
+		return getSession().createQuery(hql, Category.class).getResultList();
+	}
+
 }

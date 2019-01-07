@@ -12,7 +12,8 @@
 	</div>
 </div>
 
-<div class="popular page_section">
+<div class="popular page_section" ng-app="PostsApp"
+	ng-controller="PostsController">
 	<div class="container">
 		<div class="row">
 			<div class="col">
@@ -23,44 +24,33 @@
 		</div>
 
 		<div class="row course_boxes">
-			<c:choose>
-				<c:when test="${not empty mapPosts}">
-					<div class="tab-slider--nav">
-						<ul class="tab-slider--tabs">
-							<c:forEach items="${mapPosts}" var="entry" varStatus="count">
-								<c:if test="${not empty entry.value}">
-									<li class="tab-slider--trigger" rel="tab${count.index}">${entry.key}</li>
-								</c:if>
-							</c:forEach>
-						</ul>
-					</div>
-					<div class="tab-slider--container">
-						<c:forEach items="${mapPosts}" var="entry" varStatus="count">
-							<c:if test="${not empty entry.value}">
-								<div id="tab${count.index}" class="tab-slider--body">
-									<c:forEach items="${entry.value}" var="post">
-										<c:if test="${not empty post}">
-											<div class="col-lg-4 course_box">
-												<div class="card">
-													<div class="card-body">
-														<div class="card-title">
-															<a
-																href="${pageContext.request.contextPath}/posts/${post.id}">${post.title}</a>
-														</div>
-													</div>
-												</div>
-											</div>
-										</c:if>
-									</c:forEach>
+			<div class="tab-slider--nav">
+				<ul class="tab-slider--tabs">
+					<li class="tab-slider--trigger" ng-repeat="row in categories"
+						rel='{{"tab" + $index}}' ng-class={active:$first}>{{row.categoryName}}</li>
+				</ul>
+			</div>
+			<div class="tab-slider--container">
+				<div id='{{"tab" + $index}}' class="tab-slider--body"
+					ng-repeat="posts in mapPosts">
+					<div class="col-lg-4 course_box" ng-repeat="post in posts.posts">
+						<div class="card">
+							<div class="card-body">
+								<div class="card-title">
+									<a href="${pageContext.request.contextPath}/posts/{{post.id}}">{{post.title}}</a>
 								</div>
-							</c:if>
-						</c:forEach>
+							</div>
+						</div>
 					</div>
-				</c:when>
-				<c:otherwise>
-					<h3 class="text-center non-data">Chưa có bài đăng nào</h3>
-				</c:otherwise>
-			</c:choose>
+					<ul class="pagination">
+						<li class="disabled" ng-click="previous(posts.id, posts.currentPage)"><a>&laquo;</a></li>
+						<li ng-repeat="page in [] | range:posts.totalPage" ng-class="{active:$first}" ng-click="selectPage(posts.id, page)">
+							<a>{{page}}</a>
+						</li>
+						<li ng-class="{disabled: posts.totalPage == 1}" ng-click="next(posts.id, posts.currentPage)"><a>&raquo;</a></li>
+					</ul>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

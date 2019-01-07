@@ -48,7 +48,6 @@ public class PostsController extends BaseController {
 
 	@RequestMapping(value = "/page={pageNumber}", method = RequestMethod.GET)
 	public String index(@PathVariable("pageNumber") Integer pageNumber, Model model) {
-
 		List<PostInfo> posts = postService.listAll(pageSize, pageNumber);
 		model.addAttribute("count", postService.countListAll());
 		model.addAttribute("pageNumber", pageNumber);
@@ -60,7 +59,6 @@ public class PostsController extends BaseController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseBody
 	public String delete(@PathVariable("id") Integer id, Model model, RedirectAttributes redirectAttributes) {
-
 		if (postService.deletePostById(id)) {
 			redirectAttributes.addFlashAttribute("css", "success");
 			redirectAttributes.addFlashAttribute("msg", "msg.user.deletesuccess");

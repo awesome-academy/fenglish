@@ -40,4 +40,15 @@ public class PostDAOImpl extends GenericDAO<Integer, Post> implements PostDAO {
 				.setFirstResult((page - 1) * maxResult).setMaxResults(maxResult)
 				.getResultList();
 	}
+
+	@Override
+	public Long countPostByCategory(Integer idCategory) {
+		String hql = "SELECT COUNT(a.id) "
+				+ "FROM Post a "
+				+ "INNER JOIN Category b ON a.category.id = b.id "
+				+ "WHERE b.id = :id "
+				+ "GROUP BY b.id "
+				+ "HAVING COUNT(a.id) > 0";
+		return getSession().createQuery(hql, Long.class).setParameter("id", idCategory).getSingleResult();
+	}
 }

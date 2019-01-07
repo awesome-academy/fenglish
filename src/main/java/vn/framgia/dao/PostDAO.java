@@ -14,4 +14,6 @@ public interface PostDAO extends BaseDAO<Integer, Post> {
 	Post findPostById(int id);
 	
 	List<Post> findPostsByCategory(Integer idCategory, Integer page, Integer maxResult);
+	
+	Long countPostByCategory(Integer idCategory);
 }

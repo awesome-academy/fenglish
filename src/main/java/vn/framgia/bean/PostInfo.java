@@ -3,11 +3,14 @@ package vn.framgia.bean;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import vn.framgia.model.Category;
 import vn.framgia.model.PostTag;
 
 public class PostInfo {
 	private Integer id;
+	@JsonIgnore
 	private Category category;
 	private Integer categoryId;
 	private String title;
@@ -15,6 +18,7 @@ public class PostInfo {
 	private Date createdTime;
 	private Integer view;
 	private Boolean deleted;
+	@JsonIgnore
 	private List<PostTag> postTags;
 
 	public PostInfo() {

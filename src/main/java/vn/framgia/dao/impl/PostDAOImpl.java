@@ -29,4 +29,15 @@ public class PostDAOImpl extends GenericDAO<Integer, Post> implements PostDAO {
 	public Post findPostById(int id) {
 		return (Post) getSession().createQuery("from Post q where q.id =:id").setParameter("id", id).getSingleResult();
 	}
+
+	@Override
+	public List<Post> findPostsByCategory(Integer idCategory, Integer page, Integer maxResult) {
+		String hql = "SELECT a "
+				+ "FROM Post a "
+				+ "INNER JOIN Category b ON a.category.id = b.id "
+				+ "WHERE b.id = :id";
+		return getSession().createQuery(hql, Post.class).setParameter("id", idCategory)
+				.setFirstResult((page - 1) * maxResult).setMaxResults(maxResult)
+				.getResultList();
+	}
 }

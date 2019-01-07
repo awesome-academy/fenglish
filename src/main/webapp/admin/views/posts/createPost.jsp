@@ -31,9 +31,9 @@
 				<div class="col-sm-9">
 					<form:select class="form-control" id="element_10" name="element_10"
 						path="categoryId">
-						<c:forEach items="${categoryInfos}" var="categoryInfo"
+						<c:forEach items="${categories}" var="category"
 							varStatus="count">
-							<option value="${categoryInfo.id}">${categoryInfo.categoryName}</option>
+							<option value="${category.id}">${category.categoryName}</option>
 						</c:forEach>
 					</form:select>
 				</div>

@@ -1,7 +1,6 @@
 package vn.framgia.model;
 // Generated Dec 7, 2018 9:59:06 AM by Hibernate Tools 5.3.6.Final
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -17,7 +16,7 @@ public class Post implements java.io.Serializable {
 	private Date createdTime;
 	private Integer view;
 	private Boolean deleted;
-	private List<PostTag> postTags = new ArrayList<PostTag>();
+	private List<PostTag> postTags;
 
 	public Post() {
 	}

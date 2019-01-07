@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.LockMode;
 
 import vn.framgia.bean.CategoryInfo;
 import vn.framgia.helper.CategoryConvertHelper;
@@ -21,23 +22,34 @@ public class CategoryServiceImpl extends BaseServiceImpl implements CategoryServ
 
 	@Override
 	public Category saveOrUpdate(Category entity) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			Category lockObject = categoryDAO.findByIdUsingLock(entity.getId(), LockMode.PESSIMISTIC_WRITE);
+			return categoryDAO.saveOrUpdate(lockObject);
+		} catch (Exception e) {
+			logger.error("Error in saveOrUpdate: " + e.getMessage());
+			throw e;
+		}
 	}
 
 	@Override
 	public boolean delete(Category entity) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			Category lockObject = categoryDAO.findByIdUsingLock(entity.getId(), LockMode.PESSIMISTIC_WRITE);
+			categoryDAO.delete(lockObject);
+			return true;
+		} catch (Exception e) {
+			logger.error("Error in delete: " + e.getMessage());
+			throw e;
+		}
 	}
 
 	@Override
 	public List<CategoryInfo> loadAllCategoryInfo() {
-		// TODO Auto-generated method stub
 		try {
-			return CategoryConvertHelper.convertCategoryToCategoryInfo(categoryDAO.loadAllCategory());
+			List<CategoryInfo> categories = CategoryConvertHelper.convertCategoryToCategoryInfo(categoryDAO.loadAllCategory());
+			return categories;
 		} catch (Exception e) {
-			logger.error("Error in loadAllLevel: " + e.getMessage());
+			logger.error("Error in loadAllCategory: " + e.getMessage());
 			return Collections.emptyList();
 		}
 	}

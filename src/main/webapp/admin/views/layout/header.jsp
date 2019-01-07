@@ -12,6 +12,8 @@
 <spring:url value="/admin/questions/new" var="createQuestion" />
 <spring:url value="/admin/posts/page=1" var="listPost" />
 <spring:url value="/admin/posts/new" var="createPost" />
+<spring:url value="/admin/statistic/exerciseChart" var="exerciseChart" />
+
 <spring:message code="title.admin.language" var="language" />
 <spring:message code="title.admin.menuUser" var="menuUser" />
 <spring:message code="title.admin.menuQuestion" var="menuQuestion" />
@@ -25,10 +27,10 @@
 <spring:message code="title.admin.post.listPostMenu" var="menuListPost" />
 <spring:message code="title.admin.menuSubject" var="menuSubject" />
 <spring:message code="title.admin.logout" var="logout" />
-
+<spring:message code="title.admin.statistic.menu" var="menuStatistic" />
 <nav>
 	<div class="container-fluid">
-		<div class="nav navbar-nav navbar-right" style="margin-right: -5em;">
+		<div class="nav navbar-nav navbar-right">
 			${language}: <a href="?lang=vn"><img src="${flagVi}" alt=""
 				style="width: 15%"></a> | <a href="?lang=en"><img
 				src="${flagEn}" alt="" style="width: 15%"></a>
@@ -57,6 +59,7 @@
 					<li><a href="${listPost}">${menuListPost}</a></li>
 					<li><a href="${createPost}">${menuCreatePost}</a></li>
 				</ul></li>
+			<li><a href="${exerciseChart}">${menuStatistic}</a></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
 			<li><a href="#">Hi, Admin</a></li>

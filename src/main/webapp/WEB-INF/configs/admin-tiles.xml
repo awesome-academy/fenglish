@@ -32,7 +32,6 @@
 			<add-attribute value="/admin/assets/js/jquery-ui.js" />
 			<add-attribute
 				value="/admin/assets/js/jquery-confirm.min.js" />
-
 			<add-attribute value="/admin/assets/js/admin.js" />
 			<add-attribute value="/admin/assets/js/angular.js" />
 			<add-attribute
@@ -42,6 +41,11 @@
 			<add-attribute
 				value="/admin/assets/js/ckeditorConfig.js" />
 			<add-attribute value="/ckeditor/ckeditor.js" />
+			<add-attribute value="/admin/assets/js/canvasjs.min.js" />
+			<add-attribute
+				value="/admin/assets/js/jquery.canvasjs.min.js" />
+			<add-attribute
+				value="/admin/assets/js/userExercisesChart.js" />
 		</put-list-attribute>
 	</definition>
 
@@ -101,7 +105,7 @@
 		<put-attribute name="body"
 			value="/admin/views/questions/createQuestion.jsp" />
 	</definition>
-	
+
 	<!-- Question Form Create -->
 	<definition name="/questions/report"
 		extends="/admin/baseLayout">
@@ -149,5 +153,14 @@
 		<put-attribute name="title" value="title.admin.postEdit" />
 		<put-attribute name="body"
 			value="/admin/views/posts/postForm.jsp" />
+	</definition>
+
+	<!-- Chart exercises -->
+	<definition name="/statistic/exercisesChart"
+		extends="/admin/baseLayout">
+		<put-attribute name="title"
+			value="title.admin.statistic.title" />
+		<put-attribute name="body"
+			value="/admin/views/statistic/exercisesChart.jsp" />
 	</definition>
 </tiles-definitions>

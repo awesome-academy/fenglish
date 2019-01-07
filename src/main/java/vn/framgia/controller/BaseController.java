@@ -10,6 +10,7 @@ import vn.framgia.service.ExerciseService;
 import vn.framgia.service.GoogleUtilsService;
 import vn.framgia.service.PostService;
 import vn.framgia.service.QuestionService;
+import vn.framgia.service.StatisticService;
 import vn.framgia.service.SubjectService;
 import vn.framgia.service.UserService;
 
@@ -35,4 +36,6 @@ public class BaseController {
 	protected PostService postService;
 	@Autowired
 	protected CategoryService categoryService;
+	@Autowired
+	protected StatisticService statisticService;
 }

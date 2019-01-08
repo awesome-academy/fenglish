@@ -53,21 +53,26 @@
 				action="${pageContext.request.contextPath}/admin/questions/search"
 				method="POST">
 				<div class="col-md-4">
-					<input class="form-control" type="text" placeholder="${btnSearch}"
-						name="name" ng-model="name">
+					<input class="form-control" type="text" placeholder="${btnSearch}" id="text_search"
+						name="name" ng-model="name" ng-keyup="complete($event)" autocomplete="off">
+					<ul class="list-group list-complete" ng-model="hide" ng-hide="hide">
+						<li class="list-group-item" ng-repeat="row in questions"
+							ng-click="selectQuestion(row)">{{row.question}}</li>
+					</ul>
 				</div>
-				<div class="col-md-1">
-					<select class="form-control" title="Subject" name="subject"
-						ng-model="subject">
-					</select>
-				</div>
-				<div class="col-md-1">
-					<select class="form-control" title="level" name="level"
-						ng-model="level">
+				<div class="col-md-2">
+					<select class="form-control" name="subject"
+						ng-model="subject" ng-change="changeSubject()">
+						<option value="">--${colSubject}--</option>
+						<option ng-repeat="row in subjects" value="{{row.id}}">{{row.subjectName}}</option>
 					</select>
 				</div>
 				<div class="col-md-2">
-					<button class="btn btn-default">${btnSearch}</button>
+					<select class="form-control" name="level"
+						ng-model="level" ng-change="changeLevel()">
+						<option value="">--${colLevel}--</option>
+						<option ng-repeat="row in levels" value="{{row.id}}">{{row.name}}</option>
+					</select>
 				</div>
 			</form>
 		</div>
@@ -96,48 +101,24 @@
 			<fieldset>
 				<legend> </legend>
 				<table class="table table-hover table-dark"
-					ng-table="tableParams">
-					<%-- <thead class="bg-primary">
-						<tr>
-							<th scope="col">#</th>
-							<th scope="col">${colQuestion}</th>
-							<th scope="col">${colTypeQuestion}</th>
-							<th scope="col">${colMp3Question}</th>
-							<th scope="col">${colImgQuestion}</th>
-							<th scope="col">${colOption1}</th>
-							<th scope="col">${colOption2}</th>
-							<th scope="col">${colOption3}</th>
-							<th scope="col">${colOption4}</th>
-							<th scope="col">${colCorrectAnswer}</th>
-							<th scope="col">${colSubject}</th>
-							<th scope="col">${colLevelId}</th>
-							<th scope="col">${btnEdit}</th>
-							<th scope="col">${btnRemove}</th>
-						</tr>
-					</thead> --%>
-					<!-- <tbody> -->
-						<tr ng-repeat="row in $data">
-							<td data-title="'#'">{{$index + 1}}</td>
-							<td data-title="'${colQuestion}'">{{row.question}}</td>
-							<td data-title="'${colTypeQuestion}'">{{row.typeQuestion}}</td>
-							<td data-title="'${colMp3Question}'">{{row.mp3Question}}</td>
-							<td data-title="'${colImgQuestion}'">{{row.imgQuestion}}</td>
-							<td data-title="'${colOption1}'">{{row.option1}}</td>
-							<td data-title="'${colOption2}'">{{row.option2}}</td>
-							<td data-title="'${colOption3}'">{{row.option3}}</td>
-							<td data-title="'${colOption4}'">{{row.option4}}</td>
-							<td data-title="'${colCorrectAnswer}'">{{row.correctAnswer}}</td>
-							<td data-title="'${colSubject}'">{{row.subjectName}}</td>
-							<td data-title="'${colLevel}'">{{row.levelName}}</td>
-							<td><spring:url value="/admin/questions/${question.id}/edit" var="editActionUrl" />
-								<button class="btn btn-warning" onclick="location.href='${editActionUrl}'">${btnEdit}</button>
-							</td>
-							<td>
-								<button class="btn btn-danger btnDeleteQuestion">${btnRemove}</button>
-							</td>
-							<td class="idQuestion" hidden="true">{{row.id}}</td>
-						</tr>
-					<!-- </tbody> -->
+					ng-table="search.tableParams" id="myTable">
+					<tr ng-repeat="row in $data">
+						<td data-title="'Id'">{{row.id}}</td>
+						<td data-title="'${colQuestion}'">{{row.question}}</td>
+						<td data-title="'${colTypeQuestion}'">{{row.typeQuestion}}</td>
+						<td data-title="'${colOption1}'">{{row.option1}}</td>
+						<td data-title="'${colOption2}'">{{row.option2}}</td>
+						<td data-title="'${colOption3}'">{{row.option3}}</td>
+						<td data-title="'${colOption4}'">{{row.option4}}</td>
+						<td data-title="'${colCorrectAnswer}'">{{row.correctAnswer}}</td>
+						<td>
+							<button class="btn btn-warning" ng-click="editQuestion(row.id)">${btnEdit}</button>
+						</td>
+						<td>
+							<button class="btn btn-danger" ng-click="removeQuestion(row.id)">${btnRemove}</button>
+						</td>
+						<td class="idQuestion" hidden="true">{{row.id}}</td>
+					</tr>
 				</table>
 			</fieldset>
 		</div>

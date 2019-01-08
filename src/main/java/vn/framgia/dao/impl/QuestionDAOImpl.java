@@ -61,7 +61,8 @@ public class QuestionDAOImpl extends GenericDAO<Integer, Question> implements Qu
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Question> getQuestionByIdExercise(Integer idExercise) {
-		String hql = "SELECT a FROM Question a " + "INNER JOIN ExerciseDetail b ON a.id = b.question.id "
+		String hql = "SELECT a FROM Question a "
+				+ "INNER JOIN ExerciseDetail b ON a.id = b.question.id "
 				+ "WHERE a.deleted = 0 AND b.exercise.id = :idExercise";
 		return getSession().createQuery(hql).setParameter("idExercise", idExercise).getResultList();
 	}
@@ -97,20 +98,28 @@ public class QuestionDAOImpl extends GenericDAO<Integer, Question> implements Qu
 		cq.select(root);
 
 		List<Predicate> predicates = new ArrayList<Predicate>();
+		
+		predicates.add(builder.equal(root.get("deleted"), 0));
 
 		if (StringUtils.isNotBlank(name)) {
 			predicates.add(builder.like(root.get("question"), "%" + name + "%"));
 		}
 
-		if (idSubject != null) {
+		if (idSubject != null && idSubject > 0) {
 			predicates.add(builder.equal(subjectJoin.get("id"), idSubject));
 		}
 
-		if (idLevel != null) {
+		if (idLevel != null && idLevel > 0) {
 			predicates.add(builder.equal(levelJoin.get("id"), idLevel));
 		}
 
 		cq.where(predicates.stream().toArray(Predicate[]::new));
 		return cq;
+	}
+
+	@Override
+	public void deleteQuestion(Question question) {
+		String hql = "UPDATE Question a SET a.deleted = 1 WHERE a.id = :id";
+		getSession().createQuery(hql).setParameter("id", question.getId()).executeUpdate();
 	}
 }

@@ -20,6 +20,7 @@
 				value="/admin/assets/css/jquery-confirm.min.css" />
 			<add-attribute
 				value="/admin/assets/css/ng-table.min.css" />
+			<add-attribute value="/admin/assets/css/admin_custom.css" />
 		</put-list-attribute>
 
 		<!-- Default Js -->

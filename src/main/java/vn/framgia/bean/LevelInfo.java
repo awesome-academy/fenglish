@@ -2,13 +2,16 @@ package vn.framgia.bean;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import vn.framgia.model.Question;
 
 public class LevelInfo {
 	private Integer id;
 	private String name;
 	private Boolean deleted;
-	private List<Question> questions = null;
+	@JsonIgnore
+	private List<Question> questions;
 
 	public LevelInfo() {
 	}

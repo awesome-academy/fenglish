@@ -17,12 +17,12 @@ import vn.framgia.bean.SubjectInfo;
 import vn.framgia.controller.BaseController;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/admin/subjects")
 public class SubjectsController extends BaseController {
 
 	private static final int maxResult = 10;
 
-	@RequestMapping(value = "/subjects/page={offset}", method = RequestMethod.GET)
+	@RequestMapping(value = "/page={offset}", method = RequestMethod.GET)
 	public String showSubject(@PathVariable("offset") Integer offset, Model model) {
 
 		List<SubjectInfo> subjectInfos = subjectService.loadSubjects(offset, maxResult);
@@ -33,7 +33,7 @@ public class SubjectsController extends BaseController {
 		return "/subjects/index";
 	}
 
-	@RequestMapping(value = "/subjects/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseBody
 	public String deleteSubject(@PathVariable("id") Integer id) {
 
@@ -44,7 +44,7 @@ public class SubjectsController extends BaseController {
 		return "fail";
 	}
 
-	@RequestMapping(value = "/subjects/create", method = RequestMethod.GET)
+	@RequestMapping(value = "/new", method = RequestMethod.GET)
 	public String showForm(Model model) {
 
 		model.addAttribute("subjectForm", new SubjectInfo());
@@ -52,7 +52,7 @@ public class SubjectsController extends BaseController {
 		return "/subjects/create";
 	}
 
-	@RequestMapping(value = "/subjects/create", method = RequestMethod.POST)
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String createNewSubject(@Valid @ModelAttribute("subjectForm") SubjectInfo subjectForm,
 			BindingResult bindingResult) {
 		
@@ -65,4 +65,9 @@ public class SubjectsController extends BaseController {
 		return "redirect:/admin/subjects";
 	}
 
+	@RequestMapping(method = RequestMethod.GET)
+	public @ResponseBody List<SubjectInfo> loadAllSubject() {
+		return subjectService.loadAllSubject();
+	}
+	
 }

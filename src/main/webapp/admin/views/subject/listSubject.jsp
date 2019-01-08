@@ -38,7 +38,7 @@
 			<fieldset>
 				<legend> </legend>
 				<div style="padding-bottom: 1.5em">
-					<spring:url value="/admin/subjects/create" var="createAction" />
+					<spring:url value="/admin/subjects/new" var="createAction" />
 					<button class="btn btn-success"
 						onclick="location.href='${createAction}'">${btnCreateSubject}</button>
 				</div>

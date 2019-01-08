@@ -1,0 +1,13 @@
+#topLeft {
+	width: 300px;
+	border: solid 1px #e1e1e1;
+	vertical-align: middle;
+	background: #ffdab9;
+	text-align: center;
+}
+
+.chatMenu {
+	position: fixed;
+	bottom: 10px;
+	right: 50px;
+}

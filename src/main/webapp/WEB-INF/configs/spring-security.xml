@@ -31,7 +31,7 @@
 		</authentication-provider>
 	</authentication-manager>
 	<beans:bean id="myAuthenticationSuccessHandler"
-		class="vn.framgia.security.MyAuthenticationSuccessHandler" />
+		class="vn.framgia.config.MyAuthenticationSuccessHandler" />
 	<beans:bean id="encoder"
 		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 </beans:beans>

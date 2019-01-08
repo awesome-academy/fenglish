@@ -68,8 +68,13 @@
 	<c:forEach items="${loginJs}" var="item">
 		<script src="<c:url value='${item}'/>" type="text/javascript"></script>
 	</c:forEach>
-	
+
 	<spring:url value="/" var="contextUrl" />
-	<input id="contextUrl" type="hidden" value="${contextUrl}" >
+	<input id="contextUrl" type="hidden" value="${contextUrl}">
+	<div id="topLeft" class="chatMenu">
+		<textarea id="textAreaMessage" rows="10" cols="30"></textarea>
+		<br /> <br /> <input id="textMessage" type="text" /> <input
+			onclick="sendMessage()" value="Send Message" type="button" />
+	</div>
 </body>
 </html>

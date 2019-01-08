@@ -13,6 +13,8 @@
 
 		<!-- Default Css -->
 		<put-list-attribute name="default-css">
+		<add-attribute
+				value="/client/assets/styles/chat.css" />
 			<add-attribute
 				value="/client/assets/styles/bootstrap4/bootstrap.min.css" />
 			<add-attribute
@@ -46,6 +48,8 @@
 				value="/client/assets/plugins/easing/easing.js" />
 			<add-attribute
 				value="/client/assets/plugins/greensock/ScrollToPlugin.min.js" />
+			<add-attribute
+				value="/client/assets/js/clientChatSocket.js" />
 		</put-list-attribute>
 	</definition>
 
@@ -287,7 +291,7 @@
 		<put-list-attribute name="home-css" />
 		<put-list-attribute name="home-js" />
 	</definition>
-	
+
 	<!-- Exercise Result -->
 	<definition name="/client/exercise/result"
 		extends="/client/baseLayout">
@@ -319,7 +323,7 @@
 		<put-list-attribute name="home-css" />
 		<put-list-attribute name="home-js" />
 	</definition>
-	
+
 	<!-- History my exercise -->
 	<definition name="/client/exercise/history"
 		extends="/client/baseLayout">
@@ -383,5 +387,5 @@
 		<put-list-attribute name="home-css" />
 		<put-list-attribute name="home-js" />
 	</definition>
-	
+
 </tiles-definitions>

@@ -1,4 +1,4 @@
-package vn.framgia.security;
+package vn.framgia.config;
 
 import java.io.IOException;
 

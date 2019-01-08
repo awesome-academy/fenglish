@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+
 <!-- Home -->
 
 <div class="home">
@@ -123,8 +123,7 @@
 			<!-- Popular Course Item -->
 			<div class="col-lg-4 course_box">
 				<div class="card">
-					<img class="card-img-top"
-						src="client/assets/images/course_1.jpg"
+					<img class="card-img-top" src="client/assets/images/course_1.jpg"
 						alt="https://unsplash.com/@kellybrito">
 					<div class="card-body text-center">
 						<div class="card-title">
@@ -152,8 +151,7 @@
 			<!-- Popular Course Item -->
 			<div class="col-lg-4 course_box">
 				<div class="card">
-					<img class="card-img-top"
-						src="client/assets/images/course_2.jpg"
+					<img class="card-img-top" src="client/assets/images/course_2.jpg"
 						alt="https://unsplash.com/@cikstefan">
 					<div class="card-body text-center">
 						<div class="card-title">
@@ -181,8 +179,7 @@
 			<!-- Popular Course Item -->
 			<div class="col-lg-4 course_box">
 				<div class="card">
-					<img class="card-img-top"
-						src="client/assets/images/course_3.jpg"
+					<img class="card-img-top" src="client/assets/images/course_3.jpg"
 						alt="https://unsplash.com/@dsmacinnes">
 					<div class="card-body text-center">
 						<div class="card-title">
@@ -394,8 +391,7 @@
 									finibus tortor fermentum.</p>
 								<div class="testimonial_user">
 									<div class="testimonial_image mx-auto">
-										<img src="client/assets/images/testimonials_user.jpg"
-											alt="">
+										<img src="client/assets/images/testimonials_user.jpg" alt="">
 									</div>
 									<div class="testimonial_name">james cooper</div>
 									<div class="testimonial_title">Graduate Student</div>
@@ -415,8 +411,7 @@
 									finibus tortor fermentum.</p>
 								<div class="testimonial_user">
 									<div class="testimonial_image mx-auto">
-										<img src="client/assets/images/testimonials_user.jpg"
-											alt="">
+										<img src="client/assets/images/testimonials_user.jpg" alt="">
 									</div>
 									<div class="testimonial_name">james cooper</div>
 									<div class="testimonial_title">Graduate Student</div>
@@ -436,8 +431,7 @@
 									finibus tortor fermentum.</p>
 								<div class="testimonial_user">
 									<div class="testimonial_image mx-auto">
-										<img src="client/assets/images/testimonials_user.jpg"
-											alt="">
+										<img src="client/assets/images/testimonials_user.jpg" alt="">
 									</div>
 									<div class="testimonial_name">james cooper</div>
 									<div class="testimonial_title">Graduate Student</div>
@@ -579,6 +573,5 @@
 			</div>
 
 		</div>
-
 	</div>
 </div>

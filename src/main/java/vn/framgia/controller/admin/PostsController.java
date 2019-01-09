@@ -18,7 +18,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import vn.framgia.bean.CategoryInfo;
 import vn.framgia.bean.PostInfo;
 import vn.framgia.controller.BaseController;
-import vn.framgia.helper.PostConvertHelper;
 
 @Controller
 @RequestMapping("/admin/posts")
@@ -29,8 +28,8 @@ public class PostsController extends BaseController {
 	public String newPost(Model model) {
 		PostInfo postInfo = new PostInfo();
 		model.addAttribute("postForm", postInfo);
-		List<CategoryInfo> categoryInfos = categoryService.loadAllCategoryInfo();
-		model.addAttribute("categoryInfos", categoryInfos);
+		List<CategoryInfo> categories = categoryService.loadAllCategoryInfo();
+		model.addAttribute("categories", categories);
 		return "/posts/create";
 	}
 
@@ -50,11 +49,10 @@ public class PostsController extends BaseController {
 	@RequestMapping(value = "/page={pageNumber}", method = RequestMethod.GET)
 	public String index(@PathVariable("pageNumber") Integer pageNumber, Model model) {
 
-		List<PostInfo> listPostInfo = PostConvertHelper
-				.convertListPostToListPostInfo(postService.listAll(pageSize, pageNumber));
+		List<PostInfo> posts = postService.listAll(pageSize, pageNumber);
 		model.addAttribute("count", postService.countListAll());
 		model.addAttribute("pageNumber", pageNumber);
-		model.addAttribute("posts", listPostInfo);
+		model.addAttribute("posts", posts);
 
 		return "/posts/index";
 	}
@@ -76,10 +74,10 @@ public class PostsController extends BaseController {
 
 	@RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
 	public String edit(@PathVariable("id") Integer id, Model model) {
-		PostInfo postInfo = PostConvertHelper.convertSinglePostToPostInfo(postService.findPostById(id));
-		List<CategoryInfo> categoryInfos = categoryService.loadAllCategoryInfo();
+		PostInfo postInfo = postService.findPostById(id);
+		List<CategoryInfo> categories = categoryService.loadAllCategoryInfo();
 		model.addAttribute("postForm", postInfo);
-		model.addAttribute("categoryInfos", categoryInfos);
+		model.addAttribute("categories", categories);
 		return "/posts/edit";
 	}
 

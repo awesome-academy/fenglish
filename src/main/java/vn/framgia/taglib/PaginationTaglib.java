@@ -33,19 +33,19 @@ public class PaginationTaglib extends SimpleTagSupport {
 			out.write("<nav>");
 			out.write("<ul class=\"pagination\">");
 
-			if (offset * 10 <= steps)
+			if (offset * steps <= count)
 				out.write(constructLink(0, previous, "disabled", true));
 			else
 				out.write(constructLink(offset - 1, previous, null, false));
 
 			for (int itr = 0; itr < count; itr += steps) {
-				if (offset == itr / 10 + 1)
-					out.write(constructLink(itr / 10 + 1, String.valueOf(itr / 10 + 1), "active", true));
+				if (offset == itr / steps + 1)
+					out.write(constructLink(itr / steps + 1, String.valueOf(itr / steps + 1), "active", true));
 				else
-					out.write(constructLink(itr / 10 + 1, String.valueOf(itr / 10 + 1), null, false));
+					out.write(constructLink(itr / steps + 1, String.valueOf(itr / steps + 1), null, false));
 			}
 
-			if ((offset - 1) * 10 + steps >= count)
+			if (offset * steps >= count)
 				out.write(constructLink(1, next, "disabled", true));
 			else
 				out.write(constructLink(offset + 1, next, null, false));
@@ -65,7 +65,7 @@ public class PaginationTaglib extends SimpleTagSupport {
 			link.append("\"");
 		}
 		if (disabled)
-			link.append(">").append("<a href=\"#\">" + text + "</a></li>");
+			link.append(">").append("<a href=\"\">" + text + "</a></li>");
 		else
 			link.append(">").append("<a href=\"" + uri + "/page=" + page + "/\">" + text + "</a></li>");
 		return link.toString();

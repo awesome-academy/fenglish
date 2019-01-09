@@ -352,4 +352,36 @@
 		<put-list-attribute name="home-js" />
 	</definition>
 	
+	<!-- List Post -->
+	<definition name="/client/posts"
+		extends="/client/baseLayout">
+		<put-attribute name="title" value="Bài đăng" />
+		<put-attribute name="body"
+			value="/client/views/posts/listPost.jsp" />
+		<put-attribute name="footer"
+			value="/client/views/layout/elementFooter.jsp" />
+
+		<!-- Login Css -->
+		<put-list-attribute name="login-css">
+			<add-attribute
+				value="/client/assets/styles/elements_styles.css" />
+			<add-attribute
+				value="/client/assets/styles/elements_responsive.css" />
+			<add-attribute
+				value="/client/assets/styles/jquery-ui.css" />
+			<add-attribute value="/client/assets/styles/courses_styles.css" />
+			<add-attribute value="/client/assets/styles/courses_responsive.css" />
+		</put-list-attribute>
+
+		<!-- Login Js -->
+		<put-list-attribute name="login-js">
+			<add-attribute value="/client/assets/plugins/progressbar/progressbar.min.js" />
+			<add-attribute value="/client/assets/js/elements_custom.js" />
+			<add-attribute value="/client/assets/js/courses_custom.js" />
+		</put-list-attribute>
+
+		<put-list-attribute name="home-css" />
+		<put-list-attribute name="home-js" />
+	</definition>
+	
 </tiles-definitions>

@@ -8,5 +8,7 @@ import vn.framgia.model.Category;
 public interface CategoryService extends BaseService<Integer, Category> {
 
 	List<CategoryInfo> loadAllCategoryInfo();
+	
+	List<CategoryInfo> loadAllCategoryExistPost();
 
 }

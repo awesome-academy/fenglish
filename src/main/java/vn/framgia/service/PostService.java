@@ -18,6 +18,7 @@ public interface PostService extends BaseService<Integer, Post>{
 	
 	PostInfo findPostById(int id);
 	
-	Map<String, List<PostInfo>> loadPosts(Integer page, Integer max);
+	List<PostInfo> loadPostsByCategory(Integer idCategory, Integer page, Integer maxResult);
 	
+	Map<Integer, Long> countPostByCategory();
 }

@@ -54,4 +54,14 @@ public class CategoryServiceImpl extends BaseServiceImpl implements CategoryServ
 		}
 	}
 
+	@Override
+	public List<CategoryInfo> loadAllCategoryExistPost() {
+		try {
+			return CategoryConvertHelper.convertCategoryToCategoryInfo(categoryDAO.loadCategoryExistPost());
+		} catch (Exception e) {
+			logger.error("Error in loadAllCategoryExistPost: " + e.getMessage());
+			return Collections.emptyList();
+		}
+	}
+
 }

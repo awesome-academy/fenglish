@@ -179,17 +179,4 @@ $(document).ready(function()
 			});
 		}
 	}
-	
-	$(".tab-slider--body").hide();
-	$(".tab-slider--trigger:first").addClass("active");
-	$(".tab-slider--body:first").show();
-	
-	$(".tab-slider--nav li").click(function() {
-		$(".tab-slider--body").hide();
-		var activeTab = $(this).attr("rel");
-		$("#"+activeTab).fadeIn();
-		$(".tab-slider--nav li").removeClass("active");
-		$(this).addClass("active");
-		$(this).fadeIn();
-	});
 });

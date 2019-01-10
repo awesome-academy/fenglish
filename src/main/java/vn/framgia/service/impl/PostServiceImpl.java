@@ -20,12 +20,12 @@ import vn.framgia.service.CategoryService;
 import vn.framgia.service.PostService;
 
 public class PostServiceImpl extends BaseServiceImpl implements PostService {
-	
+
 	private static final Logger logger = Logger.getLogger(PostServiceImpl.class);
-	
+
 	@Autowired
 	CategoryService categoryService;
-	
+
 	@Override
 	public Post findById(Serializable key) {
 		try {
@@ -121,18 +121,26 @@ public class PostServiceImpl extends BaseServiceImpl implements PostService {
 	}
 
 	@Override
-	public Map<String, List<PostInfo>> loadPosts(Integer page, Integer maxResult) {
+	public List<PostInfo> loadPostsByCategory(Integer idCategory, Integer page, Integer maxResult) {
 		try {
-			Map<String, List<PostInfo>> mapPosts = new HashMap<String, List<PostInfo>>();
-			
-			for(CategoryInfo category: categoryService.loadAllCategoryInfo()) {
-				mapPosts.put(category.getCategoryName(),
-						PostConvertHelper.convertListPostToListPostInfo(postDAO.findPostsByCategory(category.getId(), page, maxResult)));
-			}
-			
-			return mapPosts;
+			return PostConvertHelper.convertListPostToListPostInfo(postDAO.findPostsByCategory(idCategory, page, maxResult));
 		} catch (Exception e) {
-			logger.error("Error in loadPosts: " + e.getMessage());
+			logger.error("Error in loadPostsByCategory: " + e.getMessage());
+			return Collections.emptyList();
+		}
+	}
+
+	@Override
+	public Map<Integer, Long> countPostByCategory() {
+		try {
+			Map<Integer, Long> counts = new HashMap<Integer, Long>();
+			
+			for(CategoryInfo category: categoryService.loadAllCategoryExistPost()) {
+				counts.put(category.getId(), postDAO.countPostByCategory(category.getId()));
+			}
+			return counts;
+		} catch (Exception e) {
+			logger.error("Error in countPostByCategory: " + e.getMessage());
 			return Collections.emptyMap();
 		}
 	}

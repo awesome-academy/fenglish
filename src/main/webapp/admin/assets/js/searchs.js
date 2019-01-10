@@ -108,6 +108,7 @@
 	app.controller("searchController", function($scope, $window, NgTableParams, MyService) {
 		var self = this;
 		var per_page = 5;
+		$scope.currentPage = 1;
 		$scope.questions = [];
 		$scope.hide = true;
 		

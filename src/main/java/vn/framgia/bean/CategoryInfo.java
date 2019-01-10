@@ -2,12 +2,15 @@ package vn.framgia.bean;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import vn.framgia.model.Post;
 
 public class CategoryInfo {
 	private Integer id;
 	private String categoryName;
 	private Boolean status;
+	@JsonIgnore
 	private List<Post> posts;
 
 	public CategoryInfo() {

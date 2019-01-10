@@ -1,0 +1,49 @@
+.post_content {
+	color: #000;
+	word-wrap: break-word;
+	padding-bottom: 20px;
+	line-height: 1.6em;
+	word-wrap: break-word;
+}
+
+.post_content p {
+	color: #000;
+}
+
+.block-comment-face {
+	background: #fff;
+	border: 1px solid #ccc;
+	padding: 30px;
+	margin-top: 15px;
+}
+
+.button-share-fb {
+	vertical-align: bottom;
+	width: 69px;
+	height: 20px;
+}
+
+.button-like-fb {
+	vertical-align: bottom;
+	width: 61px;
+	height: 20px;
+}
+
+.button-share-g {
+	vertical-align: bottom;
+	width: 61px;
+	height: 20px;
+	margin-top: 5px;
+}
+
+.iframe-like-fb {
+	border: none;
+	visibility: visible;
+	width: 61px;
+	height: 20px;
+}
+
+.iframe-share-fb {
+	border: none;
+	overflow: hidden
+}

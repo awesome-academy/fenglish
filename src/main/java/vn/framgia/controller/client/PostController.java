@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,7 +19,7 @@ import vn.framgia.controller.BaseController;
 @RequestMapping("/posts")
 public class PostController extends BaseController {
 
-	@RequestMapping(method = RequestMethod.GET)
+	@GetMapping
 	public String showPosts(Model model) {
 		return "/client/posts";
 	}
@@ -33,5 +34,11 @@ public class PostController extends BaseController {
 	public @ResponseBody Map<Integer, Long> countPostByCategory() {
 		return postService.countPostByCategory();
 	}
-
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public String viewPostDetail(@PathVariable("id") Integer id, Model model) {
+		model.addAttribute("post", postService.findPostById(id));
+		return "/client/post/detail";
+	}
+	
 }

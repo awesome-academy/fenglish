@@ -1,7 +1,7 @@
 var websocket = new WebSocket("ws://localhost:8080/fenglish/chat");
 var listUser = [];
+var uri = $('#uri').val();
 websocket.onopen = function(message) {
-	processOpen(message);
 };
 websocket.onmessage = function(message) {
 	processMessage(message);
@@ -48,10 +48,9 @@ function processMessage(message) {
 		$("#buttonchat").append(`<button class="tablinks" onclick="openChat(event, '`+data.from+`')">`+data.from+`</button>`)
 		var html = 
 			`<div id="`+data.from+`" class="tabcontent">
-				<h3>London</h3>
-				<textarea id="mess_`+index+`" rows="10" cols="50"></textarea>
-				<br /> <br /> <input id="textMessage" type="text" /> <input
-					onclick="sendMessage(`+data.from+`)" value="Send Message" type="button" />
+				<textarea id="mess_`+index+`" rows="10" cols="50" readonly></textarea>
+				<br /> <br /> <input id="textMessage_`+index+`" type="text" /> <input
+					onclick="sendMessage('`+data.from+`')" value="Send Message" type="button" />
 			</div>`
 		$("#contentChat").append(html);
 		$("#mess_"+index).append(data.content + "\n");
@@ -71,12 +70,16 @@ function processMessage(message) {
 //}
 
 function sendMessage(userName) {
+	var index;
+	index = listUser.indexOf(userName);
+	var box = $("#textMessage_"+index);
 	if (typeof websocket != 'undefined'
 			&& websocket.readyState == WebSocket.OPEN) {
 		websocket.send(JSON.stringify({
 			from : userName,
-			content : textMessage.value
+			content : box.val()
 		}));
-		textMessage.value = "";
+		$("#mess_"+index).append("you: " +box.val()+ "\n");
+		box.val("");
 	}
 }

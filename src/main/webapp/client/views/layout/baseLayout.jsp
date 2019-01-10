@@ -71,10 +71,15 @@
 
 	<spring:url value="/" var="contextUrl" />
 	<input id="contextUrl" type="hidden" value="${contextUrl}">
-	<div id="topLeft" class="chatMenu">
-		<textarea id="textAreaMessage" rows="10" cols="30"></textarea>
-		<br /> <br /> <input id="textMessage" type="text" /> <input
-			onclick="sendMessage()" value="Send Message" type="button" />
-	</div>
+	<c:if test="${userName != null && !isAdmin}">
+		<div id="topLeft" class="chatMenu">
+			<div class="head" id="chatButonMeassage">Chat with Admin</div>
+			<div id="chatAreamessage" style="display: none">
+				<textarea id="textAreaMessage" rows="10" cols="30" readonly></textarea>
+				<br /> <br /> <input id="textMessage" type="text" /> <input
+					onclick="sendMessage()" value="Send Message" type="button" />
+			</div>
+		</div>
+	</c:if>
 </body>
 </html>

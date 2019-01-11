@@ -1,4 +1,5 @@
-var websocket = new WebSocket("ws://localhost:8080/fenglish/chat");
+var chatSocketUrl = $("#chatSocketUrl").val();
+var websocket = new WebSocket(chatSocketUrl);
 var listUser = [];
 var uri = $('#uri').val();
 websocket.onopen = function(message) {
@@ -13,9 +14,9 @@ websocket.onerror = function(message) {
 	processError(message);
 };
 
-//function processOpen(message) {
-//	textAreaMessage.value += "Server connect... \n";
-//}
+// function processOpen(message) {
+// textAreaMessage.value += "Server connect... \n";
+// }
 function openChat(evt, chatName) {
 	// Declare all variables
 	var i, tabcontent, tablinks;
@@ -62,12 +63,12 @@ function processMessage(message) {
 	}
 	
 }
-//function processClose(message) {
-//	textAreaMessage.value += "Server Disconnect... \n";
-//}
-//function processError(message) {
-//	textAreaMessage.value += "Error... " + message + " \n";
-//}
+// function processClose(message) {
+// textAreaMessage.value += "Server Disconnect... \n";
+// }
+// function processError(message) {
+// textAreaMessage.value += "Error... " + message + " \n";
+// }
 
 function sendMessage(userName) {
 	var index;

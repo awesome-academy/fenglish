@@ -176,4 +176,12 @@
 		<put-attribute name="body"
 			value="/admin/views/chatview/chatView.jsp" />
 	</definition>
+	
+	<definition name="/mail/mailSentWeekly"
+		extends="/admin/baseLayout">
+		<put-attribute name="title"
+			value="title.admin.mail.title" />
+		<put-attribute name="body"
+			value="/admin/views/mails/mailSendWeekly.jsp" />
+	</definition>
 </tiles-definitions>

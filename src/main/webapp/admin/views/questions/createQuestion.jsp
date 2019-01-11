@@ -15,12 +15,14 @@
 <spring:message code="title.question.correctAnswer"
 	var="colCorrectAnswer" />
 <spring:message code="title.question.levelId" var="colLevelId" />
+<spring:message code="hibernate.dialect" var="abc" />
 <spring:message code="title.question.subject" var="colSubject" />
 <spring:message code="title.admin.menuCreateQuestion"
 	var="questionCreate" />
 
 <div class="container" style="margin: 0 auto;">
 	<h1>${questionCreate}</h1>
+	<h2>${abc}</h2>
 	<br />
 	<div class="col-md-6" style="margin: 0 auto;">
 		<spring:url value="/admin/questions/create" var="questionActionUrl" />

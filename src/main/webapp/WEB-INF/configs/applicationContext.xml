@@ -54,6 +54,8 @@
 				<value>classpath:google-login</value>
 				<value>classpath:mailconfig</value>
 				<value>classpath:cloudinary-storage</value>
+				<value>classpath:activemq-config</value>
+				<value>classpath:fenglish-global-variable</value>
 			</list>
 		</property>
 		<property name="fallbackToSystemLocale" value="false" />

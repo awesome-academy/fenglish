@@ -28,4 +28,9 @@ public interface UserService extends BaseService<Integer, User> {
 	boolean updateConfirmRegister(String email, String token);
 	
 	UserInfo updateUserAndChangeAvatar(UserInfo userInfo, MultipartFile file);
+	
+	UserInfo findUserByFacebookId(String facebookId);
+	
+	UserInfo createNewFBSocial(com.restfb.types.User userFB);
+	
 }

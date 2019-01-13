@@ -49,6 +49,7 @@
 				value="/client/assets/plugins/greensock/ScrollToPlugin.min.js" />
 			<add-attribute
 				value="/client/assets/js/clientChatSocket.js" />
+			<add-attribute value="/client/assets/js/login_fb.js" />
 		</put-list-attribute>
 	</definition>
 

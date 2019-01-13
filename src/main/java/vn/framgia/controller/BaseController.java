@@ -7,6 +7,7 @@ import vn.framgia.service.CategoryService;
 import vn.framgia.service.EmailService;
 import vn.framgia.service.ExerciseDetailService;
 import vn.framgia.service.ExerciseService;
+import vn.framgia.service.FacebookAccountService;
 import vn.framgia.service.GoogleUtilsService;
 import vn.framgia.service.LevelService;
 import vn.framgia.service.PostService;
@@ -41,4 +42,7 @@ public class BaseController {
 	protected StatisticService statisticService;
 	@Autowired
 	protected LevelService levelService;
+	@Autowired
+	protected FacebookAccountService fbService;
+	
 }

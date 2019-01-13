@@ -18,4 +18,6 @@ public interface UserDAO extends BaseDAO<Integer, User> {
 	boolean deleteUser(User user);
 	
 	User findUserByEmailAndUsingLock(String email, LockModeType lockMode);
+	
+	User findByFacebookId(String facebookId);
 }

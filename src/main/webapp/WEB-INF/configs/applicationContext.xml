@@ -56,6 +56,7 @@
 				<value>classpath:cloudinary-storage</value>
 				<value>classpath:activemq-config</value>
 				<value>classpath:fenglish-global-variable</value>
+				<value>classpath:facebook-api</value>
 			</list>
 		</property>
 		<property name="fallbackToSystemLocale" value="false" />
@@ -69,5 +70,4 @@
 	<bean id="fileUploadHelper"
 		class="vn.framgia.helper.FileUploadHelper">
 	</bean>
-
 </beans>

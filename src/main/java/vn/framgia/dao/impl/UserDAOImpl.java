@@ -80,4 +80,15 @@ public class UserDAOImpl extends GenericDAO<Integer, User> implements UserDAO {
 		return (User) getSession().createQuery(hql).setParameter("email", email).setLockMode(lockMode).getSingleResult();
 	}
 
+	@Override
+	public User findByFacebookId(String facebookId) {
+		String hql = "SELECT a "
+				+ "FROM User a "
+				+ "INNER JOIN FacebookAccount b ON a.id = b.user.id "
+				+ "WHERE a.deleted = 0 "
+				+ "AND b.facebookId = :facebookId";
+		
+		return getSession().createQuery(hql, User.class).setParameter("facebookId", facebookId).getSingleResult();
+	}
+
 }

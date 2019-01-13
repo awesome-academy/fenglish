@@ -59,24 +59,25 @@ public class IndexController extends BaseController {
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		boolean hasAdminRole = authentication.getAuthorities().stream()
 				.anyMatch(r -> r.getAuthority().equals(ROLES.ADMIN.toString()));
-		
+
 		session.setAttribute("userName", authentication.getName());
 		session.setAttribute("isAdmin", hasAdminRole);
-		
+
 		if (hasAdminRole) {
 			return "redirect:/admin";
 		}
-		
+
 		return "redirect:/";
 	}
 
-	private UsernamePasswordAuthenticationToken buildAuthentication(GoogleAccountInfo googleAccountInfo, HttpServletRequest request) {
+	private UsernamePasswordAuthenticationToken buildAuthentication(GoogleAccountInfo googleAccountInfo,
+			HttpServletRequest request) {
 		UserDetails userDetail = googleUtilsService.buildUser(googleAccountInfo);
 		UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetail, null,
 				userDetail.getAuthorities());
 		authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-		
+
 		return authentication;
 	}
-	
+
 }

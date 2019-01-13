@@ -3,6 +3,7 @@ package vn.framgia.service.impl;
 import vn.framgia.dao.CategoryDAO;
 import vn.framgia.dao.ExerciseDAO;
 import vn.framgia.dao.ExerciseDetailDAO;
+import vn.framgia.dao.FacebookAccountDAO;
 import vn.framgia.dao.LevelDAO;
 import vn.framgia.dao.PostDAO;
 import vn.framgia.dao.QuestionDAO;
@@ -19,6 +20,7 @@ public class BaseServiceImpl {
 	protected LevelDAO levelDAO;
 	protected PostDAO postDAO;
 	protected CategoryDAO categoryDAO;
+	protected FacebookAccountDAO facebookAccountDAO;
 
 	public UserDAO getUserDAO() {
 		return userDAO;
@@ -82,6 +84,14 @@ public class BaseServiceImpl {
 
 	public void setCategoryDAO(CategoryDAO categoryDAO) {
 		this.categoryDAO = categoryDAO;
+	}
+
+	public FacebookAccountDAO getFacebookAccountDAO() {
+		return facebookAccountDAO;
+	}
+
+	public void setFacebookAccountDAO(FacebookAccountDAO facebookAccountDAO) {
+		this.facebookAccountDAO = facebookAccountDAO;
 	}
 
 }

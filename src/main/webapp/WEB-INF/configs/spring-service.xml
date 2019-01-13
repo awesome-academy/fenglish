@@ -8,15 +8,14 @@
 		<property name="target">
 			<bean class="vn.framgia.service.impl.UserServiceImpl">
 				<property name="userDAO" ref="userDAO" />
+				<property name="facebookAccountDAO" ref="facebookAccountDAO" />
 			</bean>
 		</property>
 	</bean>
 
 	<bean id="userDetailsServiceImpl" parent="baseTransactionProxy">
 		<property name="target">
-			<bean class="vn.framgia.service.impl.UserDetailsServiceImpl">
-				<!-- <property name="userDAO" ref="StudentDAO" /> -->
-			</bean>
+			<bean class="vn.framgia.service.impl.UserDetailsServiceImpl" />
 		</property>
 	</bean>
 
@@ -78,6 +77,7 @@
 			</bean>
 		</property>
 	</bean>
+	
 	<bean id="CategoryService" parent="baseTransactionProxy">
 		<property name="target">
 			<bean class="vn.framgia.service.impl.CategoryServiceImpl">
@@ -85,9 +85,18 @@
 			</bean>
 		</property>
 	</bean>
+	
 	<bean id="StatisticService" parent="baseTransactionProxy">
 		<property name="target">
 			<bean class="vn.framgia.service.impl.StatisticServiceImpl">
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="facebookAccountService" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="vn.framgia.service.impl.FacebookAccountServiceImpl">
+				<property name="facebookAccountDAO" ref="facebookAccountDAO" />
 			</bean>
 		</property>
 	</bean>

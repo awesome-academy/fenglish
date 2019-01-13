@@ -16,6 +16,7 @@ import vn.framgia.bean.UserInfo;
 import vn.framgia.helper.FileUploadHelper;
 import vn.framgia.helper.ROLES;
 import vn.framgia.helper.UserConvertHelper;
+import vn.framgia.model.FacebookAccount;
 import vn.framgia.model.User;
 import vn.framgia.service.UserService;
 
@@ -172,6 +173,40 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 			return UserConvertHelper.convertSingleUserToUserInfo(user);
 		} catch (Exception e) {
 			logger.error("Error in updateUserAndChangeAvatar: " + e.getMessage());
+			throw e;
+		}
+	}
+
+	@Override
+	public UserInfo findUserByFacebookId(String facebookId) {
+		try {
+			return UserConvertHelper.convertSingleUserToUserInfo(userDAO.findByFacebookId(facebookId));
+		} catch (Exception e) {
+			logger.error("Error in findUserByFacebookId: " + e.getMessage());
+			return null;
+		}
+	}
+
+	@Override
+	public UserInfo createNewFBSocial(com.restfb.types.User userFB) {
+		try {
+			// Create new User
+			User user = new User();
+			user.setEmail("");
+			user.setFullname(userFB.getName());
+			user.setGender(false);
+			user.setRole(ROLES.USER.toString());
+			user = userDAO.saveOrUpdate(user);
+			
+			// Create new FacebookAccount
+			FacebookAccount fbAccount = new FacebookAccount();
+			fbAccount.setUser(user);
+			fbAccount.setFacebookId(userFB.getId());
+			facebookAccountDAO.saveOrUpdate(fbAccount);
+			
+			return UserConvertHelper.convertSingleUserToUserInfo(user);
+		} catch (Exception e) {
+			logger.error("Error in createNewFBSocial: " + e.getMessage());
 			throw e;
 		}
 	}

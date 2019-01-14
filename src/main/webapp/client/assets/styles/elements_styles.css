@@ -686,8 +686,7 @@ section {
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center center;
-	background-image:
-		url("/fenglish/client/assets/images/contact_background.jpg");
+	background-image: url("../images/contact_background.jpg");
 }
 
 .home_content {

@@ -68,7 +68,8 @@
 	<c:forEach items="${loginJs}" var="item">
 		<script src="<c:url value='${item}'/>" type="text/javascript"></script>
 	</c:forEach>
-
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+	
 	<spring:url value="/" var="contextUrl" />
 	<input id="contextUrl" type="hidden" value="${contextUrl}">
 	<c:if test="${userName != null && !isAdmin}">

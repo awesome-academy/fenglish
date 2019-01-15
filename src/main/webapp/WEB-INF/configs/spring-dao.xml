@@ -52,4 +52,9 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
+	
+	<bean id="facebookAccountDAO" class="vn.framgia.dao.impl.FacebookAccountDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
 </beans>

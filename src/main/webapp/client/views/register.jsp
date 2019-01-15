@@ -20,32 +20,26 @@
 
 				<div
 					class="search_section d-flex flex-column align-items-center justify-content-center">
-					<div class="search_background"
-						style="background-image: url(views/client/assets/images/search_background.jpg);"></div>
+					<div class="search_background"></div>
 					<div class="search_content text-center">
 						<h1 class="search_title">Ghi Danh</h1>
 						<spring:url var="register" value="/register" />
 						<form name="registerForm" id="register_form" class="search_form"
 							action="${register}" modelAttribute="userInfo" method="post">
-							<input id="search_form_name" class="input_field search_form_name"
-								type="text" pattern="[^ @]*@[^ @]*" required="required"
+							<input class="input_field search_form_name" type="text"
+								pattern="[^ @]*@[^ @]*" required="required"
 								data-error="Vui lòng điền tên đăng nhập" type="email"
 								name="email" placeholder="Enter your email" /> <input
-								id="search_form_category"
 								class="input_field search_form_category" type="password"
-								placeholder="password" name="password" id="password" /> <!-- <input
-								id="search_form_category"
-								class="input_field search_form_category" type="password"
-								placeholder="confirm password" name="password"
-								id="confirm_password" /> --> <input id="search_form_name"
+								placeholder="password" name="password" id="password" /> <input
 								class="input_field search_form_name" type="text"
 								required="required" data-error="Vui lòng điền tên đăng nhập"
 								type="email" name="fullname" placeholder="FullName" /> <input
 								id="search_form_name" class="input_field search_form_name"
 								type="text" required="required"
 								data-error="Vui lòng điền tên đăng nhập" type="email"
-								name="phone" placeholder="Phone" /> <br />
-							<br /> <select class="input_field search_form_name" name="gender">
+								name="phone" placeholder="Phone" /> <br /> <br /> <select
+								class="input_field search_form_name" name="gender">
 								<option value="null">--Select gender--</option>
 								<option value="0">Female</option>
 								<option value="1">Male</option>

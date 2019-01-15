@@ -81,6 +81,10 @@ public class UserConvertHelper {
 	}
 
 	private static String getGenderToString(Boolean gender) {
+		
+		if (gender == null) {
+			return null;
+		}
 
 		if (gender == true)
 			return "Nam";

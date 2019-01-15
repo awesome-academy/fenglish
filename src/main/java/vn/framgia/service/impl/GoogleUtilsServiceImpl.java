@@ -25,7 +25,6 @@ import vn.framgia.service.UserService;
 
 @Component
 @PropertySource(ignoreResourceNotFound = true, value = "classpath:google-login.properties")
-
 public class GoogleUtilsServiceImpl extends BaseServiceImpl implements GoogleUtilsService {
 	@Autowired
 	UserService userService;

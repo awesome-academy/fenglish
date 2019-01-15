@@ -14,7 +14,7 @@
 <spring:url value="/admin/posts/new" var="createPost" />
 <spring:url value="/admin/statistic/exerciseChart" var="exerciseChart" />
 <spring:url value="/admin/chat" var="chatView" />
-<spring:url value="/admin/mail/sendmail" var="sendMailWeekly" />
+<spring:url value="/admin/mail" var="sendMailWeekly" />
 
 <spring:message code="title.admin.language" var="language" />
 <spring:message code="title.admin.menuUser" var="menuUser" />

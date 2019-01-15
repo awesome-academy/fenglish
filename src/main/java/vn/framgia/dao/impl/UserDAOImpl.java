@@ -43,6 +43,14 @@ public class UserDAOImpl extends GenericDAO<Integer, User> implements UserDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
+	public List<User> listAll() {
+		logger.info("Get list user");
+		return (List<User>) getSession().createQuery("from User u where u.deleted = 0").getResultList();
+
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
 	public List<User> loadUsers(Integer offset, Integer maxResult) {
 		Query query = getSession().createQuery("FROM User a WHERE a.deleted = 0");
 
@@ -77,7 +85,8 @@ public class UserDAOImpl extends GenericDAO<Integer, User> implements UserDAO {
 	@Override
 	public User findUserByEmailAndUsingLock(String email, LockModeType lockMode) {
 		String hql = "FROM User a WHERE a.email = :email AND a.deleted = 0";
-		return (User) getSession().createQuery(hql).setParameter("email", email).setLockMode(lockMode).getSingleResult();
+		return (User) getSession().createQuery(hql).setParameter("email", email).setLockMode(lockMode)
+				.getSingleResult();
 	}
 
 	@Override

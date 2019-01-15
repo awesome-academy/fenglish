@@ -5,10 +5,12 @@ import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.Scope;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Component;
 @Component
+@Scope("prototype")
 @PropertySource(ignoreResourceNotFound = true, value = "classpath:mailconfig.properties")
 public class EmailHelper {
 

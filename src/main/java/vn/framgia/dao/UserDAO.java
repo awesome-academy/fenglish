@@ -14,10 +14,12 @@ public interface UserDAO extends BaseDAO<Integer, User> {
 	List<User> loadUsers(Integer offset, Integer maxResult);
 
 	Long count();
-	
+
 	boolean deleteUser(User user);
-	
+
 	User findUserByEmailAndUsingLock(String email, LockModeType lockMode);
-	
+
 	User findByFacebookId(String facebookId);
+
+	List<User> listAll();
 }

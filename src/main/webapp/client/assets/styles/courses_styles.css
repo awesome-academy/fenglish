@@ -686,7 +686,7 @@ section {
 }
 
 .section_title h1 {
-	position:  relative;
+	position: relative;
 	display: block;
 	color: #1a1a1a;
 	font-weight: 500;
@@ -1010,11 +1010,7 @@ ul.pagination li.active a:hover {
 	color: white;
 }
 
-ul.pagination li:not(.active ) {
-	color: #000;
-}
-
-ul.pagination li:not(.active ) a:hover {
+ul.pagination li:not (.active ) a:hover {
 	background: #ddd;
 }
 

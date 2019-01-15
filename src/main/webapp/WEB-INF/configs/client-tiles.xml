@@ -474,4 +474,8 @@
 		<put-list-attribute name="home-js" />
 	</definition>
 
+	<!-- error pages -->
+	<definition name="/client/errors"
+		template="/client/views/error_pages/errors.jsp">
+	</definition>
 </tiles-definitions>

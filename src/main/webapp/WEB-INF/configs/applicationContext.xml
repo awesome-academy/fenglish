@@ -57,6 +57,7 @@
 				<value>classpath:activemq-config</value>
 				<value>classpath:fenglish-global-variable</value>
 				<value>classpath:facebook-api</value>
+				<value>classpath:errors</value>
 			</list>
 		</property>
 		<property name="fallbackToSystemLocale" value="false" />

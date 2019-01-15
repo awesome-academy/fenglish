@@ -14,6 +14,7 @@
 <spring:url value="/admin/posts/new" var="createPost" />
 <spring:url value="/admin/statistic/exerciseChart" var="exerciseChart" />
 <spring:url value="/admin/chat" var="chatView" />
+<spring:url value="/admin/mail/sendmail" var="sendMailWeekly" />
 
 <spring:message code="title.admin.language" var="language" />
 <spring:message code="title.admin.menuUser" var="menuUser" />
@@ -30,6 +31,7 @@
 <spring:message code="title.admin.logout" var="logout" />
 <spring:message code="title.admin.statistic.menu" var="menuStatistic" />
 <spring:message code="title.admin.chat.title" var="menuChat" />
+<spring:message code="title.admin.mail.title" var="menuMail" />
 <nav>
 	<div class="container-fluid">
 		<div class="nav navbar-nav navbar-right">
@@ -63,6 +65,7 @@
 				</ul></li>
 			<li><a href="${exerciseChart}">${menuStatistic}</a></li>
 			<li><a href="${chatView}">${menuChat}</a></li>
+			<li><a href="${sendMailWeekly}">${menuMail}</a></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
 			<li><a href="#">Hi, Admin</a></li>

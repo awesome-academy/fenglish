@@ -72,6 +72,8 @@
 	
 	<spring:url value="/" var="contextUrl" />
 	<input id="contextUrl" type="hidden" value="${contextUrl}">
+	<spring:message code="fenglish.chatsocketurl" var="chatSocketUrl" />
+	<input id="chatSocketUrl" type="hidden" value="${chatSocketUrl}">
 	<c:if test="${userName != null && !isAdmin}">
 		<div id="topLeft" class="chatMenu">
 			<div class="head" id="chatButonMeassage">Chat with Admin</div>

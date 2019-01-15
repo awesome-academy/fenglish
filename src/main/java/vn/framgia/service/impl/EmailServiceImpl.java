@@ -6,6 +6,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Component;
 
+import vn.framgia.bean.EmailInfo;
 import vn.framgia.helper.EmailHelper;
 import vn.framgia.service.EmailService;
 
@@ -14,18 +15,34 @@ import vn.framgia.service.EmailService;
 public class EmailServiceImpl implements EmailService {
 	@Autowired
 	public EmailHelper emailHelper;
-	
+
 	@Value("${mail.confirm.link}")
 	String mailConfirmLink;
 
 	public void sendSimpleMessage(String to, String passwordResetToken) {
 		SimpleMailMessage message = new SimpleMailMessage();
 		String subject = "Thư xác nhận email đăng ký tài khoản Fenglish";
-		String linkConfirm = mailConfirmLink + to+"/"+passwordResetToken;
-		String content = "Click this link to confirm your email: "+ linkConfirm;
+		String linkConfirm = mailConfirmLink + to + "/" + passwordResetToken;
+		String content = "Click this link to confirm your email: " + linkConfirm;
 		message.setTo(to);
 		message.setSubject(subject);
 		message.setText(content);
+		emailHelper.getJavaMailSender().send(message);
+	}
+
+	public void sendEmailInfo(EmailInfo emailInfo) {
+		SimpleMailMessage message = new SimpleMailMessage();
+		message.setTo(emailInfo.getTo());
+		message.setSubject(emailInfo.getTitle());
+		message.setText(emailInfo.getContent());
+		emailHelper.getJavaMailSender().send(message);
+	}
+
+	public void sendMail(String to, String passwordResetToken, EmailInfo emailInfo) {
+		SimpleMailMessage message = new SimpleMailMessage();
+		message.setTo(to);
+		message.setSubject(emailInfo.getTitle());
+		message.setText(emailInfo.getContent());
 		emailHelper.getJavaMailSender().send(message);
 	}
 }

@@ -33,10 +33,19 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 	}
 
 	@Override
-
 	public List<User> findAll(int page, int userPerPage) {
 		try {
 			return userDAO.listAll(page, userPerPage);
+		} catch (Exception e) {
+			logger.error("Error in findAll: " + e.getMessage());
+			return Collections.emptyList();
+		}
+	}
+	
+	@Override
+	public List<User> findAll() {
+		try {
+			return userDAO.listAll();
 		} catch (Exception e) {
 			logger.error("Error in findAll: " + e.getMessage());
 			return Collections.emptyList();

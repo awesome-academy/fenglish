@@ -75,6 +75,39 @@ public class IndexController extends BaseController {
 	public String aboutUs() {
 		return "/client/contact";
 	}
+	
+	@GetMapping("/errors")
+	public String errors(HttpServletRequest request, Model model) {
+		Integer code = Integer.parseInt(request.getAttribute("javax.servlet.error.status_code").toString());
+		switch (code) {
+			case 400:
+				model.addAttribute("code", "errors.code.400");
+				model.addAttribute("content", "errors.content.400");
+				break;
+			
+			case 401:
+				model.addAttribute("code", "errors.code.401");
+				model.addAttribute("content", "errors.content.401");
+				break;
+			
+			case 403:
+				model.addAttribute("code", "errors.code.403");
+				model.addAttribute("content", "errors.content.403");
+				break;
+			
+			case 404:
+				model.addAttribute("code", "errors.code.404");
+				model.addAttribute("content", "errors.content.404");
+				break;
+			
+			case 500:
+				model.addAttribute("code", "errors.code.500");
+				model.addAttribute("code", "errors.content.500");
+				break;
+		}
+		
+		return "/client/errors";
+	}
 
 	private UsernamePasswordAuthenticationToken buildAuthentication(GoogleAccountInfo googleAccountInfo,
 			HttpServletRequest request) {
